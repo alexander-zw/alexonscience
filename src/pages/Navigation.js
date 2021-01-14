@@ -39,6 +39,7 @@ const Navigation = () => {
             </div>
             <div className="text-div">
                 <NavigationOption to="/" exact>Home</NavigationOption>
+                <NavigationOption to="/youtube">YouTube</NavigationOption>
                 <NavigationOption to="/art">Art</NavigationOption>
             </div>
         </div>
