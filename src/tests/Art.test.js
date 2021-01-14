@@ -1,0 +1,8 @@
+import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
+import Art from '../pages/Art';
+
+it('renders correctly', () => {
+    const tree = renderer.create(<Art />).toJSON();
+    expect(tree).toMatchSnapshot();
+});

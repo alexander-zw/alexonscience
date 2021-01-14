@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    id="kenobi-image"
+  >
+    <img
+      alt="Hello there"
+      className="bottom"
+      src="general_kenobi.png"
+    />
+    <img
+      alt="General Kenobi"
+      className="top"
+      src="hello_there.png"
+    />
+  </div>
+</div>
+`;

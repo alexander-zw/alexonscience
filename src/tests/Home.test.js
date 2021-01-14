@@ -1,15 +1,15 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import MainPage from '../pages/MainPage';
+import Home from '../pages/Home';
 
-test('renders my name', () => {
-    render(<MainPage />);
-    const linkElement = screen.getByText(/Alexander Wu/i);
+test('renders some text', () => {
+    render(<Home />);
+    const linkElement = screen.getByText(/YouTube channel/i);
     expect(linkElement).toBeInTheDocument();
 });
 
 it('renders correctly', () => {
-    const tree = renderer.create(<MainPage />).toJSON();
+    const tree = renderer.create(<Home />).toJSON();
     expect(tree).toMatchSnapshot();
 });

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div>
+    <div>
+      <img
+        alt="ALEX on Science"
+        id="science-banner-image"
+        src="science_banner.jpg"
+      />
+    </div>
+    <a
+      aria-current="page"
+      className="active"
+      href="/"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      Home
+    </a>
+    <a
+      aria-current={null}
+      href="/art"
+      onClick={[Function]}
+    >
+      Art
+    </a>
+  </div>
+  <div>
+    <div
+      className="text-div"
+    >
+      <p>
+        Psst... check out my 
+        <a
+          href="https://tinyurl.com/alexonscience"
+        >
+          Youtube channel
+        </a>
+        !
+      </p>
+    </div>
+  </div>
+</div>
+`;
