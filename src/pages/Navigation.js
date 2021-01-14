@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/index.css';
 import '../styles/Navigation.css';
 import science_banner from '../images/science_banner.jpg';
 
 const NavigationOption = (props) => {
+    const [active, setActive] = useState(false);
+
     return (
-        <div className="nav-option-div">
-            <NavLink
-                to={props.to}
-                exact={props.exact ? props.exact : undefined}
-                className="nav-option"
-                activeClassName="active-nav-option"
+        <NavLink
+            to={props.to}
+            exact={props.exact ? props.exact : undefined}
+            className="nav-option-div"
+            isActive={(match, location) => {
+                // The conditional is necessary to prevent infinite loop.
+                if (match) {
+                    setActive(true);
+                    return true;
+                }
+                setActive(false);
+                return false;
+            }}
+        >
+            <div
+                className={`nav-option${active ? " active-nav-option" : ""}`}
             >
                 {props.children}
-            </NavLink>
-        </div>
+            </div>
+        </NavLink>
     );
 }
 
