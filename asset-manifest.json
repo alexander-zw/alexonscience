@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.e8dd417b.chunk.css",
-    "main.js": "/static/js/main.d4b2a6bf.chunk.js",
-    "main.js.map": "/static/js/main.d4b2a6bf.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d158bbd3.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d158bbd3.js.map",
-    "static/js/2.ec346794.chunk.js": "/static/js/2.ec346794.chunk.js",
-    "static/js/2.ec346794.chunk.js.map": "/static/js/2.ec346794.chunk.js.map",
-    "static/js/3.7978ef20.chunk.js": "/static/js/3.7978ef20.chunk.js",
-    "static/js/3.7978ef20.chunk.js.map": "/static/js/3.7978ef20.chunk.js.map",
+    "main.css": "/static/css/main.3eec7ca4.chunk.css",
+    "main.js": "/static/js/main.6e7ac376.chunk.js",
+    "main.js.map": "/static/js/main.6e7ac376.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ad435b4f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ad435b4f.js.map",
+    "static/js/2.a47eb7f4.chunk.js": "/static/js/2.a47eb7f4.chunk.js",
+    "static/js/2.a47eb7f4.chunk.js.map": "/static/js/2.a47eb7f4.chunk.js.map",
+    "static/js/3.2e30b1a3.chunk.js": "/static/js/3.2e30b1a3.chunk.js",
+    "static/js/3.2e30b1a3.chunk.js.map": "/static/js/3.2e30b1a3.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.e8dd417b.chunk.css.map": "/static/css/main.e8dd417b.chunk.css.map",
-    "static/js/2.ec346794.chunk.js.LICENSE.txt": "/static/js/2.ec346794.chunk.js.LICENSE.txt",
-    "static/media/general-kenobi.550b7f81.png": "/static/media/general-kenobi.550b7f81.png",
-    "static/media/hello-there.0f7e79ba.png": "/static/media/hello-there.0f7e79ba.png"
+    "static/css/main.3eec7ca4.chunk.css.map": "/static/css/main.3eec7ca4.chunk.css.map",
+    "static/js/2.a47eb7f4.chunk.js.LICENSE.txt": "/static/js/2.a47eb7f4.chunk.js.LICENSE.txt",
+    "static/media/general_kenobi.550b7f81.png": "/static/media/general_kenobi.550b7f81.png",
+    "static/media/hello_there.0f7e79ba.png": "/static/media/hello_there.0f7e79ba.png",
+    "static/media/science_banner.f697d557.jpg": "/static/media/science_banner.f697d557.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d158bbd3.js",
-    "static/js/2.ec346794.chunk.js",
-    "static/css/main.e8dd417b.chunk.css",
-    "static/js/main.d4b2a6bf.chunk.js"
+    "static/js/runtime-main.ad435b4f.js",
+    "static/js/2.a47eb7f4.chunk.js",
+    "static/css/main.3eec7ca4.chunk.css",
+    "static/js/main.6e7ac376.chunk.js"
   ]
 }
