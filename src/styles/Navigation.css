@@ -1,3 +1,50 @@
+/* When user hovers over a navigation option, the text changes color,
+   an underline appears, and the background darkens.
+   When user is at a route, that navigation option text has the changed color. */
+
+.nav-option {
+    position: relative;
+    display: inline-block;
+    padding: 0.5em 1em 0.1em 1em;
+    margin-bottom: 0.4em;
+    line-height: 24px;
+    height: 24px;
+    color: black;
+    text-decoration: none;
+}
+
+.nav-option::after {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    border-bottom: 2px solid rgb(0, 131, 136);
+}
+
+.nav-option, .nav-option::after, .nav-option-div, .nav-option-div::after {
+    transition: all 0.3s linear;
+}
+
+.nav-option:hover, .active-nav-option {
+    color: rgb(0, 131, 136);
+}
+
+.nav-option:hover::after {
+    left: 0;
+    width: 100%;
+}
+
+.nav-option-div {
+    display: inline-block;
+}
+
+.nav-option-div:hover {
+    background-color: rgb(225, 227, 235);
+}
+
 #science-banner-image {
     width: 100%;
 }

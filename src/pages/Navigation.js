@@ -4,15 +4,32 @@ import '../styles/index.css';
 import '../styles/Navigation.css';
 import science_banner from '../images/science_banner.jpg';
 
+const NavigationOption = (props) => {
+    return (
+        <div className="nav-option-div">
+            <NavLink
+                to={props.to}
+                exact={props.exact ? props.exact : undefined}
+                className="nav-option"
+                activeClassName="active-nav-option"
+            >
+                {props.children}
+            </NavLink>
+        </div>
+    );
+}
+
 const Navigation = () => {
     return (
-       <div>
-           <div>
+        <div>
+            <div>
                <img id="science-banner-image" src={science_banner} alt="ALEX on Science" />
-           </div>
-            <NavLink to="/" className="text-div">Home</NavLink>
-            <NavLink to="/art" className="text-div">Art</NavLink>
-       </div>
+            </div>
+            <div className="text-div">
+                <NavigationOption to="/" exact>Home</NavigationOption>
+                <NavigationOption to="/art">Art</NavigationOption>
+            </div>
+        </div>
     );
 }
 
