@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="title-div"
+  >
+    <span
+      className="title"
+    >
+      Alexander Wu
+    </span>
+  </div>
+  <div
+    className="text-div"
+  >
+    <p>
+      Psst... check out my 
+      <a
+        href="https://tinyurl.com/alexonscience"
+      >
+        Youtube Channel
+      </a>
+      !
+    </p>
+  </div>
+  <div
+    id="kenobi-image"
+  >
+    <img
+      alt="Hello there"
+      className="bottom"
+      src="general-kenobi.png"
+    />
+    <img
+      alt="General Kenobi"
+      className="top"
+      src="hello-there.png"
+    />
+  </div>
+</div>
+`;
