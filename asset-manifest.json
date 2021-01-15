@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.0ef6b14d.chunk.css",
-    "main.js": "/static/js/main.4f96cf9e.chunk.js",
-    "main.js.map": "/static/js/main.4f96cf9e.chunk.js.map",
+    "main.css": "/static/css/main.6699ab25.chunk.css",
+    "main.js": "/static/js/main.28d33a6f.chunk.js",
+    "main.js.map": "/static/js/main.28d33a6f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.5d36310a.js",
     "runtime-main.js.map": "/static/js/runtime-main.5d36310a.js.map",
     "static/js/2.d9f09e68.chunk.js": "/static/js/2.d9f09e68.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.838c0376.chunk.js": "/static/js/3.838c0376.chunk.js",
     "static/js/3.838c0376.chunk.js.map": "/static/js/3.838c0376.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.0ef6b14d.chunk.css.map": "/static/css/main.0ef6b14d.chunk.css.map",
+    "static/css/main.6699ab25.chunk.css.map": "/static/css/main.6699ab25.chunk.css.map",
     "static/js/2.d9f09e68.chunk.js.LICENSE.txt": "/static/js/2.d9f09e68.chunk.js.LICENSE.txt",
     "static/media/fancy_pants_sketch.c4c87da5.jpg": "/static/media/fancy_pants_sketch.c4c87da5.jpg",
     "static/media/general_kenobi.550b7f81.png": "/static/media/general_kenobi.550b7f81.png",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.5d36310a.js",
     "static/js/2.d9f09e68.chunk.js",
-    "static/css/main.0ef6b14d.chunk.css",
-    "static/js/main.4f96cf9e.chunk.js"
+    "static/css/main.6699ab25.chunk.css",
+    "static/js/main.28d33a6f.chunk.js"
   ]
 }
