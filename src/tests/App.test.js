@@ -1,6 +1,10 @@
+/**
+ * This test checks the whole page, so it is able to test the navigation bar
+ * (Navigation.js) and footer (Footer.js).
+ */
 import '@testing-library/jest-dom';
 import renderer from 'react-test-renderer';
-import App from '../pages/App';
+import App from '../components/App';
 
 it('renders correctly', () => {
     const tree = renderer.create(<App />).toJSON();

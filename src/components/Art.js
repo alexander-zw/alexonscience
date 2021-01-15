@@ -1,6 +1,11 @@
+/**
+ * The art component contains includes a gallery of my artwork, which each
+ * may or may not have some animation.
+ */
 import React from 'react';
 import '../styles/index.css';
 import '../styles/Art.css';
+
 import hello_there from '../images/hello_there.png';
 import general_kenobi from '../images/general_kenobi.png';
 import math_name from '../images/math_name.jpg';

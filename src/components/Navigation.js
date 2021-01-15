@@ -1,3 +1,8 @@
+/**
+ * The navigation bar component contains links to go to different components
+ * of the page. Must be used inside of a BrowserRouter. Includes a top banner
+ * image and pretty animations.
+ */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/index.css';

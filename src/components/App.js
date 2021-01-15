@@ -1,3 +1,7 @@
+/**
+ * The main component of the site, including the navigation bar, main content,
+ * and footer.
+ */
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 

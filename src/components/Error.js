@@ -1,4 +1,9 @@
+/**
+ * The error component is basically a 404 page displayed when no other
+ * content applies.
+ */
 import React from 'react';
+import '../styles/index.css'
 
 const Error = () => {
     return (

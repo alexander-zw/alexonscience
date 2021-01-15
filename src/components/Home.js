@@ -1,3 +1,7 @@
+/**
+ * The home component is the default component displayed at the index URL.
+ * It contains a basic welcome.
+ */
 import React from 'react';
 import '../styles/index.css';
 

@@ -1,7 +1,10 @@
+/**
+ * Test for the Home.js component.
+ */
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import Home from '../pages/Home';
+import Home from '../components/Home';
 
 test('renders some text', () => {
     render(<Home />);
