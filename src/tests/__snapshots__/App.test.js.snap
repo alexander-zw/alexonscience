@@ -53,6 +53,18 @@ Array [
             Art
           </a>
         </div>
+        <div
+          className="nav-option-div"
+        >
+          <a
+            aria-current={null}
+            className="nav-option"
+            href="/contact"
+            onClick={[Function]}
+          >
+            Contact Me
+          </a>
+        </div>
       </div>
     </div>
     <div>
@@ -79,7 +91,12 @@ Array [
     <div
       className="right-half"
     >
-      Contact me
+      <a
+        href="/contact"
+        onClick={[Function]}
+      >
+        Contact me
+      </a>
     </div>
   </footer>,
 ]

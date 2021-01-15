@@ -34,6 +34,7 @@ const Navigation = () => {
                 <NavigationOption to="/" exact>Home</NavigationOption>
                 <NavigationOption to="/youtube">YouTube</NavigationOption>
                 <NavigationOption to="/art">Art</NavigationOption>
+                <NavigationOption to="/contact">Contact Me</NavigationOption>
             </div>
         </div>
     );

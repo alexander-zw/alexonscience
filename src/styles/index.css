@@ -25,9 +25,10 @@ code {
 }
 
 .text-div {
-    padding-left: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .non-footer-content {
