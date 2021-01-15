@@ -10,35 +10,54 @@ exports[`renders correctly 1`] = `
         src="science_banner.jpg"
       />
     </div>
-    <a
-      aria-current="page"
-      className="active"
-      href="/"
-      onClick={[Function]}
-      style={Object {}}
+    <div
+      className="text-div"
     >
-      Home
-    </a>
-    <a
-      aria-current={null}
-      href="/art"
-      onClick={[Function]}
-    >
-      Art
-    </a>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current="page"
+          className="nav-option active-nav-option"
+          href="/"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          Home
+        </a>
+      </div>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current={null}
+          className="nav-option"
+          href="/youtube"
+          onClick={[Function]}
+        >
+          YouTube
+        </a>
+      </div>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current={null}
+          className="nav-option"
+          href="/art"
+          onClick={[Function]}
+        >
+          Art
+        </a>
+      </div>
+    </div>
   </div>
   <div>
     <div
       className="text-div"
     >
       <p>
-        Psst... check out my 
-        <a
-          href="https://tinyurl.com/alexonscience"
-        >
-          Youtube channel
-        </a>
-        !
+        Hello there! My name is Alexander Wu. I am a college student who enjoys maintaining a YouTube channel and working on personal coding projects. Feel free to explore around!
       </p>
     </div>
   </div>
