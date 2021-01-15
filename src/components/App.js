@@ -9,12 +9,13 @@ import Home from './Home';
 import Art from './Art';
 import Error from './Error';
 import Navigation from './Navigation';
+import Footer from './Footer';
 
 class App extends Component {
   render() {
     return (
         <BrowserRouter>
-            <div>
+            <div className="non-footer-content">
                 <Navigation />
                 <Switch>
                     <Route path="/" component={Home} exact/>
@@ -25,7 +26,8 @@ class App extends Component {
                     }}/>
                     <Route component={Error}/>
                 </Switch>
-            </div> 
+            </div>
+            <Footer />
         </BrowserRouter>
     );
   }

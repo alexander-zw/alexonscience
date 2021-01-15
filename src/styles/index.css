@@ -29,3 +29,7 @@ code {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.3em;
 }
+
+.non-footer-content {
+    min-height: 80%;
+}
