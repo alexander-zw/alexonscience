@@ -3,17 +3,48 @@
 exports[`renders correctly 1`] = `
 <div>
   <div
-    id="kenobi-image"
+    className="text-div"
+  >
+    <p>
+      Here is some random artwork I have drawn for fun. Enjoy!
+    </p>
+  </div>
+  <div
+    className="artwork-div"
+  >
+    <div
+      id="kenobi-image"
+    >
+      <img
+        alt="Hello there"
+        className="bottom artwork-image"
+        src="general_kenobi.png"
+      />
+      <img
+        alt="General Kenobi"
+        className="top artwork-image"
+        src="hello_there.png"
+      />
+    </div>
+  </div>
+  <div
+    className="artwork-div"
   >
     <img
-      alt="Hello there"
-      className="bottom"
-      src="general_kenobi.png"
+      alt="How to name a math concept"
+      className="artwork-image"
+      src="math_name.jpg"
     />
+  </div>
+  <div
+    className="artwork-div"
+    id="fancy-pants-image"
+  >
     <img
-      alt="General Kenobi"
-      className="top"
-      src="hello_there.png"
+      alt="Fancy pants sketch"
+      className="artwork-image"
+      id="fancy-pants-image"
+      src="fancy_pants_sketch.jpg"
     />
   </div>
 </div>

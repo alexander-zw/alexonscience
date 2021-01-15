@@ -6,13 +6,7 @@ exports[`renders correctly 1`] = `
     className="text-div"
   >
     <p>
-      Psst... check out my 
-      <a
-        href="https://tinyurl.com/alexonscience"
-      >
-        Youtube channel
-      </a>
-      !
+      Hello there! My name is Alexander Wu. I am a college student who enjoys maintaining a YouTube channel and working on personal coding projects. Feel free to explore around!
     </p>
   </div>
 </div>
