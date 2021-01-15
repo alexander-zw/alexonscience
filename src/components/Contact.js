@@ -6,7 +6,7 @@ import '../styles/index.css'
 
 const Contact = () => {
     return (
-       <div className="text-div">
+       <div className="text-div bottom-div">
             <p>Feel free to reach out to me!</p>
             <p>Email: alexwu68 [at] berkeley [dot] edu</p>
             <p>

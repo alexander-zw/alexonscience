@@ -4,11 +4,12 @@
  */
 import React from 'react';
 import '../styles/index.css';
+import '../styles/Home.css';
 
 function Home() {
     return (
         <div>
-            <div className="text-div">
+            <div className="text-div bottom-div">
                 <p>
                     Hello there! My name is Alexander Wu. I am a college student who enjoys
                     maintaining a YouTube channel and working on personal coding projects.

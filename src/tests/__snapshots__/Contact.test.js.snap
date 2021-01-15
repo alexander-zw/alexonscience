@@ -2,10 +2,10 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="text-div"
+  className="text-div bottom-div"
 >
   <p>
-    Feel free to contact me!
+    Feel free to reach out to me!
   </p>
   <p>
     Email: alexwu68 [at] berkeley [dot] edu

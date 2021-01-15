@@ -31,6 +31,10 @@ code {
     font-size: 1.1em;
 }
 
+.bottom-div {
+    margin-bottom: 1.8em;
+}
+
 .non-footer-content {
     min-height: 80%;
 }
