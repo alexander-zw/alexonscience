@@ -5,9 +5,11 @@
  * TODO:
  * Improve nav bar CSS
  * Add explanation of banner
+ * Improve contact me page
  * Improve mobile layout
  * Add portfolio
  * Add projects
+ * Improve homepage
  * Add blog
  */
 import React, { Component } from 'react';
