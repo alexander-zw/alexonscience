@@ -1,0 +1,58 @@
+/* Popup container. */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Text you're supposed to click. */
+.popup-outer {
+    font-size: 0.9em;
+    color: rgb(99, 99, 99);
+}
+
+/* The actual popup (appears on top). */
+.popup .popuptext {
+    visibility: hidden;
+    width: 18em;
+    background-color: rgb(100, 100, 100);
+    color: #fff;
+    text-align: center;
+    font-size: 0.85em;
+    border-radius: 0.7em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -9.5em;
+}
+
+/* Popup arrow. */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Hide and show the popup. */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

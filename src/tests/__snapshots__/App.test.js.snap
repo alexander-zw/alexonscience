@@ -74,6 +74,21 @@ Array [
         <p>
           Hello there! My name is Alexander Wu. I am a college student who enjoys maintaining a YouTube channel and working on personal coding projects. Feel free to explore around!
         </p>
+        <div
+          className="popup"
+          onClick={[Function]}
+        >
+          <span
+            className="popup-outer"
+          >
+            What are those drawings in your banner?
+          </span>
+          <span
+            className="popuptext"
+          >
+            As you might be able to tell, I love drawing, even if I'm not that good at it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some DNA, and Rosalind Franklin. Franklin is particularly underappreciated - she was not recognized for a Nobel prize only because she had passed away by the time it was awarded.
+          </span>
+        </div>
       </div>
     </div>
   </div>,

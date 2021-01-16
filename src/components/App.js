@@ -3,8 +3,6 @@
  * and footer.
  *
  * TODO:
- * Improve nav bar CSS
- * Add explanation of banner
  * Improve contact me page
  * Improve mobile layout
  * Add portfolio
