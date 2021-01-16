@@ -11,7 +11,7 @@ import general_kenobi from '../images/general_kenobi.png';
 import math_name from '../images/math_name.jpg';
 import fancy_pants_sketch from '../images/fancy_pants_sketch.jpg';
 
-const Art = () => {
+function Art() {
     return (
         <div>
             <div className="text-div">

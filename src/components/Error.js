@@ -5,7 +5,7 @@
 import React from 'react';
 import '../styles/index.css'
 
-const Error = () => {
+function Error() {
     return (
        <div className="text-div">
             <p>Error: Page does not exist!</p>

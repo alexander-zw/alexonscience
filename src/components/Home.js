@@ -10,11 +10,8 @@ function Home() {
     const [showPopup, setShowPopup] = useState(false);
 
     function displayPopup() {
-        console.log(`DISPLAYING POPUP: ${showPopup}`);
         setShowPopup(!showPopup);
     };
-
-    console.log(`SHOW POPUP IS ${showPopup}, FUNC IS ${displayPopup}`);
 
     return (
         <div>

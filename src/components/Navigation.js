@@ -9,7 +9,7 @@ import '../styles/index.css';
 import '../styles/Navigation.css';
 import science_banner from '../images/science_banner.jpg';
 
-const NavigationOption = (props) => {
+function NavigationOption(props) {
     return (
         <div className="nav-option-div">
             <NavLink
@@ -24,7 +24,7 @@ const NavigationOption = (props) => {
     );
 }
 
-const Navigation = () => {
+function Navigation() {
     return (
         <div>
             <div>

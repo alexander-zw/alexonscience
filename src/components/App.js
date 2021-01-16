@@ -3,14 +3,13 @@
  * and footer.
  *
  * TODO:
- * Improve contact me page
  * Improve mobile layout
  * Add portfolio
  * Add projects
  * Improve homepage
  * Add blog
  */
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
@@ -20,8 +19,7 @@ import Error from './Error';
 import Navigation from './Navigation';
 import Footer from './Footer';
 
-class App extends Component {
-  render() {
+function App() {
     return (
         <BrowserRouter>
             <div className="non-footer-content">
@@ -40,7 +38,6 @@ class App extends Component {
             <Footer />
         </BrowserRouter>
     );
-  }
 }
 
 export default App;
