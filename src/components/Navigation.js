@@ -6,9 +6,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+
+import Home from './Home';
+import Portfolio from './Portfolio';
+import Art from './Art';
+import Contact from './Contact';
 import '../styles/index.css';
 import '../styles/Navigation.css';
 import science_banner from '../images/science_banner.jpg';
+
+export const navigationViews = [
+    {
+        path: "/",
+        title: "Home",
+        component: Home,
+        exact: true,
+    },
+    {
+        path: "/youtube",
+        title: "YouTube",
+        component: () => {
+            window.location.href = 'https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA';
+            return null;
+        },
+        exact: undefined,
+    },
+    {
+        path: "/portfolio",
+        title: "Portfolio",
+        component: Portfolio,
+        exact: undefined,
+    },
+    {
+        path: "/art",
+        title: "Art",
+        component: Art,
+        exact: undefined,
+    },
+    {
+        path: "/contact",
+        title: "Contact Me",
+        component: Contact,
+        exact: undefined,
+    },
+]
+
 
 function NavigationOption(props) {
     return (
@@ -35,17 +77,19 @@ NavigationOption.propTypes = {
 };
 
 function Navigation() {
+    const navigationOptions = navigationViews.map((option, index) => (
+        <NavigationOption to={option.path} exact={option.exact} key={index}>
+            {option.title}
+        </NavigationOption>
+    ))
+
     return (
         <div>
             <div>
                 <img id="science-banner-image" src={science_banner} alt="ALEX on Science" />
             </div>
             <div className="text-div">
-                <NavigationOption to="/" exact>Home</NavigationOption>
-                <NavigationOption to="/youtube">YouTube</NavigationOption>
-                <NavigationOption to="/portfolio">Portfolio</NavigationOption>
-                <NavigationOption to="/art">Art</NavigationOption>
-                <NavigationOption to="/contact">Contact Me</NavigationOption>
+                {navigationOptions}
             </div>
         </div>
     );
