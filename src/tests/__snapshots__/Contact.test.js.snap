@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
     Social media:
   </p>
   <div
-    class="social-container"
+    className="social-container"
   >
     <a
       className="youtube social"

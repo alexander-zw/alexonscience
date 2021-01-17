@@ -11,13 +11,13 @@ function Home() {
 
     function displayPopup() {
         setShowPopup(!showPopup);
-    };
+    }
 
     return (
         <div>
             <div className="text-div bottom-margin">
                 <p>
-                    Hello there! My name is Alexander Wu. I am a college student who enjoys
+                    Hello there! My name is Alexander Wu. I am a graduate student who enjoys
                     maintaining a YouTube channel and working on personal coding projects.
                     Feel free to explore around!
                 </p>
@@ -27,7 +27,7 @@ function Home() {
                         What are those drawings in your banner?
                     </span>
                     <span className={`popuptext${showPopup ? " show" : ""}`}>
-                        As you might be able to tell, I love drawing, even if I'm not that
+                        As you might be able to tell, I love drawing, even if I&apos;m not that
                         good at it. Here you can see a Turing machine, AlphaGo, Albert Einstein,
                         some DNA, and Rosalind Franklin. Franklin is particularly
                         underappreciated - she was not recognized for a Nobel prize only because

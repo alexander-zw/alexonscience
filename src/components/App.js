@@ -3,7 +3,6 @@
  * and footer.
  *
  * TODO:
- * Improve mobile layout
  * Add portfolio
  * Add projects
  * Improve homepage

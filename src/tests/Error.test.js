@@ -1,6 +1,7 @@
 /**
  * Test for the Error.js component, which is essentially the 404 page.
  */
+import React from 'react';
 import '@testing-library/jest-dom';
 import renderer from 'react-test-renderer';
 import Error from '../components/Error';

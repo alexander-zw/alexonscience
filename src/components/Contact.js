@@ -14,7 +14,7 @@ import '../styles/Contact.css';
 
 function SocialFollow() {
     return (
-        <div class="social-container">
+        <div className="social-container">
             <a href="https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA"
                 title="YouTube" className="youtube social">
                 <FontAwesomeIcon icon={faYoutube} size="2x" />

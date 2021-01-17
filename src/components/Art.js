@@ -33,7 +33,7 @@ function Art() {
 
             <div className="artwork-div" id="fancy-pants-image">
                 <img className="artwork-image" id="fancy-pants-image"
-                src={fancy_pants_sketch} alt="Fancy pants sketch"/>
+                    src={fancy_pants_sketch} alt="Fancy pants sketch"/>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="text-div top-margin bottom-margin"
 >
   <span
-    class="name-title"
+    className="name-title"
   >
     Alexander Wu
   </span>

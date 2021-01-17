@@ -4,6 +4,7 @@
  * image and pretty animations.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import '../styles/index.css';
 import '../styles/Navigation.css';
@@ -24,11 +25,20 @@ function NavigationOption(props) {
     );
 }
 
+NavigationOption.propTypes = {
+    to: PropTypes.string,
+    exact: PropTypes.bool,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
+};
+
 function Navigation() {
     return (
         <div>
             <div>
-               <img id="science-banner-image" src={science_banner} alt="ALEX on Science" />
+                <img id="science-banner-image" src={science_banner} alt="ALEX on Science" />
             </div>
             <div className="text-div">
                 <NavigationOption to="/" exact>Home</NavigationOption>

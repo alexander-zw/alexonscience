@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +45,8 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
+    "eslint": "^7.18.0",
+    "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
     "react-test-renderer": "^17.0.1"
   }
