@@ -9,35 +9,47 @@ import {
     faGithub,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import '../styles/index.css'
+import '../styles/index.css';
 import '../styles/Contact.css';
 
-function SocialFollow() {
-    return (
-        <div className="social-container">
-            <a href="https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA"
-                title="YouTube" className="youtube social">
-                <FontAwesomeIcon icon={faYoutube} size="2x" />
-            </a>
-            <a href="https://github.com/alexander-zw" title="GitHub" className="github social">
-                <FontAwesomeIcon icon={faGithub} size="2x" />
-            </a>
-            <a href="https://www.linkedin.com/in/alexander-wu-a0145a173"
-                title="LinkedIn" className="linkedin social">
-                <FontAwesomeIcon icon={faLinkedin} size="2x" />
-            </a>
-        </div>
-    );
-}
-
 function Contact() {
+    const accounts = [
+        {
+            title: "YouTube",
+            class: "youtube",
+            icon: faYoutube,
+            link: "https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA",
+        },
+        {
+            title: "GitHub",
+            class: "github",
+            icon: faGithub,
+            link: "https://github.com/alexander-zw",
+        },
+        {
+            title: "LinkedIn",
+            class: "linkedin",
+            icon: faLinkedin,
+            link: "https://www.linkedin.com/in/alexander-wu-a0145a173",
+        },
+    ];
+
+    const socialComponent = accounts.map((account, index) => (
+        <a href={account.link} title={account.title}
+            className={`${account.class} social`} key={index}>
+            <FontAwesomeIcon icon={account.icon} size="2x" />
+        </a>
+    ));
+
     return (
         <div className="text-div bottom-margin">
             <p>Feel free to reach out to me!</p>
             <p>Email: alexwu68 [at] berkeley [dot] edu</p>
 
             <p>Social media:</p>
-            <SocialFollow />
+            <div className="social-container">
+                {socialComponent}
+            </div>
         </div>
     );
 }

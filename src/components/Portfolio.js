@@ -7,7 +7,7 @@
  * accessed directly on my website.
  */
 import React from 'react';
-import '../styles/index.css'
+import '../styles/index.css';
 import '../styles/Portfolio.css';
 
 function Portfolio() {
@@ -37,20 +37,20 @@ function Portfolio() {
             title: "Projects",
             contents: <p>…</p>
         },
-    ]
+    ];
 
     const tableOfContents = sections.map((sect, index) => (
         <li className="contents-li" key={index}>
             <a href={`#${sect.id}`} className="contents-item">{sect.title}</a>
         </li>
-    ))
+    ));
 
     const content = sections.map((sect, index) => (
         <section id={sect.id} key={index}>
             <h2>{sect.title}</h2>
             {sect.contents}
         </section>
-    ))
+    ));
 
     return (
         <div className="outer-container top-margin bottom-margin">

@@ -45,6 +45,9 @@
         "no-eval": "error",
         "indent": ["error", 4],
         "no-var": "error",
-        "prefer-const": "error"
+        "prefer-const": "error",
+        "semi": "error",
+        "semi-style": ["error", "last"],
+        "semi-spacing": "error"
     }
 }

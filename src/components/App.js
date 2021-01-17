@@ -18,7 +18,7 @@ import Footer from './Footer';
 function App() {
     const routesComponent = navigationViews.map((route, index) => (
         <Route path={route.path} component={route.component} exact={route.exact} key={index}/>
-    ))
+    ));
 
     return (
         <BrowserRouter>

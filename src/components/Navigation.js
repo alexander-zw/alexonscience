@@ -49,7 +49,7 @@ export const navigationViews = [
         component: Contact,
         exact: undefined,
     },
-]
+];
 
 
 function NavigationOption(props) {
@@ -81,7 +81,7 @@ function Navigation() {
         <NavigationOption to={option.path} exact={option.exact} key={index}>
             {option.title}
         </NavigationOption>
-    ))
+    ));
 
     return (
         <div>
