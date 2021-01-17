@@ -22,11 +22,11 @@
 
 .contents-item {
     text-decoration: none;
-    color: rgb(99, 99, 99);
+    color: #636363;
 }
 
 .contents-item:hover {
-    color: rgb(0, 131, 136);
+    color: #008388;
 }
 
 .name-title {
