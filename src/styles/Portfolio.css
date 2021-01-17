@@ -1,3 +1,27 @@
+.outer-container {
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-template-areas: "nav content";
+
+}
+
+.contents-nav {
+    text-decoration: none;
+}
+
+.contents-ol {
+    list-style-type: none;
+}
+
+.contents-li {
+    margin-top: 1em;
+}
+
+.contents-item {
+    text-decoration: none;
+    color: rgb(99, 99, 99);
+}
+
 .name-title {
     padding-top: 0.2em;
     font-size: 3em;

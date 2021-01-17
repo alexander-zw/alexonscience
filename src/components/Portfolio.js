@@ -11,63 +11,64 @@ import '../styles/index.css'
 import '../styles/Portfolio.css';
 
 function Portfolio() {
+    const sections = [
+        {
+            id: "education",
+            title: "Education",
+            contents: <p>…</p>
+        },
+        {
+            id: "skills",
+            title: "Skills",
+            contents: <p>…</p>
+        },
+        {
+            id: "awards",
+            title: "Awards",
+            contents: <p>…</p>
+        },
+        {
+            id: "experience",
+            title: "Experience",
+            contents: <p>…</p>
+        },
+        {
+            id: "projects",
+            title: "Projects",
+            contents: <p>…</p>
+        },
+    ]
+
+    const tableOfContents = sections.map((sect, index) => (
+        <li className="contents-li" key={index}>
+            <a href={`#${sect.id}`} className="contents-item">{sect.title}</a>
+        </li>
+    ))
+
+    const content = sections.map((sect, index) => (
+        <section id={sect.id} key={index}>
+            <h2>{sect.title}</h2>
+            {sect.contents}
+        </section>
+    ))
+
     return (
-        <div className="text-div top-margin bottom-margin">
-            <span className="name-title">Alexander Wu</span>
-
-            <p>Email: alexwu68 [at] berkeley [dot] edu</p>
-        </div>
-    );
-}
-
-export default Portfolio;
-
-/*
-import React from 'react';
-import '../styles/index.css'
-import '../styles/Portfolio.css';
-
-function Portfolio() {
-    return (
-        <div>
-            <nav class="section-nav">
-                <ol>
-                    <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#request-response">Request &amp; Response</a></li>
-                    <li><a href="#authentication">Authentication</a></li>
-                …
-                    <li class=""><a href="#filters">Filters</a></li>
+        <div className="outer-container top-margin bottom-margin">
+            <nav className="contents-nav text-div">
+                <ol className="contents-ol">
+                    {tableOfContents}
                 </ol>
             </nav>
 
-            <div className="text-div top-margin bottom-margin">
+            <div className="text-div">
                 <span className="name-title">Alexander Wu</span>
 
                 <p>Email: alexwu68 [at] berkeley [dot] edu</p>
 
-                <h1>Smooth Scrolling Sticky ScrollSpy Navigation</h1>
-                <section id="introduction">
-                    <h2>Introduction</h2>
-                    <p>…</p>
-                </section>
-                <section id="request-response">
-                    <h2>Request &amp; Response</h2>
-                    <p>…</p>
-                </section>
-                <section id="authentication">
-                    <h2>Authentication</h2>
-                    <p>…</p>
-                </section>
-                …
-                <section id="filters">
-                    <h2>Filters</h2>
-                    <p>…</p>
-                </section>
+                {content}
             </div>
         </div>
     );
 }
 
 export default Portfolio;
-
-*/
