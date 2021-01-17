@@ -33,6 +33,7 @@ function Navigation() {
             <div className="text-div">
                 <NavigationOption to="/" exact>Home</NavigationOption>
                 <NavigationOption to="/youtube">YouTube</NavigationOption>
+                <NavigationOption to="/portfolio">Portfolio</NavigationOption>
                 <NavigationOption to="/art">Art</NavigationOption>
                 <NavigationOption to="/contact">Contact Me</NavigationOption>
             </div>

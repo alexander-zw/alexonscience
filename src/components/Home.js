@@ -15,7 +15,7 @@ function Home() {
 
     return (
         <div>
-            <div className="text-div bottom-div">
+            <div className="text-div bottom-margin">
                 <p>
                     Hello there! My name is Alexander Wu. I am a college student who enjoys
                     maintaining a YouTube channel and working on personal coding projects.

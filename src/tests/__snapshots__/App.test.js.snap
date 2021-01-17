@@ -47,6 +47,18 @@ Array [
           <a
             aria-current={null}
             className="nav-option"
+            href="/portfolio"
+            onClick={[Function]}
+          >
+            Portfolio
+          </a>
+        </div>
+        <div
+          className="nav-option-div"
+        >
+          <a
+            aria-current={null}
+            className="nav-option"
             href="/art"
             onClick={[Function]}
           >
@@ -69,7 +81,7 @@ Array [
     </div>
     <div>
       <div
-        className="text-div bottom-div"
+        className="text-div bottom-margin"
       >
         <p>
           Hello there! My name is Alexander Wu. I am a college student who enjoys maintaining a YouTube channel and working on personal coding projects. Feel free to explore around!

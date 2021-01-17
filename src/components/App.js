@@ -13,6 +13,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
+import Portfolio from './Portfolio';
 import Art from './Art';
 import Contact from './Contact';
 import Error from './Error';
@@ -26,6 +27,7 @@ function App() {
                 <Navigation />
                 <Switch>
                     <Route path="/" component={Home} exact/>
+                    <Route path="/portfolio" component={Portfolio}/>
                     <Route path="/art" component={Art}/>
                     <Route path="/youtube" component={() => {
                         window.location.href = 'https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA';

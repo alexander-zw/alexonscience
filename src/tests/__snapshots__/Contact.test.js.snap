@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="text-div bottom-div"
+  className="text-div bottom-margin"
 >
   <p>
     Feel free to reach out to me!
@@ -19,6 +19,7 @@ exports[`renders correctly 1`] = `
     <a
       className="youtube social"
       href="https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA"
+      title="YouTube"
     >
       <svg
         aria-hidden="true"
@@ -41,6 +42,7 @@ exports[`renders correctly 1`] = `
     <a
       className="github social"
       href="https://github.com/alexander-zw"
+      title="GitHub"
     >
       <svg
         aria-hidden="true"
@@ -63,6 +65,7 @@ exports[`renders correctly 1`] = `
     <a
       className="linkedin social"
       href="https://www.linkedin.com/in/alexander-wu-a0145a173"
+      title="LinkedIn"
     >
       <svg
         aria-hidden="true"

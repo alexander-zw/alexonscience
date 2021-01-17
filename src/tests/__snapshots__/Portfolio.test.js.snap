@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="text-div top-margin bottom-margin"
+>
+  <span
+    class="name-title"
+  >
+    Alexander Wu
+  </span>
+  <p>
+    Email: alexwu68 [at] berkeley [dot] edu
+  </p>
+</div>
+`;

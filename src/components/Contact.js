@@ -1,5 +1,6 @@
 /**
- * This component contains my contact information.
+ * This component contains my contact information, including some fancy social
+ * media icons.
  */
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,13 +32,13 @@ function SocialFollow() {
 
 function Contact() {
     return (
-       <div className="text-div bottom-div">
+        <div className="text-div bottom-margin">
             <p>Feel free to reach out to me!</p>
             <p>Email: alexwu68 [at] berkeley [dot] edu</p>
 
             <p>Social media:</p>
             <SocialFollow />
-       </div>
+        </div>
     );
 }
 
