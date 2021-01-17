@@ -6,77 +6,80 @@ Array [
     className="non-footer-content"
   >
     <div>
-      <div>
-        <img
-          alt="ALEX on Science"
-          id="science-banner-image"
-          src="science_banner.jpg"
-        />
+      <img
+        alt="ALEX on Science"
+        id="science-banner-image"
+        src="science_banner.jpg"
+      />
+    </div>
+    <div
+      className="nav-bar text-div"
+    >
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current="page"
+          className="nav-option active-nav-option"
+          href="/"
+          onClick={[Function]}
+          onUpdate={[Function]}
+          style={Object {}}
+        >
+          Home
+        </a>
       </div>
       <div
-        className="text-div"
+        className="nav-option-div"
       >
-        <div
-          className="nav-option-div"
+        <a
+          aria-current={null}
+          className="nav-option"
+          href="/youtube"
+          onClick={[Function]}
+          onUpdate={[Function]}
         >
-          <a
-            aria-current="page"
-            className="nav-option active-nav-option"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
-          >
-            Home
-          </a>
-        </div>
-        <div
-          className="nav-option-div"
+          YouTube
+        </a>
+      </div>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current={null}
+          className="nav-option"
+          href="/portfolio"
+          onClick={[Function]}
+          onUpdate={[Function]}
         >
-          <a
-            aria-current={null}
-            className="nav-option"
-            href="/youtube"
-            onClick={[Function]}
-          >
-            YouTube
-          </a>
-        </div>
-        <div
-          className="nav-option-div"
+          Portfolio
+        </a>
+      </div>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current={null}
+          className="nav-option"
+          href="/art"
+          onClick={[Function]}
+          onUpdate={[Function]}
         >
-          <a
-            aria-current={null}
-            className="nav-option"
-            href="/portfolio"
-            onClick={[Function]}
-          >
-            Portfolio
-          </a>
-        </div>
-        <div
-          className="nav-option-div"
+          Art
+        </a>
+      </div>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current={null}
+          className="nav-option"
+          href="/contact"
+          onClick={[Function]}
+          onUpdate={[Function]}
         >
-          <a
-            aria-current={null}
-            className="nav-option"
-            href="/art"
-            onClick={[Function]}
-          >
-            Art
-          </a>
-        </div>
-        <div
-          className="nav-option-div"
-        >
-          <a
-            aria-current={null}
-            className="nav-option"
-            href="/contact"
-            onClick={[Function]}
-          >
-            Contact Me
-          </a>
-        </div>
+          Contact Me
+        </a>
       </div>
     </div>
     <div>

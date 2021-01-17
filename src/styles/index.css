@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+html {
+    scroll-behavior: smooth; /* Not supported on all browsers. */
+}
+
 body {
     margin: 0;
     background-color: #f8f8f8;

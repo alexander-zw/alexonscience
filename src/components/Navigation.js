@@ -13,7 +13,6 @@ import Art from './Art';
 import Contact from './Contact';
 import '../styles/index.css';
 import '../styles/Navigation.css';
-import science_banner from '../images/science_banner.jpg';
 
 export const navigationViews = [
     {
@@ -60,6 +59,7 @@ function NavigationOption(props) {
                 exact={props.exact ? props.exact : undefined}
                 className="nav-option"
                 activeClassName="active-nav-option"
+                onUpdate={() => window.scrollTo(0, 0)}
             >
                 {props.children}
             </NavLink>
@@ -84,13 +84,8 @@ function Navigation() {
     ));
 
     return (
-        <div>
-            <div>
-                <img id="science-banner-image" src={science_banner} alt="ALEX on Science" />
-            </div>
-            <div className="text-div">
-                {navigationOptions}
-            </div>
+        <div className="nav-bar text-div">
+            {navigationOptions}
         </div>
     );
 }

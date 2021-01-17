@@ -8,12 +8,24 @@
  * Improve homepage
  * Add blog
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 import Error from './Error';
 import Navigation, { navigationViews } from './Navigation';
 import Footer from './Footer';
+import science_banner from '../images/science_banner.jpg';
+
+function ScrollToTop() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+}
 
 function App() {
     const routesComponent = navigationViews.map((route, index) => (
@@ -22,7 +34,11 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <div className="non-footer-content">
+                <div>
+                    <img id="science-banner-image" src={science_banner} alt="ALEX on Science" />
+                </div>
                 <Navigation />
                 <Switch>
                     {routesComponent}

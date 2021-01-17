@@ -46,7 +46,7 @@ function Portfolio() {
     ));
 
     const content = sections.map((sect, index) => (
-        <section id={sect.id} key={index}>
+        <section id={sect.id} className="section" key={index}>
             <h2>{sect.title}</h2>
             {sect.contents}
         </section>

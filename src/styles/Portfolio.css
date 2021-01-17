@@ -6,7 +6,10 @@
 }
 
 .contents-nav {
-    text-decoration: none;
+    position: -webkit-sticky; /* Safari earlier versions. */
+	position: sticky;
+	top: 3.2em;
+	align-self: start;
 }
 
 .contents-ol {
@@ -22,6 +25,10 @@
     color: rgb(99, 99, 99);
 }
 
+.contents-item:hover {
+    color: rgb(0, 131, 136);
+}
+
 .name-title {
     padding-top: 0.2em;
     font-size: 3em;
@@ -31,4 +38,12 @@
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+.section {
+    padding-bottom: 10em;
+    position: relative;
+    /* This allows linking via table of contents to arrive at the right place. */
+    padding-top: 2em;
+    top: -3em;
 }
