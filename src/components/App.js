@@ -20,6 +20,7 @@ import Navigation, { navigationViews } from './Navigation';
 import Footer from './Footer';
 import science_banner from '../images/science_banner.jpg';
 
+// Scroll to the top of page whenever user switches views.
 function ScrollToTop() {
     const { pathname } = useLocation();
 

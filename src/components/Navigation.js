@@ -11,6 +11,7 @@ import Home from './Home';
 import Resume from './Resume';
 import Art from './Art';
 import Contact from './Contact';
+import Projects from './Projects';
 import '../styles/index.css';
 import '../styles/Navigation.css';
 
@@ -35,6 +36,12 @@ export const navigationViews = [
         title: "Resume",
         component: Resume,
         exact: undefined,
+    },
+    {
+        path: "/projects",
+        title: "Projects",
+        component: Projects,
+        exact: true,
     },
     {
         path: "/art",
