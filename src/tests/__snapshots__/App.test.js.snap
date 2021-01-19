@@ -48,11 +48,11 @@ Array [
         <a
           aria-current={null}
           className="nav-option"
-          href="/portfolio"
+          href="/resume"
           onClick={[Function]}
           onUpdate={[Function]}
         >
-          Portfolio
+          Resume
         </a>
       </div>
       <div

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import Home from './Home';
-import Portfolio from './Portfolio';
+import Resume from './Resume';
 import Art from './Art';
 import Contact from './Contact';
 import '../styles/index.css';
@@ -31,9 +31,9 @@ export const navigationViews = [
         exact: undefined,
     },
     {
-        path: "/portfolio",
-        title: "Portfolio",
-        component: Portfolio,
+        path: "/resume",
+        title: "Resume",
+        component: Resume,
         exact: undefined,
     },
     {
