@@ -6,6 +6,7 @@
  * accessed directly on my website.
  */
 import React from 'react';
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import '../styles/index.css';
 import '../styles/Resume.css';
@@ -233,6 +234,12 @@ function Resume() {
 
     return (
         <div className="outer-container top-margin bottom-margin">
+            <Helmet>
+                <title>Resume | ALEX on Science</title>
+                <meta name="Description" content="Alex's resume" />
+                <meta name="KeyWords" content="resume, berkeley, experience, alex, alexander, wu, science, youtube" />
+            </Helmet>
+
             <nav className="contents-nav text-div">
                 <ol className="contents-ol">
                     {tableOfContents}

@@ -9,7 +9,6 @@
  * Add blog
  * Fix resume for mobile
  * Mobile friendly nav bar
- * Use react helmet
  * Prerendering (optional)
  */
 import React, { useEffect } from 'react';

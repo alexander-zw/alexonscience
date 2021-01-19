@@ -5,7 +5,14 @@ exports[`renders correctly 1`] = `
   className="text-div"
 >
   <p>
-    Error: Page does not exist!
+    Oops, this page does not exist! 
+    <a
+      exact={true}
+      href="/"
+      onClick={[Function]}
+    >
+      Back to Home
+    </a>
   </p>
 </div>
 `;

@@ -3,6 +3,7 @@
  * may or may not have some animation.
  */
 import React from 'react';
+import { Helmet } from "react-helmet";
 import '../styles/index.css';
 import '../styles/Art.css';
 
@@ -14,6 +15,12 @@ import fancy_pants_sketch from '../images/fancy_pants_sketch.jpg';
 function Art() {
     return (
         <div>
+            <Helmet>
+                <title>Art | ALEX on Science</title>
+                <meta name="Description" content="Alex's art showcase" />
+                <meta name="KeyWords" content="art, sketch, drawing, alex, alexander, wu, science, youtube" />
+            </Helmet>
+
             <div className="text-div">
                 <p>
                     Here is some random artwork I have drawn for fun. Enjoy!

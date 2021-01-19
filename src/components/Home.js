@@ -3,6 +3,7 @@
  * It contains a basic welcome.
  */
 import React, { useState } from 'react';
+import { Helmet } from "react-helmet";
 import '../styles/index.css';
 import '../styles/Home.css';
 
@@ -15,6 +16,12 @@ function Home() {
 
     return (
         <div>
+            <Helmet>
+                <title>ALEX on Science</title>
+                <meta name="Description" content="The official ALEX on Science website" />
+                <meta name="KeyWords" content="alex, alexander, wu, science, youtube" />
+            </Helmet>
+
             <div className="text-div bottom-margin">
                 <p>
                     Hello there! My name is Alexander Wu. I am a graduate student who enjoys
