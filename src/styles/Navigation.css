@@ -2,7 +2,7 @@
     position: -webkit-sticky; /* Safari earlier versions. */
     position: sticky;
     padding-top: 0.2em;
-	top: 0;
+    top: 0;
     background-color: #f8f8f8;
     z-index: 9000;
 }
@@ -24,7 +24,7 @@
 }
 
 .nav-option::after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     bottom: 0;
@@ -34,11 +34,15 @@
     border-bottom: 2px solid #008388;
 }
 
-.nav-option, .nav-option::after, .nav-option-div, .nav-option-div::after {
+.nav-option,
+.nav-option::after,
+.nav-option-div,
+.nav-option-div::after {
     transition: all 0.3s linear;
 }
 
-.nav-option:hover, .active-nav-option {
+.nav-option:hover,
+.active-nav-option {
     color: #008388;
 }
 

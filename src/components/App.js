@@ -11,14 +11,14 @@
  * Mobile friendly nav bar
  * Prerendering (optional)
  */
-import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-import Error from './Error';
-import Navigation, { navigationViews } from './Navigation';
-import Footer from './Footer';
-import science_banner from '../images/science_banner.jpg';
+import Error from "./Error";
+import Navigation, { navigationViews } from "./Navigation";
+import Footer from "./Footer";
+import science_banner from "../images/science_banner.jpg";
 
 // Scroll to the top of page whenever user switches views.
 function ScrollToTop() {
@@ -33,7 +33,7 @@ function ScrollToTop() {
 
 function App() {
     const routesComponent = navigationViews.map((route, index) => (
-        <Route path={route.path} component={route.component} exact={route.exact} key={index}/>
+        <Route path={route.path} component={route.component} exact={route.exact} key={index} />
     ));
 
     return (
@@ -46,7 +46,7 @@ function App() {
                 <Navigation />
                 <Switch>
                     {routesComponent}
-                    <Route component={Error}/>
+                    <Route component={Error} />
                 </Switch>
             </div>
             <Footer />

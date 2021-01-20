@@ -1,16 +1,16 @@
 /**
  * This component contains links to my projects.
  */
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import PropTypes from 'prop-types';
-import Konva from 'konva';
-import { Stage, Layer, Rect, Text } from 'react-konva';
-import Slider from '@material-ui/core/Slider';
-import '../styles/index.css';
+import PropTypes from "prop-types";
+import Konva from "konva";
+import { Stage, Layer, Rect, Text } from "react-konva";
+import Slider from "@material-ui/core/Slider";
+import "../styles/index.css";
 
 function ColoredRect(props) {
-    const [color, setColor] = useState('green');
+    const [color, setColor] = useState("green");
 
     function handleClick() {
         setColor(Konva.Util.getRandomColor());
@@ -39,15 +39,15 @@ function Projects() {
     const marks = [
         {
             value: -5,
-            label: '-5',
+            label: "-5",
         },
         {
             value: 0,
-            label: '0',
+            label: "0",
         },
         {
             value: 5,
-            label: '-5',
+            label: "-5",
         },
     ];
 
@@ -65,7 +65,7 @@ function Projects() {
 
             <div className="text-div top-margin bottom-margin">
                 <div style={{ width: "300px" }}>
-                    <br/>
+                    <br />
                     <Slider
                         defaultValue={0}
                         getAriaValueText={(val) => val}

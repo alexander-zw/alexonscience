@@ -71,7 +71,8 @@ exports[`renders correctly 1`] = `
       Alexander Wu
     </span>
     <p>
-      Email: alexwu68 [at] berkeley [dot] edu (see 
+      Email: alexwu68 [at] berkeley [dot] edu (see
+       
       <a
         href="/contact"
         onClick={[Function]}
@@ -92,17 +93,19 @@ exports[`renders correctly 1`] = `
           <strong>
             University of California, Berkeley
           </strong>
-          : 08/2020 - 05/2021 
+          : 08/2020 - 05/2021
+           
           <br />
-          Master of Science, Electrical Engineering & Computer Science (EECS), GPA 4.0
+          Master of Science, Electrical Engineering and Computer Science (EECS), GPA 4.0
         </p>
         <p>
           <strong>
             University of California, Berkeley
           </strong>
-          : 08/2017 - 05/2020 
+          : 08/2017 - 05/2020
+           
           <br />
-          Bachelor of Science, Electrical Engineering & Computer Science (EECS), GPA 4.0
+          Bachelor of Science, Electrical Engineering and Computer Science (EECS), GPA 4.0
         </p>
       </div>
     </section>
@@ -152,25 +155,29 @@ exports[`renders correctly 1`] = `
           Mark D. Weiser Excellence in Computing Scholarship (2020)
         </li>
         <li>
-          Outstanding Team (highest international award), 
+          Outstanding Team (highest international award),
+           
           <em>
             18th COMAP High School Mathematics Contest in Modeling
           </em>
-           (2016)
+           (2016)
         </li>
         <li>
-          National First Prize, 
+          National First Prize,
+           
           <em>
-            30th China Adolescents Science and Technology Innovation Contest
+            30th China Adolescents Science and Technology InnovationContest
           </em>
-           (2015)
+           
+          (2015)
         </li>
         <li>
-          International 66th Place and 7th in northern China, 
+          International 66th Place and 7th in northern China,
+           
           <em>
             13th AAPT PhysicsBowl
           </em>
-           (2014)
+           (2014)
         </li>
         <li>
           Chou Pei-Yuan Science and Innovation Award (2015)
@@ -183,7 +190,7 @@ exports[`renders correctly 1`] = `
           <em>
             FIRST Tech Challenge
           </em>
-           (2014-15)
+           (2014-15)
         </li>
       </ul>
     </section>

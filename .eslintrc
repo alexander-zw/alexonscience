@@ -6,10 +6,7 @@
         "browser": true,
         "jest": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
     "parserOptions": {
         "ecmaVersion": 11,
         "sourceType": "module",
@@ -27,27 +24,19 @@
         },
         "propWrapperFunctions": [
             "forbidExtraProps",
-            {"property": "freeze", "object": "Object"},
-            {"property": "myFavoriteWrapper"}
+            { "property": "freeze", "object": "Object" },
+            { "property": "myFavoriteWrapper" }
         ],
-        "linkComponents": [
-            "Hyperlink",
-            {"name": "Link", "linkAttribute": "to"}
-        ]
+        "linkComponents": ["Hyperlink", { "name": "Link", "linkAttribute": "to" }]
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react", "prettier"],
     "rules": {
+        "prettier/prettier": ["error"],
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "no-console": "error",
         "no-eval": "error",
-        "indent": ["error", 4],
         "no-var": "error",
-        "prefer-const": "error",
-        "semi": "error",
-        "semi-style": ["error", "last"],
-        "semi-spacing": "error"
+        "prefer-const": "error"
     }
 }

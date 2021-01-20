@@ -1,13 +1,13 @@
 .left-half {
     width: 50%;
     text-align: left;
-    align-self: center
+    align-self: center;
 }
 
 .right-half {
     width: 50%;
     text-align: right;
-    align-self: center
+    align-self: center;
 }
 
 #footer-div {

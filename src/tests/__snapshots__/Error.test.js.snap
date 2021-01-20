@@ -5,7 +5,8 @@ exports[`renders correctly 1`] = `
   className="text-div"
 >
   <p>
-    Oops, this page does not exist! 
+    Oops, this page does not exist!
+     
     <a
       exact={true}
       href="/"

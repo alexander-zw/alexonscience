@@ -1,15 +1,15 @@
 /**
  * This component contains my resume.
- * 
+ *
  * This page is for anyone who came to learn about me personally, including
  * who I am, my skills and interests, and some of my projects that can't be
  * accessed directly on my website.
  */
-import React from 'react';
+import React from "react";
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom';
-import '../styles/index.css';
-import '../styles/Resume.css';
+import { Link } from "react-router-dom";
+import "../styles/index.css";
+import "../styles/Resume.css";
 
 function Resume() {
     // "contents" is not including heading.
@@ -20,17 +20,19 @@ function Resume() {
             contents: (
                 <div>
                     <p>
-                        <strong>University of California, Berkeley</strong>: 08/2020 - 05/2021 <br/>
-                        Master of Science, Electrical Engineering &amp; Computer Science (EECS),
-                        GPA 4.0
+                        <strong>University of California, Berkeley</strong>: 08/2020 - 05/2021{" "}
+                        <br />
+                        Master of Science, Electrical Engineering and Computer Science (EECS), GPA
+                        4.0
                     </p>
                     <p>
-                        <strong>University of California, Berkeley</strong>: 08/2017 - 05/2020 <br/>
-                        Bachelor of Science, Electrical Engineering &amp; Computer Science (EECS),
-                        GPA 4.0
+                        <strong>University of California, Berkeley</strong>: 08/2017 - 05/2020{" "}
+                        <br />
+                        Bachelor of Science, Electrical Engineering and Computer Science (EECS), GPA
+                        4.0
                     </p>
                 </div>
-            )
+            ),
         },
         {
             id: "skills",
@@ -52,44 +54,39 @@ function Resume() {
                         <strong>Languages</strong>: English (native), Mandarin (native)
                     </li>
                 </ul>
-            )
+            ),
         },
         {
             id: "awards",
             title: "Awards",
             contents: (
                 <ul>
+                    <li>Mark D. Weiser Excellence in Computing Scholarship (2020)</li>
                     <li>
-                        Mark D. Weiser Excellence in Computing Scholarship (2020)
+                        Outstanding Team (highest international award),{" "}
+                        <em>18th COMAP High School Mathematics Contest in Modeling</em> (2016)
                     </li>
                     <li>
-                        Outstanding Team (highest international award), <em>18th COMAP High School
-                        Mathematics Contest in Modeling</em>&nbsp;(2016)
+                        National First Prize,{" "}
+                        <em>30th China Adolescents Science and Technology InnovationContest</em>{" "}
+                        (2015)
                     </li>
                     <li>
-                        National First Prize, <em>30th China Adolescents Science and Technology
-                        Innovation Contest</em>&nbsp;(2015)
+                        International 66th Place and 7th in northern China,{" "}
+                        <em>13th AAPT PhysicsBowl</em> (2014)
                     </li>
+                    <li>Chou Pei-Yuan Science and Innovation Award (2015)</li>
+                    <li>Soong Ching-ling Invention Award (2015)</li>
                     <li>
-                        International 66th Place and 7th in northern China, <em>13th AAPT
-                        PhysicsBowl</em>&nbsp;(2014)
-                    </li>
-                    <li>
-                        Chou Pei-Yuan Science and Innovation Award (2015)
-                    </li>
-                    <li>
-                        Soong Ching-ling Invention Award (2015)
-                    </li>
-                    <li>
-                        National First Prize, etc, <em>FIRST Tech Challenge</em>&nbsp;(2014-15)
+                        National First Prize, etc, <em>FIRST Tech Challenge</em> (2014-15)
                     </li>
                 </ul>
-            )
+            ),
         },
         {
             id: "experience",
             title: "Experience",
-            contents:  (
+            contents: (
                 <div>
                     <p>
                         <strong>SDE Intern</strong> at Amazon.com Inc, Summer 2020
@@ -99,8 +96,8 @@ function Resume() {
                                 immersive product image gallery from obsolete native iOS and Android
                                 code to SSNAP (Amazon internal React Native framework), fixing 5
                                 bugs and improving user experience, robustness, readability, and
-                                maintainability; released changes to beta, with 10,000+ loads in
-                                10 regions within a week
+                                maintainability; released changes to beta, with 10,000+ loads in 10
+                                regions within a week
                             </li>
                         </ul>
                     </p>
@@ -115,9 +112,9 @@ function Resume() {
                             </li>
                             <li>
                                 <strong>Satellite Scheduling Network</strong>:
-                                Implemented/experimented with bottleneck scheduling algorithm,
-                                added features, GUIs, and visualizations, tested effectiveness
-                                and runtime, etc in Java, C++, and Python
+                                Implemented/experimented with bottleneck scheduling algorithm, added
+                                features, GUIs, and visualizations, tested effectiveness and
+                                runtime, etc in Java, C++, and Python
                             </li>
                             <li>
                                 <strong>Overhead Persistent Infrared</strong>: Investigated a
@@ -146,8 +143,8 @@ function Resume() {
                         </ul>
                     </p>
                     <p>
-                        <strong>Research Assistant</strong>, conducted experiments for Department
-                        of Architecture at UC Berkeley, Summer and Fall 2018
+                        <strong>Research Assistant</strong>, conducted experiments for Department of
+                        Architecture at UC Berkeley, Summer and Fall 2018
                         <ul>
                             <li>
                                 Created a program with Java so that the data analyzing process was
@@ -180,48 +177,59 @@ function Resume() {
                         </ul>
                     </p>
                 </div>
-            )
+            ),
         },
         {
             id: "projects",
             title: "Projects",
             contents: (
                 <div>
-                    <p>See my <a href="https://github.com/alexander-zw">GitHub</a> for more.</p>
                     <p>
-                        <strong>Guavabots</strong><br/>
+                        See my <a href="https://github.com/alexander-zw">GitHub</a> for more.
+                    </p>
+                    <p>
+                        <strong>Guavabots</strong>
+                        <br />
                         NP-complete graph problem with greedy algorithms and integer linear
                         programming, Python
                     </p>
                     <p>
-                        <strong>Pintos</strong><br/>
+                        <strong>Pintos</strong>
+                        <br />
                         Operating system file storage with FFS, priority thread scheduling, and
                         process execution, C
                     </p>
                     <p>
-                        <strong>Secure File Storage</strong><br/>
+                        <strong>Secure File Storage</strong>
+                        <br />
                         Cryptographically encrypted and signed file storage and sharing system, Go
                     </p>
                     <p>
-                        <strong>The Labyrinth</strong><br/>
+                        <strong>The Labyrinth</strong>
+                        <br />
                         2D maze game with world generation and game mechanics, Java
                     </p>
                     <p>
-                        <strong>BearMaps</strong><br/>
+                        <strong>BearMaps</strong>
+                        <br />
                         Map of Berkeley similar to Google Maps, uses graphs and A* search, Java
                     </p>
                     <p>
-                        <strong>Stereo Vision</strong><br/>
-                        Detecting depth with two different images, quad tree compression, C and RISC-V
+                        <strong>Stereo Vision</strong>
+                        <br />
+                        Detecting depth with two different images, quad tree compression, C and
+                        RISC-V
                     </p>
                 </div>
-            )
+            ),
         },
     ];
 
     const tableOfContents = sections.map((sect, index) => (
         <li className="contents-li" key={index}>
-            <a href={`#${sect.id}`} className="contents-item">{sect.title}</a>
+            <a href={`#${sect.id}`} className="contents-item">
+                {sect.title}
+            </a>
         </li>
     ));
 
@@ -237,21 +245,22 @@ function Resume() {
             <Helmet>
                 <title>Resume | ALEX on Science</title>
                 <meta name="Description" content="Alex's resume" />
-                <meta name="KeyWords" content="resume, berkeley, experience, alex, alexander, wu, science, youtube" />
+                <meta
+                    name="KeyWords"
+                    content="resume, berkeley, experience, alex, alexander, wu, science, youtube"
+                />
             </Helmet>
 
             <nav className="contents-nav text-div">
-                <ol className="contents-ol">
-                    {tableOfContents}
-                </ol>
+                <ol className="contents-ol">{tableOfContents}</ol>
             </nav>
 
             <div className="text-div">
                 <span className="name-title">Alexander Wu</span>
 
                 <p>
-                    Email: alexwu68 [at] berkeley [dot] edu
-                    (see <Link to="/contact">Contact Me</Link>)
+                    Email: alexwu68 [at] berkeley [dot] edu (see{" "}
+                    <Link to="/contact">Contact Me</Link>)
                 </p>
 
                 {content}

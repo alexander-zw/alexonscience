@@ -2,14 +2,13 @@
     display: grid;
     grid-template-columns: 20% auto;
     grid-template-areas: "nav content";
-
 }
 
 .contents-nav {
     position: -webkit-sticky; /* Safari earlier versions. */
-	position: sticky;
-	top: 3.2em;
-	align-self: start;
+    position: sticky;
+    top: 3.2em;
+    align-self: start;
 }
 
 .contents-ol {
@@ -32,7 +31,7 @@
 .name-title {
     padding-top: 0.2em;
     font-size: 3em;
-    font-family: 'Oleo Script', 'Georgia', serif;
+    font-family: "Oleo Script", "Georgia", serif;
     background-image: linear-gradient(to right, #249141, #249c8a, #079cb3, #3464eb);
     -webkit-background-clip: text;
     -moz-background-clip: text;

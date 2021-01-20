@@ -61,6 +61,19 @@ Array [
         <a
           aria-current={null}
           className="nav-option"
+          href="/projects"
+          onClick={[Function]}
+          onUpdate={[Function]}
+        >
+          Projects
+        </a>
+      </div>
+      <div
+        className="nav-option-div"
+      >
+        <a
+          aria-current={null}
+          className="nav-option"
           href="/art"
           onClick={[Function]}
           onUpdate={[Function]}
@@ -101,7 +114,9 @@ Array [
           <span
             className="popuptext"
           >
-            As you might be able to tell, I love drawing, even if I'm not that good at it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some DNA, and Rosalind Franklin. Franklin is particularly underappreciated - she was not recognized for a Nobel prize only because she had passed away by the time it was awarded.
+            As you might be able to tell, I love drawing, even if I
+            '
+            m not that good at it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some DNA, and Rosalind Franklin. Franklin is particularly underappreciated - she was not recognized for a Nobel prize only because she had passed away by the time it was awarded.
           </span>
         </div>
       </div>

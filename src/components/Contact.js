@@ -2,16 +2,12 @@
  * This component contains my contact information, including some fancy social
  * media icons.
  */
-import React from 'react';
+import React from "react";
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faYoutube,
-    faGithub,
-    faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import '../styles/index.css';
-import '../styles/Contact.css';
+import { faYoutube, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import "../styles/index.css";
+import "../styles/Contact.css";
 
 function Contact() {
     const accounts = [
@@ -36,8 +32,12 @@ function Contact() {
     ];
 
     const socialComponent = accounts.map((account, index) => (
-        <a href={account.link} title={account.title}
-            className={`${account.class} social`} key={index}>
+        <a
+            href={account.link}
+            title={account.title}
+            className={`${account.class} social`}
+            key={index}
+        >
             <FontAwesomeIcon icon={account.icon} size="2x" />
         </a>
     ));
@@ -54,9 +54,7 @@ function Contact() {
             <p>Email: alexwu68 [at] berkeley [dot] edu</p>
 
             <p>Social media:</p>
-            <div className="social-container">
-                {socialComponent}
-            </div>
+            <div className="social-container">{socialComponent}</div>
         </div>
     );
 }
