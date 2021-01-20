@@ -41,7 +41,7 @@ export const navigationViews = [
         path: "/projects",
         title: "Projects",
         component: Projects,
-        exact: true,
+        exact: undefined,
     },
     {
         path: "/art",
