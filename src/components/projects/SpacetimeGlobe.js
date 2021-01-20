@@ -5,10 +5,9 @@
  * who I am, my skills and interests, and some of my projects that can't be
  * accessed directly on my website.
  */
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import Konva from "konva";
 import { Stage, Layer, Rect } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 
@@ -16,49 +15,85 @@ import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
 
 function ColoredRect(props) {
-    const [color, setColor] = useState("green");
-
-    function handleClick() {
-        setColor(Konva.Util.getRandomColor());
-    }
-
-    return (
-        <Rect
-            x={props.x}
-            y={20}
-            width={50}
-            height={50}
-            fill={color}
-            shadowBlur={2}
-            onClick={handleClick}
-        />
-    );
+    return <Rect x={props.x} y={props.y} width={0.5} height={0.5} fill="green" />;
 }
 
 ColoredRect.propTypes = {
-    x: PropTypes.number,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+};
+
+class SpacetimeEvent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { t: props.t0, x: props.x0 };
+
+        this.updateReferenceFrame = this.updateReferenceFrame.bind(this);
+    }
+
+    updateReferenceFrame(gamma, v) {
+        this.setState({
+            t: gamma * (this.props.t0 - v * this.props.x0),
+            x: gamma * (this.props.x0 - v * this.props.t0),
+        });
+    }
+
+    render() {
+        const { x, t } = this.state;
+        return <ColoredRect x={x} y={t} />;
+    }
+}
+
+SpacetimeEvent.propTypes = {
+    t0: PropTypes.number.isRequired,
+    x0: PropTypes.number.isRequired,
+};
+
+function ReferenceFrameSlider(props) {
+    const marks = [
+        { value: -1, label: "-c" },
+        { value: 0, label: "0" },
+        { value: 1, label: "-c" },
+    ];
+
+    return (
+        <div className="slider-div">
+            Reference frame shift
+            <Slider
+                defaultValue={0}
+                getAriaValueText={(val) => val}
+                aria-labelledby="discrete-slider"
+                step={0.1}
+                marks={marks}
+                min={-1}
+                max={1}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(val) => `${val}c`}
+                onChange={props.onSlide}
+            />
+        </div>
+    );
+}
+
+ReferenceFrameSlider.propTypes = {
+    onSlide: PropTypes.func,
 };
 
 function SpacetimeGlobe() {
-    const [x, setX] = useState(100);
+    const scale = 100;
+    const canvasWidth = window.innerWidth * 0.7 - 100;
+    const canvasHeight = window.innerHeight;
+    const canvasOffsetX = (canvasWidth * 0.5) / scale;
+    const canvasOffsetY = (canvasHeight * 0.5) / scale;
 
-    const marks = [
-        {
-            value: -5,
-            label: "-5",
-        },
-        {
-            value: 0,
-            label: "0",
-        },
-        {
-            value: 5,
-            label: "-5",
-        },
-    ];
+    const event = React.createRef();
 
-    function onSlide(e, val) {
-        setX(100 + val * 10);
+    function onSlide(e, v) {
+        if (v == 1 || v == -1) {
+            v *= 0.999; // Prevent divide by zero.
+        }
+        const gamma = 1 / Math.sqrt(1 - v * v);
+        event.current.updateReferenceFrame(gamma, v);
     }
 
     return (
@@ -73,26 +108,20 @@ function SpacetimeGlobe() {
             </Helmet>
 
             <div className="controls text-div">
-                <div className="slider-div">
-                    Reference frame shift
-                    <Slider
-                        defaultValue={0}
-                        getAriaValueText={(val) => val}
-                        aria-labelledby="discrete-slider"
-                        step={1}
-                        marks={marks}
-                        min={-5}
-                        max={5}
-                        valueLabelDisplay="auto"
-                        onChange={onSlide}
-                    />
-                </div>
+                <ReferenceFrameSlider onSlide={onSlide} />
             </div>
 
             <div className="text-div">
-                <Stage width={window.innerWidth} height={window.innerHeight}>
+                <Stage
+                    width={canvasWidth}
+                    height={canvasHeight}
+                    scaleX={-scale}
+                    scaleY={-scale}
+                    offsetX={canvasOffsetX}
+                    offsetY={canvasOffsetY}
+                >
                     <Layer>
-                        <ColoredRect x={x} />
+                        <SpacetimeEvent ref={event} t0={1} x0={0} />
                     </Layer>
                 </Stage>
             </div>
