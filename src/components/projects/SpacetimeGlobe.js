@@ -8,7 +8,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import { Stage, Layer, Star } from "react-konva";
+import { Stage, Layer, Line, Star } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 
 import "../../styles/index.css";
@@ -24,7 +24,6 @@ function FixedSizeStar(props) {
             outerRadius={0.3}
             rotation={36}
             fill={props.fill ? props.fill : "green"}
-            opacity={0.8}
         />
     );
 }
@@ -92,6 +91,32 @@ ReferenceFrameSlider.propTypes = {
     onSlide: PropTypes.func,
 };
 
+function Grid() {
+    const left = -4;
+    const right = 4;
+    const top = 5;
+    const bottom = -2;
+
+    const points = [];
+    for (let i = bottom; i <= top; i++) {
+        points.push([left, i, right, i]); // Horizontal line.
+    }
+    for (let i = left; i <= right; i++) {
+        points.push([i, bottom, i, top]); // Vertical line.
+    }
+
+    const isZeroAxis = (x, y) => x == 0 || y == 0;
+    return points.map((p, i) => (
+        <Line
+            points={p}
+            stroke="black"
+            strokeWidth={isZeroAxis(p[0], p[1]) ? 0.07 : 0.05}
+            lineCap="round"
+            key={i}
+        />
+    ));
+}
+
 function SpacetimeGlobe() {
     const scale = 80;
     const canvasWidth = window.innerWidth * 0.7 - 100;
@@ -112,11 +137,13 @@ function SpacetimeGlobe() {
         { t: 2, x: 1, fill: "green" },
         { t: 3, x: 1.5, fill: "green" },
         { t: 4, x: 2, fill: "green" },
+        { t: 0, x: -3, fill: "blue" },
         { t: 0, x: -2, fill: "blue" },
         { t: 0, x: -1, fill: "blue" },
         { t: 0, x: 0, fill: "blue" },
         { t: 0, x: 1, fill: "blue" },
         { t: 0, x: 2, fill: "blue" },
+        { t: 0, x: 3, fill: "blue" },
         { t: -1, x: -1, fill: "yellow" },
         { t: 0, x: 0, fill: "yellow" },
         { t: 1, x: 1, fill: "yellow" },
@@ -145,8 +172,6 @@ function SpacetimeGlobe() {
             v *= 0.999; // Prevent divide by zero.
         }
         const gamma = 1 / Math.sqrt(1 - v * v);
-        // eslint-disable-next-line no-console
-        console.log(`events is ${events}`);
         events.forEach((event) => {
             event.current.updateReferenceFrame(gamma, v);
         });
@@ -176,7 +201,10 @@ function SpacetimeGlobe() {
                     offsetX={-canvasOffsetX}
                     offsetY={canvasOffsetY}
                 >
-                    <Layer>{eventComponents}</Layer>
+                    <Layer>
+                        <Grid />
+                        {eventComponents}
+                    </Layer>
                 </Stage>
             </div>
         </div>
