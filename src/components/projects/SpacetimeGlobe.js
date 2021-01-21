@@ -8,7 +8,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import { Stage, Layer, Line, Star } from "react-konva";
+import { Stage, Layer, Line, Arrow, Star } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 
 import "../../styles/index.css";
@@ -91,36 +91,105 @@ ReferenceFrameSlider.propTypes = {
     onSlide: PropTypes.func,
 };
 
-function Grid() {
-    const left = -4;
-    const right = 4;
-    const top = 5;
-    const bottom = -2;
+const left = -4;
+const right = 4;
+const top = 5;
+const bottom = -2;
 
-    const points = [];
+function Grid() {
+    const arrowLen = 0.3;
+
+    const lines = [];
+    // Horizontal line.
     for (let i = bottom; i <= top; i++) {
-        points.push([left, i, right, i]); // Horizontal line.
+        if (i == 0) {
+            lines.push([left - arrowLen, i, right + arrowLen, i]);
+        } else {
+            lines.push([left, i, right, i]);
+        }
     }
+    // Vertical line.
     for (let i = left; i <= right; i++) {
-        points.push([i, bottom, i, top]); // Vertical line.
+        if (i == 0) {
+            lines.push([i, bottom - arrowLen, i, top + arrowLen]);
+        } else {
+            lines.push([i, bottom, i, top]);
+        }
     }
 
     const isZeroAxis = (x, y) => x == 0 || y == 0;
-    return points.map((p, i) => (
-        <Line
-            points={p}
-            stroke="black"
-            strokeWidth={isZeroAxis(p[0], p[1]) ? 0.07 : 0.05}
-            lineCap="round"
-            key={i}
-        />
+    return lines.map((line, i) =>
+        isZeroAxis(line[0], line[1]) ? (
+            <Arrow
+                points={line}
+                stroke="black"
+                fill="black"
+                strokeWidth={0.07}
+                pointerLength={0.15}
+                pointerWidth={0.15}
+                pointerAtBeginning
+            />
+        ) : (
+            <Line points={line} stroke="black" strokeWidth={0.05} lineCap="round" key={i} />
+        ),
+    );
+}
+
+function hyperbola(start, end, shift, step, isHorizontal) {
+    const numPoints = (end - start) / step + 1;
+    const points = [];
+    for (let i = 0; i < numPoints; i++) {
+        const x = start + i * step;
+        const y = Math.sign(shift) * Math.sqrt(x * x + shift * shift);
+        // Ignore if out of bounds.
+        if (isHorizontal) {
+            if (bottom <= y && y <= top) {
+                points.push(x);
+                points.push(y);
+            }
+        } else {
+            if (left <= y && y <= right) {
+                points.push(y);
+                points.push(x);
+            }
+        }
+    }
+    return points;
+}
+
+function EventTrajectories() {
+    const lines = [];
+    // Horizontal hyperbolas: ignore top, bottom, and zero lines.
+    for (let i = bottom + 1; i <= top - 1; i++) {
+        if (i != 0) {
+            lines.push(hyperbola(left, right, i, 0.1, true));
+        }
+    }
+    // Vertical hyperbolas: ignore left, right, and zero lines.
+    for (let i = left + 1; i <= right - 1; i++) {
+        if (i != 0) {
+            lines.push(hyperbola(bottom, top, i, 0.1, false));
+        }
+    }
+    // Diagonals.
+    const lowerLeft = Math.max(left, bottom);
+    const lowerRight = Math.min(right, -bottom);
+    const upperLeft = Math.min(-left, top);
+    const upperRight = Math.min(right, top);
+    lines.push([lowerLeft, lowerLeft, upperRight, upperRight]);
+    lines.push([-upperLeft, upperLeft, lowerRight, -lowerRight]);
+    // eslint-disable-next-line no-console
+    console.log(`${lowerLeft}, ${lowerRight}`);
+
+    return lines.map((line, i) => (
+        <Line points={line} stroke="#e1e3eb" strokeWidth={0.05} key={i} />
     ));
 }
 
 function SpacetimeGlobe() {
     const scale = 80;
-    const canvasWidth = window.innerWidth * 0.7 - 100;
-    const canvasHeight = 600;
+    const canvasWidth = window.innerWidth * 0.7 - 80;
+    const canvasHeight = 625;
     const canvasOffsetX = (canvasWidth * 0.5) / scale;
     const canvasOffsetY = (canvasHeight * 0.7) / scale;
 
@@ -202,6 +271,7 @@ function SpacetimeGlobe() {
                     offsetY={canvasOffsetY}
                 >
                     <Layer>
+                        <EventTrajectories />
                         <Grid />
                         {eventComponents}
                     </Layer>
