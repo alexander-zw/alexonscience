@@ -8,7 +8,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import { Stage, Layer, Line, Arrow, Star } from "react-konva";
+import { Stage, Layer, Line, Arrow, Text, Rect, Star } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 
 import "../../styles/index.css";
@@ -158,17 +158,20 @@ function hyperbola(start, end, shift, step, isHorizontal) {
 }
 
 function EventTrajectories() {
+    // Tension is not really necessary when the step is this small.
+    const renderStep = 0.1;
+
     const lines = [];
     // Horizontal hyperbolas: ignore top, bottom, and zero lines.
     for (let i = bottom + 1; i <= top - 1; i++) {
         if (i != 0) {
-            lines.push(hyperbola(left, right, i, 0.1, true));
+            lines.push(hyperbola(left, right, i, renderStep, true));
         }
     }
     // Vertical hyperbolas: ignore left, right, and zero lines.
     for (let i = left + 1; i <= right - 1; i++) {
         if (i != 0) {
-            lines.push(hyperbola(bottom, top, i, 0.1, false));
+            lines.push(hyperbola(bottom, top, i, renderStep, false));
         }
     }
     // Diagonals.
@@ -186,12 +189,56 @@ function EventTrajectories() {
     ));
 }
 
+function Labels(props) {
+    // These numbers were through trial and error.
+    const spaceLabelX = right - 0.75;
+    const spaceLabelY = 0.5;
+    return [
+        // Rect to block part of the grid.
+        <Rect
+            x={spaceLabelX}
+            y={spaceLabelY - 0.35}
+            fill="#f8f8f8"
+            width={1}
+            height={0.27}
+            key={0}
+        />,
+        <Text
+            x={spaceLabelX}
+            y={spaceLabelY}
+            scaleX={props.scale}
+            scaleY={-props.scale}
+            fontSize={30}
+            fontStyle="bold"
+            fill="black"
+            text="space"
+            key={1}
+        />,
+        <Text
+            x={0.2}
+            y={top + 0.4}
+            scaleX={props.scale}
+            scaleY={-props.scale}
+            fontSize={30}
+            fontStyle="bold"
+            fill="black"
+            text="time"
+            key={1}
+        />,
+    ];
+}
+
+Labels.propTypes = {
+    scale: PropTypes.number.isRequired,
+};
+
 function SpacetimeGlobe() {
+    // Most of these values were obtained through trial and error.
     const scale = 80;
     const canvasWidth = window.innerWidth * 0.7 - 80;
     const canvasHeight = 625;
     const canvasOffsetX = (canvasWidth * 0.5) / scale;
-    const canvasOffsetY = (canvasHeight * 0.7) / scale;
+    const canvasOffsetY = (canvasHeight * 0.69) / scale;
 
     const eventData = [
         { t: -1, x: 0, fill: "red" },
@@ -273,6 +320,7 @@ function SpacetimeGlobe() {
                     <Layer>
                         <EventTrajectories />
                         <Grid />
+                        <Labels scale={1 / scale} />
                         {eventComponents}
                     </Layer>
                 </Stage>
