@@ -8,19 +8,31 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import { Stage, Layer, Rect } from "react-konva";
+import { Stage, Layer, Star } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
 
-function ColoredRect(props) {
-    return <Rect x={props.x} y={props.y} width={0.5} height={0.5} fill="green" />;
+function FixedSizeStar(props) {
+    return (
+        <Star
+            x={props.x}
+            y={props.y}
+            numPoints={5}
+            innerRadius={0.13}
+            outerRadius={0.3}
+            rotation={36}
+            fill={props.fill ? props.fill : "green"}
+            opacity={0.8}
+        />
+    );
 }
 
-ColoredRect.propTypes = {
+FixedSizeStar.propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
+    fill: PropTypes.string,
 };
 
 class SpacetimeEvent extends Component {
@@ -40,13 +52,14 @@ class SpacetimeEvent extends Component {
 
     render() {
         const { x, t } = this.state;
-        return <ColoredRect x={x} y={t} />;
+        return <FixedSizeStar x={x} y={t} fill={this.props.fill} />;
     }
 }
 
 SpacetimeEvent.propTypes = {
     t0: PropTypes.number.isRequired,
     x0: PropTypes.number.isRequired,
+    fill: PropTypes.string,
 };
 
 function ReferenceFrameSlider(props) {
@@ -80,20 +93,63 @@ ReferenceFrameSlider.propTypes = {
 };
 
 function SpacetimeGlobe() {
-    const scale = 100;
+    const scale = 80;
     const canvasWidth = window.innerWidth * 0.7 - 100;
-    const canvasHeight = window.innerHeight;
+    const canvasHeight = 600;
     const canvasOffsetX = (canvasWidth * 0.5) / scale;
-    const canvasOffsetY = (canvasHeight * 0.5) / scale;
+    const canvasOffsetY = (canvasHeight * 0.7) / scale;
 
-    const event = React.createRef();
+    const eventData = [
+        { t: -1, x: 0, fill: "red" },
+        { t: 0, x: 0, fill: "red" },
+        { t: 1, x: 0, fill: "red" },
+        { t: 2, x: 0, fill: "red" },
+        { t: 3, x: 0, fill: "red" },
+        { t: 4, x: 0, fill: "red" },
+        { t: -1, x: -0.5, fill: "green" },
+        { t: 0, x: 0, fill: "green" },
+        { t: 1, x: 0.5, fill: "green" },
+        { t: 2, x: 1, fill: "green" },
+        { t: 3, x: 1.5, fill: "green" },
+        { t: 4, x: 2, fill: "green" },
+        { t: 0, x: -2, fill: "blue" },
+        { t: 0, x: -1, fill: "blue" },
+        { t: 0, x: 0, fill: "blue" },
+        { t: 0, x: 1, fill: "blue" },
+        { t: 0, x: 2, fill: "blue" },
+        { t: -1, x: -1, fill: "yellow" },
+        { t: 0, x: 0, fill: "yellow" },
+        { t: 1, x: 1, fill: "yellow" },
+        { t: 2, x: 2, fill: "yellow" },
+        { t: 3, x: 3, fill: "yellow" },
+        { t: 4, x: 4, fill: "yellow" },
+        { t: -1, x: 2, fill: "orange" },
+        { t: 0, x: 2, fill: "orange" },
+        { t: 1, x: 2, fill: "orange" },
+        { t: 2, x: 2, fill: "orange" },
+        { t: 3, x: 2, fill: "orange" },
+        { t: 4, x: 2, fill: "orange" },
+    ];
+
+    const events = [];
+    for (let i = 0; i < eventData.length; i++) {
+        events.push(React.createRef());
+    }
+
+    const eventComponents = eventData.map((data, i) => (
+        <SpacetimeEvent ref={events[i]} t0={data.t} x0={data.x} fill={data.fill} key={i} />
+    ));
 
     function onSlide(e, v) {
         if (v == 1 || v == -1) {
             v *= 0.999; // Prevent divide by zero.
         }
         const gamma = 1 / Math.sqrt(1 - v * v);
-        event.current.updateReferenceFrame(gamma, v);
+        // eslint-disable-next-line no-console
+        console.log(`events is ${events}`);
+        events.forEach((event) => {
+            event.current.updateReferenceFrame(gamma, v);
+        });
     }
 
     return (
@@ -115,14 +171,12 @@ function SpacetimeGlobe() {
                 <Stage
                     width={canvasWidth}
                     height={canvasHeight}
-                    scaleX={-scale}
+                    scaleX={scale}
                     scaleY={-scale}
-                    offsetX={canvasOffsetX}
+                    offsetX={-canvasOffsetX}
                     offsetY={canvasOffsetY}
                 >
-                    <Layer>
-                        <SpacetimeEvent ref={event} t0={1} x0={0} />
-                    </Layer>
+                    <Layer>{eventComponents}</Layer>
                 </Stage>
             </div>
         </div>
