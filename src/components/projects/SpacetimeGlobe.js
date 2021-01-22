@@ -6,15 +6,13 @@
  * accessed directly on my website.
  *
  * TODO:
- * Add drag and drop functionality
- * Add images as events
  * Add custom senarios
  * Add classical spacetime
  */
 import React, { Component, useState } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import { Stage, Layer, Line, Arrow, Text, Rect, Star } from "react-konva";
+import { Stage, Layer, Line, Arrow, Text, Rect, Image } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -22,7 +20,7 @@ import Button from "@material-ui/core/Button";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
-import hello_there from "../../images/hello_there.png";
+import { eventImages, customScenario } from "./SpacetimeGlobeEvents";
 
 function ReferenceFrameInput(props) {
     const marks = [
@@ -88,45 +86,17 @@ ReferenceFrameInput.propTypes = {
     onChange: PropTypes.func,
 };
 
-const imageData = [
-    {
-        color: "red",
-    },
-    {
-        color: "green",
-    },
-    {
-        color: "blue",
-    },
-    {
-        color: "gold",
-    },
-    {
-        color: "purple",
-    },
-    {
-        color: "brown",
-    },
-    {
-        color: "cyan",
-    },
-    {
-        color: "grey",
-    },
-];
-
 function EventSelector(props) {
     return (
         <div className="event-selector-div">
             Add an event
             <div className="event-selector-outer">
                 <div className="event-selector">
-                    {imageData.map((image, i) => (
+                    {eventImages.map((image, i) => (
                         <img
                             className="event-image"
-                            style={{ backgroundColor: image.color }}
-                            src={hello_there}
-                            alt={image.color}
+                            src={image.src}
+                            alt={image.name}
                             onClick={() => props.onSelect(image)}
                             key={i}
                         />
@@ -159,6 +129,9 @@ class SpacetimeEvent extends Component {
     constructor(props) {
         super(props);
         this.state = { t0: props.t0, x0: props.x0, t: props.t0, x: props.x0 };
+
+        this.image = new window.Image();
+        this.image.src = props.image.src;
     }
 
     updateReferenceFrame = (gamma, v) => {
@@ -177,17 +150,19 @@ class SpacetimeEvent extends Component {
     };
 
     render() {
-        const { fill, draggable } = this.props;
+        const { image, draggable } = this.props;
         const { x, t } = this.state;
         return (
-            <Star
+            <Image
                 x={x}
                 y={t}
-                numPoints={5}
-                innerRadius={0.13}
-                outerRadius={0.3}
-                rotation={36}
-                fill={fill ? fill : "green"}
+                width={image.w}
+                height={image.h}
+                scaleY={-1}
+                offsetX={image.w * 0.5}
+                offsetY={image.h * 0.5}
+                image={this.image}
+                name={image.name}
                 draggable={draggable}
                 onDragEnd={this.onDragEnd}
             />
@@ -198,7 +173,7 @@ class SpacetimeEvent extends Component {
 SpacetimeEvent.propTypes = {
     t0: PropTypes.number.isRequired,
     x0: PropTypes.number.isRequired,
-    fill: PropTypes.string,
+    image: PropTypes.object.isRequired,
     draggable: PropTypes.bool,
 };
 
@@ -342,39 +317,8 @@ Labels.propTypes = {
     scale: PropTypes.number.isRequired,
 };
 
-const eventData = [
-    { t: -1, x: 0, fill: "red" },
-    { t: 0, x: 0, fill: "red" },
-    { t: 1, x: 0, fill: "red" },
-    { t: 2, x: 0, fill: "red" },
-    { t: 3, x: 0, fill: "red" },
-    { t: 4, x: 0, fill: "red" },
-    { t: -1, x: -0.5, fill: "green" },
-    { t: 0, x: 0, fill: "green" },
-    { t: 1, x: 0.5, fill: "green" },
-    { t: 2, x: 1, fill: "green" },
-    { t: 3, x: 1.5, fill: "green" },
-    { t: 4, x: 2, fill: "green" },
-    { t: 0, x: -3, fill: "blue" },
-    { t: 0, x: -2, fill: "blue" },
-    { t: 0, x: -1, fill: "blue" },
-    { t: 0, x: 0, fill: "blue" },
-    { t: 0, x: 1, fill: "blue" },
-    { t: 0, x: 2, fill: "blue" },
-    { t: 0, x: 3, fill: "blue" },
-    { t: -1, x: -1, fill: "gold" },
-    { t: 0, x: 0, fill: "gold" },
-    { t: 1, x: 1, fill: "gold" },
-    { t: 2, x: 2, fill: "gold" },
-    { t: 3, x: 3, fill: "gold" },
-    { t: 4, x: 4, fill: "gold" },
-    { t: -1, x: 2, fill: "purple" },
-    { t: 0, x: 2, fill: "purple" },
-    { t: 1, x: 2, fill: "purple" },
-    { t: 2, x: 2, fill: "purple" },
-    { t: 3, x: 2, fill: "purple" },
-    { t: 4, x: 2, fill: "purple" },
-];
+const eventData = [];
+eventData.push(...customScenario);
 
 function SpacetimeGlobe() {
     // Most of these values were obtained through trial and error.
@@ -396,7 +340,7 @@ function SpacetimeGlobe() {
             ref={events[i]}
             t0={data.t}
             x0={data.x}
-            fill={data.fill}
+            image={data.image}
             draggable={draggable}
             key={i}
         />
@@ -417,9 +361,9 @@ function SpacetimeGlobe() {
     // A state variable used to force re-render.
     const [updateVar, setUpdateVar] = useState(0);
 
-    function onEventSelect(color) {
+    function onEventSelect(image) {
         updateReferenceFrame(0); // Only add new events at 0 reference frame.
-        eventData.push({ t: 0, x: LEFT, fill: color.color });
+        eventData.push({ t: 0, x: LEFT, image: image });
         setUpdateVar(updateVar + 1);
     }
 

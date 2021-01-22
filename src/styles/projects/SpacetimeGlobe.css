@@ -41,20 +41,21 @@
 }
 
 .event-selector-outer {
-    padding-top: 0.3em;
+    padding-top: 0.5em;
     height: 4.5em;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
 .event-selector {
-    width: 32em;
+    width: 84em;
     display: block;
 }
 
 .event-image {
     width: 4em;
     height: 4em;
+    object-fit: contain;
 }
 
 .clear-button {
