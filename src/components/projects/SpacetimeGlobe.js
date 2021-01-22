@@ -18,6 +18,7 @@ import { Stage, Layer, Line, Arrow, Text, Rect, Star } from "react-konva";
 import Slider from "@material-ui/core/Slider";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Button from "@material-ui/core/Button";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -117,7 +118,7 @@ const imageData = [
 function EventSelector(props) {
     return (
         <div className="event-selector-div">
-            Add an event:
+            Add an event
             <div className="event-selector-outer">
                 <div className="event-selector">
                     {imageData.map((image, i) => (
@@ -138,6 +139,20 @@ function EventSelector(props) {
 
 EventSelector.propTypes = {
     onSelect: PropTypes.func,
+};
+
+function ClearButton(props) {
+    return (
+        <div className="clear-button">
+            <Button variant="contained" color="secondary" onClick={props.onClick}>
+                Clear all events
+            </Button>
+        </div>
+    );
+}
+
+ClearButton.propTypes = {
+    onClick: PropTypes.func,
 };
 
 class SpacetimeEvent extends Component {
@@ -403,7 +418,13 @@ function SpacetimeGlobe() {
     const [updateVar, setUpdateVar] = useState(0);
 
     function onEventSelect(color) {
+        updateReferenceFrame(0); // Only add new events at 0 reference frame.
         eventData.push({ t: 0, x: LEFT, fill: color.color });
+        setUpdateVar(updateVar + 1);
+    }
+
+    function onClear() {
+        eventData.length = 0;
         setUpdateVar(updateVar + 1);
     }
 
@@ -421,6 +442,7 @@ function SpacetimeGlobe() {
             <div className="controls text-div">
                 <ReferenceFrameInput onChange={updateReferenceFrame} />
                 <EventSelector onSelect={onEventSelect} />
+                <ClearButton onClick={onClear} />
             </div>
 
             <div className="text-div">

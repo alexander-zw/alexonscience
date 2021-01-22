@@ -56,3 +56,8 @@
     width: 4em;
     height: 4em;
 }
+
+.clear-button {
+    margin-left: 15%;
+    margin-top: 0.5em;
+}
