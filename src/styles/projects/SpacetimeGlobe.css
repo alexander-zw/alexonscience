@@ -1,7 +1,6 @@
 .outer-container {
     display: grid;
     grid-template-columns: 25% auto;
-    grid-template-areas: "nav content";
 }
 
 .controls {
@@ -33,4 +32,27 @@
 .ref-shift-text-error {
     height: 2.6em;
     color: #df3434;
+}
+
+.event-selector-div {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+.event-selector-outer {
+    padding-top: 0.3em;
+    height: 4.5em;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.event-selector {
+    width: 32em;
+    display: block;
+}
+
+.event-image {
+    width: 4em;
+    height: 4em;
 }
