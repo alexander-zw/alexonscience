@@ -5,7 +5,7 @@
  * TODO:
  * Add projects
  * Improve homepage
- * Improve resume
+ * Improve resume (add picture)
  * Add blog
  * Fix resume for mobile
  * Mobile friendly nav bar

@@ -5,17 +5,32 @@
 }
 
 .controls {
+    padding: 2em 0 2em 0;
     background-color: #e1e3eb;
+    font-size: 0.9em;
     position: -webkit-sticky; /* Safari earlier versions. */
     position: sticky;
     top: 3.2em;
     align-self: start;
 }
 
-.slider-div {
-    font-size: 0.9em;
-    padding-top: 1.2em;
+.ref-shift-controls {
     width: 70%;
     z-index: 9500;
     margin: 0 auto;
+}
+
+.ref-shift-text-div {
+    display: grid;
+    grid-template-columns: 8em auto;
+}
+
+.ref-shift-text {
+    width: 7em;
+    height: 2.6em;
+}
+
+.ref-shift-text-error {
+    height: 2.6em;
+    color: #df3434;
 }

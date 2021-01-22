@@ -4,12 +4,21 @@
  * This page is for anyone who came to learn about me personally, including
  * who I am, my skills and interests, and some of my projects that can't be
  * accessed directly on my website.
+ *
+ * TODO:
+ * Add custom reference frame shift
+ * Add drag and drop functionality
+ * Add images as events
+ * Add custom senarios
+ * Add classical spacetime
  */
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { Stage, Layer, Line, Arrow, Text, Rect, Star } from "react-konva";
 import Slider from "@material-ui/core/Slider";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -61,15 +70,31 @@ SpacetimeEvent.propTypes = {
     fill: PropTypes.string,
 };
 
-function ReferenceFrameSlider(props) {
+function ReferenceFrameInput(props) {
     const marks = [
         { value: -1, label: "-c" },
         { value: 0, label: "0" },
         { value: 1, label: "-c" },
     ];
 
+    const [vValid, setVValid] = useState(true);
+
+    // Validate text input before passing on to props.
+    function onText(e) {
+        if (e.target.value == "") {
+            return;
+        }
+        const v = parseFloat(e.target.value);
+        if (-1 <= v && v <= 1) {
+            props.onChange(v);
+            setVValid(true);
+        } else {
+            setVValid(false);
+        }
+    }
+
     return (
-        <div className="slider-div">
+        <div className="ref-shift-controls">
             Reference frame shift
             <Slider
                 defaultValue={0}
@@ -81,14 +106,32 @@ function ReferenceFrameSlider(props) {
                 max={1}
                 valueLabelDisplay="auto"
                 valueLabelFormat={(val) => `${val}c`}
-                onChange={props.onSlide}
+                onChange={(e, v) => props.onChange(v)}
             />
+            <div className="ref-shift-text-div">
+                <TextField
+                    className="ref-shift-text"
+                    label="custom"
+                    variant="outlined"
+                    error={!vValid}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">c</InputAdornment>,
+                    }}
+                    InputLabelProps={{
+                        margin: "dense",
+                    }}
+                    onChange={onText}
+                />
+                {vValid || (
+                    <span className="ref-shift-text-error">Enter a number from -1 to 1</span>
+                )}
+            </div>
         </div>
     );
 }
 
-ReferenceFrameSlider.propTypes = {
-    onSlide: PropTypes.func,
+ReferenceFrameInput.propTypes = {
+    onChange: PropTypes.func,
 };
 
 const left = -4;
@@ -128,6 +171,7 @@ function Grid() {
                 pointerLength={0.15}
                 pointerWidth={0.15}
                 pointerAtBeginning
+                key={i}
             />
         ) : (
             <Line points={line} stroke="black" strokeWidth={0.05} lineCap="round" key={i} />
@@ -181,8 +225,6 @@ function EventTrajectories() {
     const upperRight = Math.min(right, top);
     lines.push([lowerLeft, lowerLeft, upperRight, upperRight]);
     lines.push([-upperLeft, upperLeft, lowerRight, -lowerRight]);
-    // eslint-disable-next-line no-console
-    console.log(`${lowerLeft}, ${lowerRight}`);
 
     return lines.map((line, i) => (
         <Line points={line} stroke="#e1e3eb" strokeWidth={0.05} key={i} />
@@ -191,16 +233,16 @@ function EventTrajectories() {
 
 function Labels(props) {
     // These numbers were through trial and error.
-    const spaceLabelX = right - 0.75;
+    const spaceLabelX = right - 0.73;
     const spaceLabelY = 0.5;
     return [
         // Rect to block part of the grid.
         <Rect
             x={spaceLabelX}
-            y={spaceLabelY - 0.35}
+            y={spaceLabelY - 0.363}
             fill="#f8f8f8"
             width={1}
-            height={0.27}
+            height={0.29}
             key={0}
         />,
         <Text
@@ -223,7 +265,7 @@ function Labels(props) {
             fontStyle="bold"
             fill="black"
             text="time"
-            key={1}
+            key={2}
         />,
     ];
 }
@@ -283,7 +325,7 @@ function SpacetimeGlobe() {
         <SpacetimeEvent ref={events[i]} t0={data.t} x0={data.x} fill={data.fill} key={i} />
     ));
 
-    function onSlide(e, v) {
+    function updateReferenceFrame(v) {
         if (v == 1 || v == -1) {
             v *= 0.999; // Prevent divide by zero.
         }
@@ -305,7 +347,7 @@ function SpacetimeGlobe() {
             </Helmet>
 
             <div className="controls text-div">
-                <ReferenceFrameSlider onSlide={onSlide} />
+                <ReferenceFrameInput onChange={updateReferenceFrame} />
             </div>
 
             <div className="text-div">
