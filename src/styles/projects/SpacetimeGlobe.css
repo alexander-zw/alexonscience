@@ -58,7 +58,13 @@
     object-fit: contain;
 }
 
-.clear-button {
-    margin-left: 15%;
+.control-buttons {
+    width: 80%;
+    margin: 0 auto;
     margin-top: 0.5em;
+}
+
+/* Buttons can't have margins, so we must use a blank div instead. */
+.spacing {
+    padding-top: 0.5em;
 }

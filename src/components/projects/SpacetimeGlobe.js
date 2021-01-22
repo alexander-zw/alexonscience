@@ -7,6 +7,7 @@
  *
  * TODO:
  * Add custom senarios
+ * Add tooltips to explain controls
  * Add classical spacetime
  * Add way to add a line of events
  */
@@ -112,18 +113,23 @@ EventSelector.propTypes = {
     onSelect: PropTypes.func,
 };
 
-function ClearButton(props) {
+function ControlButtons(props) {
     return (
-        <div className="clear-button">
-            <Button variant="contained" color="secondary" onClick={props.onClick}>
+        <div className="control-buttons">
+            <Button variant="contained" color="primary" size="small" onClick={props.onRefresh}>
+                Refresh
+            </Button>
+            <div className="spacing" />
+            <Button variant="contained" color="secondary" size="small" onClick={props.onClear}>
                 Clear all events
             </Button>
         </div>
     );
 }
 
-ClearButton.propTypes = {
-    onClick: PropTypes.func,
+ControlButtons.propTypes = {
+    onRefresh: PropTypes.func,
+    onClear: PropTypes.func,
 };
 
 class SpacetimeEvent extends Component {
@@ -319,7 +325,7 @@ Labels.propTypes = {
 };
 
 const eventData = [];
-eventData.push(...customScenarios[1].events);
+eventData.push(...customScenarios[customScenarios.length - 1].events);
 
 function SpacetimeGlobe() {
     // Most of these values were obtained through trial and error.
@@ -362,15 +368,19 @@ function SpacetimeGlobe() {
     // A state variable used to force re-render.
     const [updateVar, setUpdateVar] = useState(0);
 
+    function rerender() {
+        setUpdateVar(updateVar + 1);
+    }
+
     function onEventSelect(image) {
         updateReferenceFrame(0); // Only add new events at 0 reference frame.
         eventData.push({ t: 0, x: LEFT, image: image });
-        setUpdateVar(updateVar + 1);
+        rerender();
     }
 
     function onClear() {
         eventData.length = 0;
-        setUpdateVar(updateVar + 1);
+        rerender();
     }
 
     return (
@@ -387,7 +397,7 @@ function SpacetimeGlobe() {
             <div className="controls text-div">
                 <ReferenceFrameInput onChange={updateReferenceFrame} />
                 <EventSelector onSelect={onEventSelect} />
-                <ClearButton onClick={onClear} />
+                <ControlButtons onClear={onClear} onRefresh={rerender} />
             </div>
 
             <div className="text-div">
