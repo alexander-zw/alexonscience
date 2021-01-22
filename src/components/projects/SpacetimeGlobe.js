@@ -6,7 +6,6 @@
  * accessed directly on my website.
  *
  * TODO:
- * Add custom reference frame shift
  * Add drag and drop functionality
  * Add images as events
  * Add custom senarios
@@ -23,44 +22,43 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
 
-function FixedSizeStar(props) {
-    return (
-        <Star
-            x={props.x}
-            y={props.y}
-            numPoints={5}
-            innerRadius={0.13}
-            outerRadius={0.3}
-            rotation={36}
-            fill={props.fill ? props.fill : "green"}
-        />
-    );
-}
-
-FixedSizeStar.propTypes = {
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    fill: PropTypes.string,
-};
-
 class SpacetimeEvent extends Component {
     constructor(props) {
         super(props);
-        this.state = { t: props.t0, x: props.x0 };
-
-        this.updateReferenceFrame = this.updateReferenceFrame.bind(this);
+        this.state = { t0: props.t0, x0: props.x0, t: props.t0, x: props.x0 };
     }
 
-    updateReferenceFrame(gamma, v) {
+    updateReferenceFrame = (gamma, v) => {
+        const { t0, x0 } = this.state;
         this.setState({
-            t: gamma * (this.props.t0 - v * this.props.x0),
-            x: gamma * (this.props.x0 - v * this.props.t0),
+            t: gamma * (t0 - v * x0),
+            x: gamma * (x0 - v * t0),
         });
-    }
+    };
+
+    onDragEnd = (e) => {
+        this.setState({
+            t0: e.target.y(),
+            x0: e.target.x(),
+        });
+    };
 
     render() {
+        const { fill, draggable } = this.props;
         const { x, t } = this.state;
-        return <FixedSizeStar x={x} y={t} fill={this.props.fill} />;
+        return (
+            <Star
+                x={x}
+                y={t}
+                numPoints={5}
+                innerRadius={0.13}
+                outerRadius={0.3}
+                rotation={36}
+                fill={fill ? fill : "green"}
+                draggable={draggable}
+                onDragEnd={this.onDragEnd}
+            />
+        );
     }
 }
 
@@ -68,13 +66,14 @@ SpacetimeEvent.propTypes = {
     t0: PropTypes.number.isRequired,
     x0: PropTypes.number.isRequired,
     fill: PropTypes.string,
+    draggable: PropTypes.bool,
 };
 
 function ReferenceFrameInput(props) {
     const marks = [
         { value: -1, label: "-c" },
         { value: 0, label: "0" },
-        { value: 1, label: "-c" },
+        { value: 1, label: "c" },
     ];
 
     const [vValid, setVValid] = useState(true);
@@ -302,19 +301,21 @@ function SpacetimeGlobe() {
         { t: 0, x: 1, fill: "blue" },
         { t: 0, x: 2, fill: "blue" },
         { t: 0, x: 3, fill: "blue" },
-        { t: -1, x: -1, fill: "yellow" },
-        { t: 0, x: 0, fill: "yellow" },
-        { t: 1, x: 1, fill: "yellow" },
-        { t: 2, x: 2, fill: "yellow" },
-        { t: 3, x: 3, fill: "yellow" },
-        { t: 4, x: 4, fill: "yellow" },
-        { t: -1, x: 2, fill: "orange" },
-        { t: 0, x: 2, fill: "orange" },
-        { t: 1, x: 2, fill: "orange" },
-        { t: 2, x: 2, fill: "orange" },
-        { t: 3, x: 2, fill: "orange" },
-        { t: 4, x: 2, fill: "orange" },
+        { t: -1, x: -1, fill: "gold" },
+        { t: 0, x: 0, fill: "gold" },
+        { t: 1, x: 1, fill: "gold" },
+        { t: 2, x: 2, fill: "gold" },
+        { t: 3, x: 3, fill: "gold" },
+        { t: 4, x: 4, fill: "gold" },
+        { t: -1, x: 2, fill: "purple" },
+        { t: 0, x: 2, fill: "purple" },
+        { t: 1, x: 2, fill: "purple" },
+        { t: 2, x: 2, fill: "purple" },
+        { t: 3, x: 2, fill: "purple" },
+        { t: 4, x: 2, fill: "purple" },
     ];
+
+    const [draggable, setDraggable] = useState(true);
 
     const events = [];
     for (let i = 0; i < eventData.length; i++) {
@@ -322,7 +323,14 @@ function SpacetimeGlobe() {
     }
 
     const eventComponents = eventData.map((data, i) => (
-        <SpacetimeEvent ref={events[i]} t0={data.t} x0={data.x} fill={data.fill} key={i} />
+        <SpacetimeEvent
+            ref={events[i]}
+            t0={data.t}
+            x0={data.x}
+            fill={data.fill}
+            draggable={draggable}
+            key={i}
+        />
     ));
 
     function updateReferenceFrame(v) {
@@ -333,6 +341,8 @@ function SpacetimeGlobe() {
         events.forEach((event) => {
             event.current.updateReferenceFrame(gamma, v);
         });
+
+        setDraggable(v == 0); // Can only drag at default reference frame.
     }
 
     return (
