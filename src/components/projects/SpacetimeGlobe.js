@@ -8,6 +8,7 @@
  * TODO:
  * Add custom senarios
  * Add classical spacetime
+ * Add way to add a line of events
  */
 import React, { Component, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -20,7 +21,7 @@ import Button from "@material-ui/core/Button";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
-import { eventImages, customScenario } from "./SpacetimeGlobeEvents";
+import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
 
 function ReferenceFrameInput(props) {
     const marks = [
@@ -318,7 +319,7 @@ Labels.propTypes = {
 };
 
 const eventData = [];
-eventData.push(...customScenario);
+eventData.push(...customScenarios[1].events);
 
 function SpacetimeGlobe() {
     // Most of these values were obtained through trial and error.
