@@ -38,6 +38,8 @@
         "no-console": "error",
         "no-eval": "error",
         "no-var": "error",
-        "prefer-const": "error"
+        "prefer-const": "error",
+        // For some reason Prettier doesn't enforce comment length.
+        "max-len": ["error", { "comments": 80, "code": 200 }]
     }
 }

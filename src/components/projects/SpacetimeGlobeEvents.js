@@ -1,3 +1,13 @@
+/**
+ * This file contains data for SpacetimeGlobe.js. Because the list of available
+ * images for events and custom scenarios the user can load are very long, they
+ * are stored in this separate file.
+ *
+ * TODO:
+ * Add tooltips to explain controls
+ * Add classical spacetime
+ * Add way to add a line of events
+ */
 import blue_person from "../../images/spacetime_globe/blue_person.png";
 import orange_person from "../../images/spacetime_globe/orange_person.png";
 import orange_cat from "../../images/spacetime_globe/orange_cat.png";

@@ -1,12 +1,12 @@
 /**
- * This component contains my resume.
+ * This component is a project based on the minutephysics series on special
+ * relativity.
  *
- * This page is for anyone who came to learn about me personally, including
- * who I am, my skills and interests, and some of my projects that can't be
- * accessed directly on my website.
+ * The spacetime globe helps visualize Lorentz transformations. The user can
+ * add events onto the spacetime diagram and change the reference frame to see
+ * what happens.
  *
  * TODO:
- * Add custom senarios
  * Add tooltips to explain controls
  * Add classical spacetime
  * Add way to add a line of events
@@ -374,6 +374,8 @@ function SpacetimeGlobe() {
     const [draggable, setDraggable] = useState(true);
     const [updateVar, setUpdateVar] = useState(0);
 
+    const referenceFrameInput = createRef();
+
     function updateReferenceFrame(v) {
         if (v == 1 || v == -1) {
             v *= 0.999; // Prevent divide by zero.
@@ -383,6 +385,7 @@ function SpacetimeGlobe() {
             event.current.updateReferenceFrame(gamma, v);
         });
 
+        referenceFrameInput.current.setDisplayV(v);
         setDraggable(v == 0); // Can only drag at default reference frame.
     }
 
@@ -409,7 +412,7 @@ function SpacetimeGlobe() {
 
     const events = [];
     for (let i = 0; i < eventData.length; i++) {
-        events.push(React.createRef());
+        events.push(createRef());
     }
 
     const eventComponents = eventData.map((data, i) => (
@@ -435,7 +438,7 @@ function SpacetimeGlobe() {
             </Helmet>
 
             <div className="controls text-div">
-                <ReferenceFrameInput onChange={updateReferenceFrame} />
+                <ReferenceFrameInput onChange={updateReferenceFrame} ref={referenceFrameInput} />
                 <EventSelector onSelect={onEventSelect} />
                 <ControlButtons onClear={onClear} onRefresh={forceUpdate} />
                 <ScenarioSelector onSelect={onScenarioSelect} />
