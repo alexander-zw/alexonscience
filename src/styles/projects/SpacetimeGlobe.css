@@ -62,6 +62,12 @@
     width: 80%;
     margin: 0 auto;
     margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.scenario-selector {
+    width: 80%;
+    margin: 0 auto;
 }
 
 /* Buttons can't have margins, so we must use a blank div instead. */

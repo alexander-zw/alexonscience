@@ -19,6 +19,10 @@ import Slider from "@material-ui/core/Slider";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -130,6 +134,39 @@ function ControlButtons(props) {
 ControlButtons.propTypes = {
     onRefresh: PropTypes.func,
     onClear: PropTypes.func,
+};
+
+function ScenarioSelector(props) {
+    const [option, setOption] = useState("...");
+
+    function onSelect(e) {
+        setOption(e.target.value);
+        if (e.target.value != "") {
+            props.onSelect(e.target.value);
+        }
+    }
+
+    const optionComponents = customScenarios.map((scenario, i) => (
+        <MenuItem value={scenario} key={i}>
+            {scenario.name}
+        </MenuItem>
+    ));
+
+    return (
+        <div className="scenario-selector">
+            <FormControl size="small" fullWidth variant="filled">
+                <InputLabel>Add custom scenario</InputLabel>
+                <Select value={option} onChange={onSelect} label="Age" labelWidth={20}>
+                    <MenuItem value="">None</MenuItem>
+                    {optionComponents}
+                </Select>
+            </FormControl>
+        </div>
+    );
+}
+
+ScenarioSelector.propTypes = {
+    onSelect: PropTypes.func,
 };
 
 class SpacetimeEvent extends Component {
@@ -325,7 +362,6 @@ Labels.propTypes = {
 };
 
 const eventData = [];
-eventData.push(...customScenarios[customScenarios.length - 1].events);
 
 function SpacetimeGlobe() {
     // Most of these values were obtained through trial and error.
@@ -336,6 +372,40 @@ function SpacetimeGlobe() {
     const canvasOffsetY = (canvasHeight * 0.69) / scale;
 
     const [draggable, setDraggable] = useState(true);
+    const [updateVar, setUpdateVar] = useState(0);
+
+    function updateReferenceFrame(v) {
+        if (v == 1 || v == -1) {
+            v *= 0.999; // Prevent divide by zero.
+        }
+        const gamma = 1 / Math.sqrt(1 - v * v);
+        events.forEach((event) => {
+            event.current.updateReferenceFrame(gamma, v);
+        });
+
+        setDraggable(v == 0); // Can only drag at default reference frame.
+    }
+
+    function forceUpdate() {
+        setUpdateVar(updateVar + 1);
+    }
+
+    function onEventSelect(image) {
+        updateReferenceFrame(0); // Only add new events at 0 reference frame.
+        eventData.push({ t: 0, x: LEFT, image: image });
+        forceUpdate();
+    }
+
+    function onClear() {
+        eventData.length = 0;
+        forceUpdate();
+    }
+
+    function onScenarioSelect(scenario) {
+        updateReferenceFrame(0);
+        eventData.push(...scenario.events);
+        forceUpdate();
+    }
 
     const events = [];
     for (let i = 0; i < eventData.length; i++) {
@@ -353,36 +423,6 @@ function SpacetimeGlobe() {
         />
     ));
 
-    function updateReferenceFrame(v) {
-        if (v == 1 || v == -1) {
-            v *= 0.999; // Prevent divide by zero.
-        }
-        const gamma = 1 / Math.sqrt(1 - v * v);
-        events.forEach((event) => {
-            event.current.updateReferenceFrame(gamma, v);
-        });
-
-        setDraggable(v == 0); // Can only drag at default reference frame.
-    }
-
-    // A state variable used to force re-render.
-    const [updateVar, setUpdateVar] = useState(0);
-
-    function rerender() {
-        setUpdateVar(updateVar + 1);
-    }
-
-    function onEventSelect(image) {
-        updateReferenceFrame(0); // Only add new events at 0 reference frame.
-        eventData.push({ t: 0, x: LEFT, image: image });
-        rerender();
-    }
-
-    function onClear() {
-        eventData.length = 0;
-        rerender();
-    }
-
     return (
         <div className="outer-container top-margin bottom-margin">
             <Helmet>
@@ -397,7 +437,8 @@ function SpacetimeGlobe() {
             <div className="controls text-div">
                 <ReferenceFrameInput onChange={updateReferenceFrame} />
                 <EventSelector onSelect={onEventSelect} />
-                <ControlButtons onClear={onClear} onRefresh={rerender} />
+                <ControlButtons onClear={onClear} onRefresh={forceUpdate} />
+                <ScenarioSelector onSelect={onScenarioSelect} />
             </div>
 
             <div className="text-div">
