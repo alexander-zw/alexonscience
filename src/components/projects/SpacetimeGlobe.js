@@ -11,7 +11,7 @@
  * Add classical spacetime
  * Add way to add a line of events
  */
-import React, { Component, useState } from "react";
+import React, { Component, useState, createRef } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { Stage, Layer, Line, Arrow, Text, Rect, Image } from "react-konva";
@@ -28,64 +28,73 @@ import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
 import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
 
-function ReferenceFrameInput(props) {
-    const marks = [
-        { value: -1, label: "-c" },
-        { value: 0, label: "0" },
-        { value: 1, label: "c" },
-    ];
+class ReferenceFrameInput extends Component {
+    constructor(props) {
+        super(props);
 
-    const [vValid, setVValid] = useState(true);
+        this.marks = [
+            { value: -1, label: "-c" },
+            { value: 0, label: "0" },
+            { value: 1, label: "c" },
+        ];
+
+        this.state = { vValid: true, displayV: 0 };
+    }
+
+    setDisplayV = (v) => {
+        this.setState({ displayV: v });
+    };
 
     // Validate text input before passing on to props.
-    function onText(e) {
+    onText = (e) => {
         if (e.target.value == "") {
             return;
         }
         const v = parseFloat(e.target.value);
         if (-1 <= v && v <= 1) {
-            props.onChange(v);
-            setVValid(true);
+            this.props.onChange(v);
+            this.setState({ vValid: true });
         } else {
-            setVValid(false);
+            this.setState({ vValid: false });
         }
-    }
+    };
 
-    return (
-        <div className="ref-shift-controls">
-            Reference frame shift
-            <Slider
-                defaultValue={0}
-                getAriaValueText={(val) => val}
-                aria-labelledby="discrete-slider"
-                step={0.1}
-                marks={marks}
-                min={-1}
-                max={1}
-                valueLabelDisplay="auto"
-                valueLabelFormat={(val) => `${val}c`}
-                onChange={(e, v) => props.onChange(v)}
-            />
-            <div className="ref-shift-text-div">
-                <TextField
-                    className="ref-shift-text"
-                    label="custom"
-                    variant="outlined"
-                    error={!vValid}
-                    InputProps={{
-                        endAdornment: <InputAdornment position="end">c</InputAdornment>,
-                    }}
-                    InputLabelProps={{
-                        margin: "dense",
-                    }}
-                    onChange={onText}
+    render() {
+        const { vValid, displayV } = this.state;
+        return (
+            <div className="ref-shift-controls">
+                Reference frame shift: <strong>{displayV}c</strong>
+                <Slider
+                    defaultValue={displayV}
+                    step={0.1}
+                    marks={this.marks}
+                    min={-1}
+                    max={1}
+                    valueLabelDisplay="auto"
+                    valueLabelFormat={(val) => `${val}c`}
+                    onChange={(e, v) => this.props.onChange(v)}
                 />
-                {vValid || (
-                    <span className="ref-shift-text-error">Enter a number from -1 to 1</span>
-                )}
+                <div className="ref-shift-text-div">
+                    <TextField
+                        className="ref-shift-text"
+                        label="custom"
+                        variant="outlined"
+                        error={!vValid}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">c</InputAdornment>,
+                        }}
+                        InputLabelProps={{
+                            margin: "dense",
+                        }}
+                        onChange={this.onText}
+                    />
+                    {vValid || (
+                        <span className="ref-shift-text-error">Enter a number from -1 to 1</span>
+                    )}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 ReferenceFrameInput.propTypes = {
@@ -137,7 +146,7 @@ ControlButtons.propTypes = {
 };
 
 function ScenarioSelector(props) {
-    const [option, setOption] = useState("...");
+    const [option, setOption] = useState("");
 
     function onSelect(e) {
         setOption(e.target.value);
