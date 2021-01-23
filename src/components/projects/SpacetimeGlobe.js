@@ -6,8 +6,10 @@
  * add events onto the spacetime diagram and change the reference frame to see
  * what happens.
  *
+ * There is no test for this component because Konva doesn't mesh well with
+ * React test renderer.
+ *
  * TODO:
- * Add tooltips to explain controls
  * Add classical spacetime
  * Add way to add a line of events
  */
@@ -23,6 +25,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -64,30 +67,40 @@ class ReferenceFrameInput extends Component {
         return (
             <div className="ref-shift-controls">
                 Reference frame shift: <strong>{displayV}c</strong>
-                <Slider
-                    defaultValue={displayV}
-                    step={0.1}
-                    marks={this.marks}
-                    min={-1}
-                    max={1}
-                    valueLabelDisplay="auto"
-                    valueLabelFormat={(val) => `${val}c`}
-                    onChange={(e, v) => this.props.onChange(v)}
-                />
-                <div className="ref-shift-text-div">
-                    <TextField
-                        className="ref-shift-text"
-                        label="custom"
-                        variant="outlined"
-                        error={!vValid}
-                        InputProps={{
-                            endAdornment: <InputAdornment position="end">c</InputAdornment>,
-                        }}
-                        InputLabelProps={{
-                            margin: "dense",
-                        }}
-                        onChange={this.onText}
+                <Tooltip
+                    title="Slide to change the velocity of your reference frame"
+                    placement="right"
+                >
+                    <Slider
+                        defaultValue={displayV}
+                        step={0.1}
+                        marks={this.marks}
+                        min={-1}
+                        max={1}
+                        valueLabelDisplay="auto"
+                        valueLabelFormat={(val) => `${val}c`}
+                        onChange={(e, v) => this.props.onChange(v)}
                     />
+                </Tooltip>
+                <div className="ref-shift-text-div">
+                    <Tooltip
+                        title="Enter a custom value for the reference frame velocity"
+                        placement="right"
+                    >
+                        <TextField
+                            className="ref-shift-text"
+                            label="custom"
+                            variant="outlined"
+                            error={!vValid}
+                            InputProps={{
+                                endAdornment: <InputAdornment position="end">c</InputAdornment>,
+                            }}
+                            InputLabelProps={{
+                                margin: "dense",
+                            }}
+                            onChange={this.onText}
+                        />
+                    </Tooltip>
                     {vValid || (
                         <span className="ref-shift-text-error">Enter a number from -1 to 1</span>
                     )}
@@ -104,7 +117,12 @@ ReferenceFrameInput.propTypes = {
 function EventSelector(props) {
     return (
         <div className="event-selector-div">
-            Add an event
+            <Tooltip
+                title="Click an event to add it to the diagram; scroll for more options; you can drag existing events when the reference frame is 0"
+                placement="right"
+            >
+                <span>Add an event</span>
+            </Tooltip>
             <div className="event-selector-outer">
                 <div className="event-selector">
                     {eventImages.map((image, i) => (
@@ -129,13 +147,20 @@ EventSelector.propTypes = {
 function ControlButtons(props) {
     return (
         <div className="control-buttons">
-            <Button variant="contained" color="primary" size="small" onClick={props.onRefresh}>
-                Refresh
-            </Button>
+            <Tooltip title="Refresh the diagram if an event isn't showing up" placement="right">
+                <Button variant="contained" color="primary" size="small" onClick={props.onRefresh}>
+                    Refresh
+                </Button>
+            </Tooltip>
             <div className="spacing" />
-            <Button variant="contained" color="secondary" size="small" onClick={props.onClear}>
-                Clear all events
-            </Button>
+            <Tooltip
+                title="Remove all events currently in the diagram; this cannot be undone"
+                placement="right"
+            >
+                <Button variant="contained" color="secondary" size="small" onClick={props.onClear}>
+                    Clear all events
+                </Button>
+            </Tooltip>
         </div>
     );
 }
@@ -163,13 +188,18 @@ function ScenarioSelector(props) {
 
     return (
         <div className="scenario-selector">
-            <FormControl size="small" fullWidth variant="filled">
-                <InputLabel>Add custom scenario</InputLabel>
-                <Select value={option} onChange={onSelect} label="Age" labelWidth={20}>
-                    <MenuItem value="">None</MenuItem>
-                    {optionComponents}
-                </Select>
-            </FormControl>
+            <Tooltip
+                title="Add a predefined set of events; don't forget to clear existing events!"
+                placement="right"
+            >
+                <FormControl size="small" fullWidth variant="filled">
+                    <InputLabel>Add custom scenario</InputLabel>
+                    <Select value={option} onChange={onSelect} label="Age" labelWidth={20}>
+                        <MenuItem value="">None</MenuItem>
+                        {optionComponents}
+                    </Select>
+                </FormControl>
+            </Tooltip>
         </div>
     );
 }
