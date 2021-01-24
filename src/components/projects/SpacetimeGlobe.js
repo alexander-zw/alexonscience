@@ -10,7 +10,6 @@
  * React test renderer.
  *
  * TODO:
- * Add description of this project
  * Allow specifying precise event position
  * Add classical spacetime
  * Allow user to adjust grid size
@@ -33,6 +32,38 @@ import Tooltip from "@material-ui/core/Tooltip";
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
 import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
+import ExpansionText from "../subcomponents/ExpansionText";
+
+function Description() {
+    const expansionText = [
+        "The spacetime globe allows you to visualize Lorentz transformations, an " +
+            "essential concept in special relativity. When you switch reference frames in " +
+            "special relativity, the positions and times of individual events don't change the " +
+            "way you'd expect from classical mechanics. Try shifting the reference frame with " +
+            "the controls on the right and observe how the events in the spacetime diagram " +
+            "below change!",
+        "Note that each time gridmark is one second, and each space gridmark " +
+            "is one lightsecond (299,792,458 meters). To learn more, check out the " +
+            "minutephysics link.",
+    ];
+
+    const expansionTextComponent = expansionText.map((text, i) => <p key={i}>{text}</p>);
+
+    return (
+        <div className="text-div description">
+            <p>
+                The spacetime globe is based on{" "}
+                <a href="https://youtube.com/playlist?list=PLoaVOjvkzQtyjhV55wZcdicAz5KexgKvm">
+                    this video series
+                </a>{" "}
+                from minutephysics. Go check it out if you haven{"'"}t already!
+            </p>
+            <ExpansionText expansionComponent={expansionTextComponent}>
+                What is a spacetime globe?
+            </ExpansionText>
+        </div>
+    );
+}
 
 class ReferenceFrameInput extends Component {
     constructor(props) {
@@ -119,12 +150,12 @@ ReferenceFrameInput.propTypes = {
 };
 
 function EventSelector(props) {
+    const tooltipText =
+        "Click an event to add it to the diagram; scroll for more options; you can drag existing " +
+        "events when the reference frame is 0, or right click to delete it";
     return (
         <div className="event-selector-div">
-            <Tooltip
-                title="Click an event to add it to the diagram; scroll for more options; you can drag existing events when the reference frame is 0, or right click to delete it"
-                placement="right"
-            >
+            <Tooltip title={tooltipText} placement="right">
                 <span>Add an event</span>
             </Tooltip>
             <div className="event-selector-outer">
@@ -541,15 +572,16 @@ function SpacetimeGlobe() {
         />
     ));
 
+    const keywords =
+        "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation, " +
+        "alex, alexander, wu, science, youtube";
+
     return (
         <div className="outer-container top-margin bottom-margin">
             <Helmet>
                 <title>Spacetime Globe | ALEX on Science</title>
                 <meta name="Description" content="Alex's resume" />
-                <meta
-                    name="KeyWords"
-                    content="spacetime, globe, minutephysics, physics, special relativity, lorenz transformation, alex, alexander, wu, science, youtube"
-                />
+                <meta name="KeyWords" content={keywords} />
             </Helmet>
 
             <div className="controls text-div">
@@ -561,6 +593,7 @@ function SpacetimeGlobe() {
 
             <div className="text-div">
                 <ContextMenu ref={contextMenu} onDelete={onEventDelete} />
+                <Description />
                 <Stage
                     width={canvasWidth}
                     height={canvasHeight}

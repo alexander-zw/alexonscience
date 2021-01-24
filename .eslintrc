@@ -40,6 +40,6 @@
         "no-var": "error",
         "prefer-const": "error",
         // For some reason Prettier doesn't enforce comment length.
-        "max-len": ["error", { "comments": 80, "code": 200 }]
+        "max-len": ["error", { "comments": 80, "code": 100 }]
     }
 }

@@ -3,6 +3,10 @@
     grid-template-columns: 25% auto;
 }
 
+.description {
+    margin-bottom: 1em;
+}
+
 .controls {
     padding: 2em 0 2.5em 0;
     background-color: #e1e3eb;

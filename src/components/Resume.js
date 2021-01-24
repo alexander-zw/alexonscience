@@ -67,8 +67,10 @@ function Resume() {
                         <em>18th COMAP High School Mathematics Contest in Modeling</em> (2016)
                     </li>
                     <li>
-                        National First Prize,{" "}
-                        <em>30th China Adolescents Science and Technology InnovationContest</em>{" "}
+                        National First Prize,
+                        <em>
+                            30th China Adolescents Science and Technology InnovationContest
+                        </em>{" "}
                         (2015)
                     </li>
                     <li>
