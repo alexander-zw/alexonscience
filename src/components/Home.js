@@ -2,17 +2,20 @@
  * The home component is the default component displayed at the index URL.
  * It contains a basic welcome.
  */
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import "../styles/index.css";
-import "../styles/Home.css";
+import ExpansionText from "./subcomponents/ExpansionText";
 
 function Home() {
-    const [showPopup, setShowPopup] = useState(false);
+    const expansionText =
+        "As you might be able to tell, I love drawing, even if I'm not that good at " +
+        "it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some DNA, " +
+        "and Rosalind Franklin. Franklin is particularly underappreciated - she was " +
+        "not recognized for a Nobel prize only because she had passed away by the time " +
+        "it was awarded.";
 
-    function displayPopup() {
-        setShowPopup(!showPopup);
-    }
+    const expansionTextComponent = <p>{expansionText}</p>;
 
     return (
         <div>
@@ -29,16 +32,9 @@ function Home() {
                     to explore around!
                 </p>
 
-                <div className="popup" onClick={displayPopup}>
-                    <span className="popup-outer">What are those drawings in your banner?</span>
-                    <span className={`popuptext${showPopup ? " show" : ""}`}>
-                        As you might be able to tell, I love drawing, even if I{"'"}m not that good
-                        at it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some
-                        DNA, and Rosalind Franklin. Franklin is particularly underappreciated - she
-                        was not recognized for a Nobel prize only because she had passed away by the
-                        time it was awarded.
-                    </span>
-                </div>
+                <ExpansionText expansionComponent={expansionTextComponent}>
+                    What are those drawings in your banner?
+                </ExpansionText>
             </div>
         </div>
     );

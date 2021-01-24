@@ -1,0 +1,6 @@
+/* Text you're supposed to click. */
+.outer {
+    /* font-size: 0.9em; */
+    color: #636363;
+    cursor: pointer;
+}
