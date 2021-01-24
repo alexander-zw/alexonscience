@@ -11,7 +11,7 @@
  *
  * TODO:
  * Add description of this project
- * Allow deleting one event
+ * Allow specifying precise event position
  * Add classical spacetime
  * Allow user to adjust grid size
  * Add way to add a line of events
@@ -94,6 +94,7 @@ class ReferenceFrameInput extends Component {
                             className="ref-shift-text"
                             label="custom"
                             variant="outlined"
+                            size="small"
                             error={!vValid}
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">c</InputAdornment>,
@@ -121,7 +122,7 @@ function EventSelector(props) {
     return (
         <div className="event-selector-div">
             <Tooltip
-                title="Click an event to add it to the diagram; scroll for more options; you can drag existing events when the reference frame is 0"
+                title="Click an event to add it to the diagram; scroll for more options; you can drag existing events when the reference frame is 0, or right click to delete it"
                 placement="right"
             >
                 <span>Add an event</span>
@@ -209,6 +210,72 @@ function ScenarioSelector(props) {
 
 ScenarioSelector.propTypes = {
     onSelect: PropTypes.func,
+};
+
+class ContextMenu extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            xPos: 0,
+            yPos: 0,
+            target: null,
+        };
+    }
+
+    componentDidMount() {
+        document.addEventListener("click", this.handleClick);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("click", this.handleClick);
+    }
+
+    handleClick = () => {
+        this.setState({ target: null });
+    };
+
+    showContextMenu = (e) => {
+        e.evt.preventDefault(); // This e is the Konvas event, so we need to do e.evt.
+
+        if (e.target.parent !== null) {
+            // Means this is not the stage but an event.
+            this.setState({
+                xPos: e.evt.pageX,
+                yPos: e.evt.pageY,
+                target: e.target,
+            });
+        } else {
+            this.handleClick(); // Hide the menu again.
+        }
+    };
+
+    render() {
+        const { target, xPos, yPos } = this.state;
+        const { onDelete } = this.props;
+
+        if (target !== null) {
+            return (
+                <div
+                    className="contextmenu"
+                    style={{
+                        left: `${xPos}px`,
+                        top: `${yPos}px`,
+                    }}
+                >
+                    <div className="menu-option text-div" onClick={() => onDelete(target)}>
+                        Delete
+                    </div>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+}
+
+ContextMenu.propTypes = {
+    onDelete: PropTypes.func.isRequired,
 };
 
 class SpacetimeEvent extends Component {
@@ -403,76 +470,6 @@ Labels.propTypes = {
     scale: PropTypes.number.isRequired,
 };
 
-class ContextMenu extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            xPos: 0,
-            yPos: 0,
-            showMenu: false,
-        };
-    }
-
-    componentDidMount() {
-        document.addEventListener("click", this.handleClick);
-        // document.addEventListener("contextmenu", this.showContextMenu);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("click", this.handleClick);
-        // document.removeEventListener("contextmenu", this.showContextMenu);
-    }
-
-    handleClick = () => {
-        if (this.state.showMenu) {
-            this.setState({ showMenu: false });
-        }
-    };
-
-    showContextMenu = (e) => {
-        e.evt.preventDefault(); // This e is the Konvas event, so we need to do e.evt.
-
-        if (e.target.parent !== null) {
-            // Means this is not the stage but an event.
-            this.setState({
-                xPos: e.evt.pageX,
-                yPos: e.evt.pageY,
-                showMenu: true,
-            });
-        } else {
-            this.handleClick(); // Hide the menu again.
-        }
-    };
-
-    render() {
-        const { showMenu, xPos, yPos } = this.state;
-        const { onDelete } = this.props;
-
-        if (showMenu) {
-            return (
-                <div
-                    className="contextmenu"
-                    style={{
-                        left: `${xPos}px`,
-                        top: `${yPos}px`,
-                    }}
-                >
-                    <div className="menu-option text-div" onClick={onDelete}>
-                        Delete
-                    </div>
-                </div>
-            );
-        } else {
-            return null;
-        }
-    }
-}
-
-ContextMenu.propTypes = {
-    onDelete: PropTypes.func,
-};
-
 const eventData = [];
 
 function SpacetimeGlobe() {
@@ -512,9 +509,9 @@ function SpacetimeGlobe() {
         forceUpdate();
     }
 
-    function onEventDelete() {
-        // eslint-disable-next-line no-console
-        console.log("deleting event");
+    function onEventDelete(event) {
+        event.destroy(); // The entry is still in eventData, but it won't be rendered.
+        forceUpdate();
     }
 
     function onClear() {
