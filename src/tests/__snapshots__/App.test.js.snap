@@ -102,6 +102,28 @@ Array [
         <p>
           Hello there! My name is Alexander Wu. I am a graduate student who enjoys maintaining a YouTube channel and working on personal coding projects. Feel free to explore around!
         </p>
+        <p>
+          Check out some of my awesome 
+          <a
+            href="/projects"
+            onClick={[Function]}
+          >
+            projects
+          </a>
+          ! Or, if you
+          '
+          d like to learn about me (I
+          '
+          m flattered), take a look at my
+           
+          <a
+            href="/resume"
+            onClick={[Function]}
+          >
+            resume
+          </a>
+          .
+        </p>
         <div
           className="Collapsible"
         >

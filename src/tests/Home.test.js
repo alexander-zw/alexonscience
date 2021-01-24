@@ -2,18 +2,29 @@
  * Test for the Home.js component.
  */
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import Home from "../components/Home";
 
 test("renders my name", () => {
-    render(<Home />);
+    render(
+        <BrowserRouter>
+            <Home />
+        </BrowserRouter>,
+    );
     const linkElement = screen.getByText(/Alexander Wu/i);
     expect(linkElement).toBeInTheDocument();
 });
 
 it("renders correctly", () => {
-    const tree = renderer.create(<Home />).toJSON();
+    const tree = renderer
+        .create(
+            <BrowserRouter>
+                <Home />
+            </BrowserRouter>,
+        )
+        .toJSON();
     expect(tree).toMatchSnapshot();
 });

@@ -3,7 +3,6 @@
  * and footer.
  *
  * TODO:
- * Improve homepage
  * Improve resume (add picture)
  * Add blog
  * Fix resume for mobile

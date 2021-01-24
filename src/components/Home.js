@@ -4,6 +4,7 @@
  */
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import "../styles/index.css";
 import ExpansionText from "./subcomponents/ExpansionText";
 
@@ -30,6 +31,12 @@ function Home() {
                     Hello there! My name is Alexander Wu. I am a graduate student who enjoys
                     maintaining a YouTube channel and working on personal coding projects. Feel free
                     to explore around!
+                </p>
+
+                <p>
+                    Check out some of my awesome <Link to="/projects">projects</Link>! Or, if you
+                    {"'"}d like to learn about me (I{"'"}m flattered), take a look at my{" "}
+                    <Link to="/resume">resume</Link>.
                 </p>
 
                 <ExpansionText expansionComponent={expansionTextComponent}>
