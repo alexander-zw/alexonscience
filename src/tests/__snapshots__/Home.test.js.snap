@@ -9,21 +9,39 @@ exports[`renders correctly 1`] = `
       Hello there! My name is Alexander Wu. I am a graduate student who enjoys maintaining a YouTube channel and working on personal coding projects. Feel free to explore around!
     </p>
     <div
-      className="popup"
-      onClick={[Function]}
+      className="Collapsible"
     >
       <span
-        className="popup-outer"
+        className="Collapsible__trigger is-closed  outer"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        style={null}
+        tabIndex={null}
       >
         What are those drawings in your banner?
       </span>
-      <span
-        className="popuptext"
+      <div
+        className="Collapsible__contentOuter"
+        hidden={false}
+        onTransitionEnd={[Function]}
+        style={
+          Object {
+            "WebkitTransition": "height 400ms linear",
+            "height": 0,
+            "msTransition": "height 400ms linear",
+            "overflow": "hidden",
+            "transition": "height 400ms linear",
+          }
+        }
       >
-        As you might be able to tell, I love drawing, even if I
-        '
-        m not that good at it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some DNA, and Rosalind Franklin. Franklin is particularly underappreciated - she was not recognized for a Nobel prize only because she had passed away by the time it was awarded.
-      </span>
+        <div
+          className="Collapsible__contentInner"
+        >
+          <p>
+            As you might be able to tell, I love drawing, even if I'm not that good at it. Here you can see a Turing machine, AlphaGo, Albert Einstein, some DNA, and Rosalind Franklin. Franklin is particularly underappreciated - she was not recognized for a Nobel prize only because she had passed away by the time it was awarded.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

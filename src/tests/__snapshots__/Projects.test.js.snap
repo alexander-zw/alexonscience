@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="text-div top-margin bottom-margin"
+  >
+    <a
+      className="link"
+      href="/projects/spacetimeglobe"
+      onClick={[Function]}
+    >
+      <div
+        className="project-box"
+      >
+        <img
+          alt="Spacetime globe"
+          className="thumbnail"
+          src="spacetime_globe.png"
+        />
+        <div
+          className="project-text"
+        >
+          <div
+            className="project-title"
+          >
+            Spacetime Globe
+          </div>
+          This interactive visualization allows you to really play around with Lorentz transformations to get a feel for how special relativity works.
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+`;

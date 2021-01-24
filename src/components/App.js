@@ -3,13 +3,12 @@
  * and footer.
  *
  * TODO:
- * Improve projects page
  * Improve homepage
  * Improve resume (add picture)
  * Add blog
  * Fix resume for mobile
  * Mobile friendly nav bar
- * Prerendering (optional)
+ * Prerendering
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";

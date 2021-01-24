@@ -1,0 +1,50 @@
+.project-box {
+    height: 9em;
+    margin-left: 4em;
+    margin-right: 4em;
+    background-color: #f1f1f1;
+    border: 0.18em solid grey;
+    border-radius: 0.8em;
+    display: grid;
+    grid-template-columns: 9em auto;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.project-box:hover {
+    box-shadow: 0 0 0.8em #849e9d;
+}
+
+.thumbnail {
+    width: 9em;
+    height: 9em;
+    transition: transform 0.3s;
+}
+
+.project-box:hover .thumbnail {
+    transform: scale(1.2);
+}
+
+.project-text {
+    padding: 1em 1em 1em 2em;
+    border-left: 0.18em solid grey;
+    color: black;
+    /* Needed to hide the expanding thumbnail. */
+    z-index: 5000;
+    background-color: #f8f8f8;
+}
+
+.project-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    transition: color 0.3s;
+}
+
+.project-box:hover .project-title {
+    color: #008388;
+}
+
+.link {
+    text-decoration: none;
+}
