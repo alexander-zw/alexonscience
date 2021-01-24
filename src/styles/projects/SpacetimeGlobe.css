@@ -56,6 +56,7 @@
     width: 4em;
     height: 4em;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .control-buttons {
@@ -73,4 +74,26 @@
 /* Buttons can't have margins, so we must use a blank div instead. */
 .spacing {
     padding-top: 0.5em;
+}
+
+.contextmenu {
+    position: absolute;
+    width: 4.5em;
+    background-color: white;
+    box-shadow: 0 0 0.3em grey;
+    border-radius: 0.2em;
+    z-index: 9999;
+}
+
+.contextmenu .menu-option {
+    width: 100%;
+    background-color: white;
+    border: none;
+    margin: 0;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.contextmenu .menu-option:hover {
+    background-color: lightgray;
 }

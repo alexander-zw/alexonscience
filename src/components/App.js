@@ -3,7 +3,7 @@
  * and footer.
  *
  * TODO:
- * Add projects
+ * Improve projects page
  * Improve homepage
  * Improve resume (add picture)
  * Add blog
