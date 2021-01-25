@@ -11,7 +11,6 @@
  *
  * TODO:
  * Allow specifying precise event position
- * Add classical spacetime
  * Allow user to adjust grid size
  * Add way to add a line of events
  */
@@ -90,16 +89,20 @@ class ReferenceFrameInput extends Component {
             return;
         }
         const v = parseFloat(e.target.value);
-        if (-1 <= v && v <= 1) {
+        if (isNaN(v)) {
+            this.setState({ vValid: false });
+        } else {
             this.props.onChange(v);
             this.setState({ vValid: true });
-        } else {
-            this.setState({ vValid: false });
         }
     };
 
     render() {
         const { vValid, displayV } = this.state;
+        const textFieldTooltipText =
+            "Enter a custom value for the reference frame velocity; note that in the " +
+            "relativistic spacetime, values outside of -1 to 1 are capped";
+
         return (
             <div className="ref-shift-controls">
                 Reference frame shift: <strong>{displayV}c</strong>
@@ -119,10 +122,7 @@ class ReferenceFrameInput extends Component {
                     />
                 </Tooltip>
                 <div className="ref-shift-text-div">
-                    <Tooltip
-                        title="Enter a custom value for the reference frame velocity"
-                        placement="right"
-                    >
+                    <Tooltip title={textFieldTooltipText} placement="right">
                         <TextField
                             className="ref-shift-text"
                             label="custom"
@@ -138,9 +138,7 @@ class ReferenceFrameInput extends Component {
                             onChange={this.onText}
                         />
                     </Tooltip>
-                    {vValid || (
-                        <span className="ref-shift-text-error">Enter a number from -1 to 1</span>
-                    )}
+                    {vValid || <span className="ref-shift-text-error">Enter a valid number</span>}
                 </div>
             </div>
         );
@@ -556,8 +554,8 @@ function SpacetimeGlobe() {
     const contextMenu = createRef();
 
     function updateReferenceFrame(v) {
-        if (v == 1 || v == -1) {
-            v *= 0.999; // Prevent divide by zero.
+        if (!isClassical && (v >= 1 || v <= -1)) {
+            v = Math.sign(v) * 0.999; // Cap at this value to prevent arithmetic error.
         }
         const gamma = 1 / Math.sqrt(1 - v * v);
         events.forEach((event) => {
