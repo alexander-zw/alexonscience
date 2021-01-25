@@ -3,18 +3,14 @@
  * content applies.
  */
 import React from "react";
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import "../styles/index.css";
+import MetaTags from "./subcomponents/MetaTags";
 
 function Error() {
     return (
         <div className="text-div">
-            <Helmet>
-                <title>Error | ALEX on Science</title>
-                <meta name="Description" content="Error page" />
-                <meta name="KeyWords" content="error, alex, alexander, wu, science, youtube" />
-            </Helmet>
+            <MetaTags title="Error" description="Error page" keywords="error" />
             <p>
                 Oops, this page does not exist!{" "}
                 <Link to="/" exact>

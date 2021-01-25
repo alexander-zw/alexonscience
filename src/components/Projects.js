@@ -3,19 +3,20 @@
  */
 import React from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import "../styles/index.css";
 import "../styles/Projects.css";
 import spacetime_globe from "../images/spacetime_globe/spacetime_globe.png";
+import MetaTags from "./subcomponents/MetaTags";
 
 function Projects() {
     return (
         <div>
-            <Helmet>
-                <title>Projects | ALEX on Science</title>
-                <meta name="Description" content="Alex's projects" />
-                <meta name="KeyWords" content="project, alex, alexander, wu, science, youtube" />
-            </Helmet>
+            <MetaTags
+                title="Projects"
+                description="Alex's projects"
+                keywords="project"
+                url="/projects"
+            />
 
             <div className="text-div top-margin bottom-margin">
                 <Link className="link" to="/projects/spacetimeglobe">

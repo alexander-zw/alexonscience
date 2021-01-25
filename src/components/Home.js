@@ -3,10 +3,10 @@
  * It contains a basic welcome.
  */
 import React from "react";
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import "../styles/index.css";
 import "../styles/Home.css";
+import MetaTags from "./subcomponents/MetaTags";
 import ExpansionText from "./subcomponents/ExpansionText";
 
 function Home() {
@@ -19,11 +19,7 @@ function Home() {
 
     return (
         <div>
-            <Helmet>
-                <title>ALEX on Science</title>
-                <meta name="Description" content="The official ALEX on Science website" />
-                <meta name="KeyWords" content="alex, alexander, wu, science, youtube" />
-            </Helmet>
+            <MetaTags />
 
             <div className="text-div bottom-margin">
                 <p>

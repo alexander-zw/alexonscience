@@ -3,7 +3,6 @@
  * may or may not have some animation.
  */
 import React from "react";
-import { Helmet } from "react-helmet";
 import "../styles/index.css";
 import "../styles/Art.css";
 
@@ -11,18 +10,17 @@ import hello_there from "../images/hello_there.png";
 import general_kenobi from "../images/general_kenobi.png";
 import math_name from "../images/math_name.jpg";
 import fancy_pants_sketch from "../images/fancy_pants_sketch.jpg";
+import MetaTags from "./subcomponents/MetaTags";
 
 function Art() {
     return (
         <div>
-            <Helmet>
-                <title>Art | ALEX on Science</title>
-                <meta name="Description" content="Alex's art showcase" />
-                <meta
-                    name="KeyWords"
-                    content="art, sketch, drawing, alex, alexander, wu, science, youtube"
-                />
-            </Helmet>
+            <MetaTags
+                title="Art"
+                description="Alex's art showcase"
+                keywords="art, sketch, drawing"
+                url="/art"
+            />
 
             <div className="text-div">
                 <p>Here is some random artwork I have drawn for fun. Enjoy!</p>

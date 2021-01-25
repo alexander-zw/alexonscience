@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
         className="project-box"
       >
         <img
-          alt="Spacetime globe"
+          alt="spacetime globe"
           className="thumbnail"
           src="spacetime_globe.png"
         />
@@ -26,7 +26,7 @@ exports[`renders correctly 1`] = `
           >
             Spacetime Globe
           </div>
-          This interactive visualization allows you to really play around with Lorentz transformations to get a feel for how special relativity works.
+          This interactive visualization allows you to play around with Lorentz transformations to really get a feel for how special relativity works. Add events onto the spacetime diagram and see how shifting the reference reference frame affects them!
         </div>
       </div>
     </a>

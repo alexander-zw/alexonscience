@@ -13,9 +13,10 @@
  * Allow specifying precise event position
  * Allow user to adjust grid size
  * Add way to add a line of events
+ * Interpret arguments in URL
+ * Allow uploading a scenario in JSON
  */
 import React, { Component, useState, createRef } from "react";
-import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { Stage, Layer, Line, Arrow, Text, Rect, Image } from "react-konva";
 import Slider from "@material-ui/core/Slider";
@@ -33,6 +34,7 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
 import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
+import MetaTags from "../subcomponents/MetaTags";
 import ExpansionText from "../subcomponents/ExpansionText";
 
 function Description() {
@@ -614,16 +616,16 @@ function SpacetimeGlobe() {
     ));
 
     const keywords =
-        "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation, " +
-        "alex, alexander, wu, science, youtube";
+        "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation";
 
     return (
         <div className="outer-container top-margin bottom-margin">
-            <Helmet>
-                <title>Spacetime Globe | ALEX on Science</title>
-                <meta name="Description" content="Alex's resume" />
-                <meta name="KeyWords" content={keywords} />
-            </Helmet>
+            <MetaTags
+                title="Spacetime Globe"
+                description="Spacetime globe, visualization of the geometry of special relativity"
+                keywords={keywords}
+                url="/projects/spacetimeglobe"
+            />
 
             <div className="controls text-div">
                 <ReferenceFrameInput onChange={updateReferenceFrame} ref={referenceFrameInput} />
