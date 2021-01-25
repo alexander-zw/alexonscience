@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import "../styles/index.css";
 import "../styles/Resume.css";
+import alexander_wu from "../images/alexander_wu.jpg";
 
 function Resume() {
     // "contents" is not including heading.
@@ -258,6 +259,8 @@ function Resume() {
             </nav>
 
             <div className="text-div">
+                <img className="photo" src={alexander_wu} alt={"Alexander Wu"} />
+
                 <span className="name-title">Alexander Wu</span>
 
                 <p>

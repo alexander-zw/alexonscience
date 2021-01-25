@@ -28,6 +28,14 @@
     color: #008388;
 }
 
+.photo {
+    width: 4em;
+    height: 4em;
+    border-radius: 2em;
+    transform: translate(0, 0.9em);
+    margin-right: 1.5em;
+}
+
 .name-title {
     padding-top: 0.2em;
     font-size: 3em;
