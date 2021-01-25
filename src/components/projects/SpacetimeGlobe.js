@@ -42,12 +42,12 @@ function Description() {
             "way you'd expect from classical mechanics. Try shifting the reference frame with " +
             "the controls on the right and observe how the events in the spacetime diagram " +
             "below change!",
+        <br key={1} />,
+        <br key={2} />,
         "Note that each time gridmark is one second, and each space gridmark " +
             "is one lightsecond (299,792,458 meters). To learn more, check out the " +
             "minutephysics link.",
     ];
-
-    const expansionTextComponent = expansionText.map((text, i) => <p key={i}>{text}</p>);
 
     return (
         <div className="text-div description">
@@ -58,7 +58,7 @@ function Description() {
                 </a>{" "}
                 from minutephysics. Go check it out if you haven{"'"}t already!
             </p>
-            <ExpansionText expansionComponent={expansionTextComponent}>
+            <ExpansionText expansionComponent={expansionText}>
                 What is a spacetime globe?
             </ExpansionText>
         </div>

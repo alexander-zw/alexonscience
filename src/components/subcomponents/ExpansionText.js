@@ -4,22 +4,22 @@
  */
 import React from "react";
 import PropTypes from "prop-types";
-import Collapsible from "react-collapsible";
-import "../../styles/subcomponents/ExpansionText.css";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 function ExpansionText(props) {
     return (
-        <Collapsible
-            triggerClassName="outer"
-            triggerOpenedClassName="outer"
-            trigger={props.children}
-        >
-            {props.expansionComponent}
-        </Collapsible>
+        <Accordion className={props.className}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>{props.children}</AccordionSummary>
+            <AccordionDetails>{props.expansionComponent}</AccordionDetails>
+        </Accordion>
     );
 }
 
 ExpansionText.propTypes = {
+    className: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     expansionComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
 };

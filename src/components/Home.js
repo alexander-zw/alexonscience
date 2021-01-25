@@ -6,6 +6,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import "../styles/index.css";
+import "../styles/Home.css";
 import ExpansionText from "./subcomponents/ExpansionText";
 
 function Home() {
@@ -15,8 +16,6 @@ function Home() {
         "and Rosalind Franklin. Franklin is particularly underappreciated - she was " +
         "not recognized for a Nobel prize only because she had passed away by the time " +
         "it was awarded.";
-
-    const expansionTextComponent = <p>{expansionText}</p>;
 
     return (
         <div>
@@ -39,7 +38,7 @@ function Home() {
                     <Link to="/resume">resume</Link>.
                 </p>
 
-                <ExpansionText expansionComponent={expansionTextComponent}>
+                <ExpansionText className="expansion" expansionComponent={expansionText}>
                     What are those drawings in your banner?
                 </ExpansionText>
             </div>
