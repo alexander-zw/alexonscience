@@ -245,12 +245,7 @@ function Resume() {
 
     return (
         <div className="outer-container top-margin bottom-margin">
-            <MetaTags
-                title="Resume"
-                description="Alex's resume"
-                keywords="resume, berkeley, experience"
-                url="/resume"
-            />
+            <MetaTags path="/resume" />
 
             <nav className="contents-nav text-div">
                 <ol className="contents-ol">{tableOfContents}</ol>

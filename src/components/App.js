@@ -13,9 +13,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import Error from "./Error";
-import Navigation, { navigationViews } from "./Navigation";
+import Navigation from "./Navigation";
 import Footer from "./Footer";
-import SpacetimeGlobe from "./projects/SpacetimeGlobe";
+import { allViews } from "./subcomponents/AllViews";
 import science_banner from "../images/science_banner.jpg";
 
 // Scroll to the top of page whenever user switches views.
@@ -30,18 +30,8 @@ function ScrollToTop() {
 }
 
 function App() {
-    // Add views that are not in the navigation bar but valid URLs.
-    // Add additional views first so they are seen earlier than their prefixes.
-    const allViews = [
-        {
-            path: "/projects/spacetimeglobe",
-            component: SpacetimeGlobe,
-            exact: undefined,
-        },
-    ].concat(navigationViews);
-
-    const routesComponent = allViews.map((route, index) => (
-        <Route path={route.path} component={route.component} exact={route.exact} key={index} />
+    const routesComponent = Array.from(allViews, ([path, route]) => (
+        <Route path={path} component={route.component} exact={route.exact} key={path} />
     ));
 
     return (

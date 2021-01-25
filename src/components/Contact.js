@@ -44,12 +44,7 @@ function Contact() {
 
     return (
         <div className="text-div bottom-margin">
-            <MetaTags
-                title="Contact Me"
-                description="Contact Alex"
-                keywords="contact"
-                url="/contact"
-            />
+            <MetaTags path="/contact" />
 
             <p>Feel free to reach out to me!</p>
             <p>Email: alexwu68 [at] berkeley [dot] edu</p>

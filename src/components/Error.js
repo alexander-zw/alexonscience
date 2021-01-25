@@ -10,7 +10,7 @@ import MetaTags from "./subcomponents/MetaTags";
 function Error() {
     return (
         <div className="text-div">
-            <MetaTags title="Error" description="Error page" keywords="error" />
+            <MetaTags path="/error" />
             <p>
                 Oops, this page does not exist!{" "}
                 <Link to="/" exact>

@@ -19,7 +19,7 @@ function Home() {
 
     return (
         <div>
-            <MetaTags />
+            <MetaTags path="/" />
 
             <div className="text-div bottom-margin">
                 <p>

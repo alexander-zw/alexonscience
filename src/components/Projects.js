@@ -11,12 +11,7 @@ import MetaTags from "./subcomponents/MetaTags";
 function Projects() {
     return (
         <div>
-            <MetaTags
-                title="Projects"
-                description="Alex's projects"
-                keywords="project"
-                url="/projects"
-            />
+            <MetaTags path="/projects" />
 
             <div className="text-div top-margin bottom-margin">
                 <Link className="link" to="/projects/spacetimeglobe">

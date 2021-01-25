@@ -615,17 +615,9 @@ function SpacetimeGlobe() {
         />
     ));
 
-    const keywords =
-        "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation";
-
     return (
         <div className="outer-container top-margin bottom-margin">
-            <MetaTags
-                title="Spacetime Globe"
-                description="Spacetime globe, visualization of the geometry of special relativity"
-                keywords={keywords}
-                url="/projects/spacetimeglobe"
-            />
+            <MetaTags path="/projects/spacetimeglobe" />
 
             <div className="controls text-div">
                 <ReferenceFrameInput onChange={updateReferenceFrame} ref={referenceFrameInput} />

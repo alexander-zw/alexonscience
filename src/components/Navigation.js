@@ -7,55 +7,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
-import Home from "./Home";
-import Resume from "./Resume";
-import Art from "./Art";
-import Contact from "./Contact";
-import Projects from "./Projects";
+import { navigationViews } from "./subcomponents/AllViews";
 import "../styles/index.css";
 import "../styles/Navigation.css";
-
-export const navigationViews = [
-    {
-        path: "/",
-        title: "Home",
-        component: Home,
-        exact: true,
-    },
-    {
-        path: "/youtube",
-        title: "YouTube",
-        component: () => {
-            window.location.href = "https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA";
-            return null;
-        },
-        exact: undefined,
-    },
-    {
-        path: "/resume",
-        title: "Resume",
-        component: Resume,
-        exact: undefined,
-    },
-    {
-        path: "/projects",
-        title: "Projects",
-        component: Projects,
-        exact: undefined,
-    },
-    {
-        path: "/art",
-        title: "Art",
-        component: Art,
-        exact: undefined,
-    },
-    {
-        path: "/contact",
-        title: "Contact Me",
-        component: Contact,
-        exact: undefined,
-    },
-];
 
 function NavigationOption(props) {
     return (
@@ -80,9 +34,9 @@ NavigationOption.propTypes = {
 };
 
 function Navigation() {
-    const navigationOptions = navigationViews.map((option, index) => (
-        <NavigationOption to={option.path} exact={option.exact} key={index}>
-            {option.title}
+    const navigationOptions = Array.from(navigationViews, ([path, option]) => (
+        <NavigationOption to={path} exact={option.exact} key={path}>
+            {option.name}
         </NavigationOption>
     ));
 

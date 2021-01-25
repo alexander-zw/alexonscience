@@ -15,12 +15,7 @@ import MetaTags from "./subcomponents/MetaTags";
 function Art() {
     return (
         <div>
-            <MetaTags
-                title="Art"
-                description="Alex's art showcase"
-                keywords="art, sketch, drawing"
-                url="/art"
-            />
+            <MetaTags path="/art" />
 
             <div className="text-div">
                 <p>Here is some random artwork I have drawn for fun. Enjoy!</p>
