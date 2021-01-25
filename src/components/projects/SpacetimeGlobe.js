@@ -28,6 +28,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -50,7 +52,7 @@ function Description() {
     ];
 
     return (
-        <div className="text-div description">
+        <div className="text-div">
             <p>
                 The spacetime globe is based on{" "}
                 <a href="https://youtube.com/playlist?list=PLoaVOjvkzQtyjhV55wZcdicAz5KexgKvm">
@@ -243,6 +245,35 @@ ScenarioSelector.propTypes = {
     onSelect: PropTypes.func,
 };
 
+function SpacetimeToggle(props) {
+    const [isClassical, setIsClassical] = React.useState(false);
+
+    function onChange(e, newValue) {
+        if (newValue !== isClassical) {
+            setIsClassical(newValue);
+            props.onSwitch(newValue);
+        }
+    }
+
+    return (
+        <div className="spacetime-toggle">
+            <ToggleButtonGroup
+                value={isClassical}
+                exclusive
+                onChange={onChange}
+                aria-label="text alignment"
+            >
+                <ToggleButton value={false}>Relativistic spacetime</ToggleButton>
+                <ToggleButton value={true}>Classical spacetime</ToggleButton>
+            </ToggleButtonGroup>
+        </div>
+    );
+}
+
+SpacetimeToggle.propTypes = {
+    onSwitch: PropTypes.func,
+};
+
 class ContextMenu extends Component {
     constructor(props) {
         super(props);
@@ -318,12 +349,18 @@ class SpacetimeEvent extends Component {
         this.image.src = props.image.src;
     }
 
-    updateReferenceFrame = (gamma, v) => {
+    updateReferenceFrame = (v, gamma, isClassical) => {
         const { t0, x0 } = this.state;
-        this.setState({
-            t: gamma * (t0 - v * x0),
-            x: gamma * (x0 - v * t0),
-        });
+        if (isClassical) {
+            this.setState({
+                x: x0 - v * t0,
+            });
+        } else {
+            this.setState({
+                t: gamma * (t0 - v * x0),
+                x: gamma * (x0 - v * t0),
+            });
+        }
     };
 
     onDragEnd = (e) => {
@@ -513,6 +550,7 @@ function SpacetimeGlobe() {
 
     const [draggable, setDraggable] = useState(true);
     const [updateVar, setUpdateVar] = useState(0);
+    const [isClassical, setIsClassical] = useState(0);
 
     const referenceFrameInput = createRef();
     const contextMenu = createRef();
@@ -523,7 +561,7 @@ function SpacetimeGlobe() {
         }
         const gamma = 1 / Math.sqrt(1 - v * v);
         events.forEach((event) => {
-            event.current.updateReferenceFrame(gamma, v);
+            event.current.updateReferenceFrame(v, gamma, isClassical);
         });
 
         referenceFrameInput.current.setDisplayV(v);
@@ -554,6 +592,11 @@ function SpacetimeGlobe() {
         updateReferenceFrame(0);
         eventData.push(...scenario.events);
         forceUpdate();
+    }
+
+    function changeSpacetime(isClassical) {
+        updateReferenceFrame(0);
+        setIsClassical(isClassical);
     }
 
     const events = [];
@@ -594,6 +637,7 @@ function SpacetimeGlobe() {
             <div className="text-div">
                 <ContextMenu ref={contextMenu} onDelete={onEventDelete} />
                 <Description />
+                <SpacetimeToggle onSwitch={changeSpacetime} />
                 <Stage
                     width={canvasWidth}
                     height={canvasHeight}
@@ -604,7 +648,7 @@ function SpacetimeGlobe() {
                     onContextMenu={(e) => contextMenu.current.showContextMenu(e)}
                 >
                     <Layer>
-                        <EventTrajectories />
+                        {isClassical || <EventTrajectories />}
                         <Grid />
                         <Labels scale={1 / scale} />
                         {eventComponents}

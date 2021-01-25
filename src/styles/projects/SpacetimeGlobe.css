@@ -3,10 +3,6 @@
     grid-template-columns: 25% auto;
 }
 
-.description {
-    margin-bottom: 2em;
-}
-
 .controls {
     padding: 2em 0 2.5em 0;
     background-color: #e1e3eb;
@@ -73,6 +69,11 @@
 .scenario-selector {
     width: 80%;
     margin: 0 auto;
+}
+
+.spacetime-toggle {
+    width: 30em;
+    margin: 1em auto 1.5em;
 }
 
 /* Buttons can't have margins, so we must use a blank div instead. */
