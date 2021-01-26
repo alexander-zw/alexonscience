@@ -90,6 +90,7 @@ const otherRoutableViews = [
             keywords:
                 "spacetime, globe, minutephysics, physics, special relativity, " +
                 "lorentz transformation",
+            image: "/projects/spacetimeglobe/preview.png",
             exact: undefined,
         },
     ],

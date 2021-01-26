@@ -14,6 +14,7 @@ export default function MetaTags(props) {
     const view = allViews.get(props.path);
     const title = getTitle(view);
     const url = getURL(props.path);
+    const ogImage = view.image ? view.image : "/preview.jpg";
 
     return (
         <Helmet>
@@ -25,7 +26,7 @@ export default function MetaTags(props) {
             <link rel="icon" href="/favicon.ico" />
 
             <meta property="og:title" content={title} />
-            <meta property="og:image" content="/preview.jpg" />
+            <meta property="og:image" content={ogImage} />
             <meta property="og:url" content={url} />
             <meta property="og:description" content={view.description} />
         </Helmet>

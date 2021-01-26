@@ -33,6 +33,7 @@
         "name": "Spacetime Globe",
         "path": "/projects/spacetimeglobe",
         "description": "Spacetime globe, visualization of the geometry of special relativity",
-        "keywords": "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation"
+        "keywords": "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation",
+        "image": "/projects/spacetimeglobe/preview.png"
     }
 ]
