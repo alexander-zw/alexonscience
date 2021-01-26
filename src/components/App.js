@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 import Error from "./Error";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
-import { allViews } from "./subcomponents/AllViews";
+import { routableViews } from "./subcomponents/AllViews";
 import science_banner from "../images/science_banner.jpg";
 
 // Scroll to the top of page whenever user switches views.
@@ -30,7 +30,7 @@ function ScrollToTop() {
 }
 
 function App() {
-    const routesComponent = Array.from(allViews, ([path, route]) => (
+    const routesComponent = Array.from(routableViews, ([path, route]) => (
         <Route path={path} component={route.component} exact={route.exact} key={path} />
     ));
 

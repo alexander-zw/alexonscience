@@ -1,7 +1,8 @@
 /**
- * This file contains all meta tags for each page. It is used both for
- * prerendering (through prerender.js) and the actual page rendered client side
- * (through MetaTags.js).
+ * This file contains all meta tags as well as other navigation information for
+ * each page. It is used both for prerendering (through prerender.js) and the
+ * actual page rendered client side (through MetaTags.js, App.js, and
+ * Navigation.js).
  */
 import Home from "../Home";
 import Resume from "../Resume";
@@ -79,7 +80,7 @@ export const navigationViews = new Map([
 ]);
 
 // Views that are not in the navigation bar but valid URLs.
-const otherViews = [
+const otherRoutableViews = [
     [
         "/projects/spacetimeglobe",
         {
@@ -92,6 +93,14 @@ const otherViews = [
             exact: undefined,
         },
     ],
+];
+
+// Add additional views first so they are seen earlier than their prefixes
+// by the router.
+export const routableViews = new Map(otherRoutableViews.concat([...navigationViews]));
+
+// View that does not have a URL but needs meta tags.
+const otherViews = [
     [
         "/error",
         {
@@ -104,9 +113,7 @@ const otherViews = [
     ],
 ];
 
-// Add additional views first so they are seen earlier than their prefixes
-// by the router.
-export const allViews = new Map(otherViews.concat([...navigationViews]));
+export const allViews = new Map(otherViews.concat([...routableViews]));
 
 export function getTitle(view) {
     const defaultTitle = "ALEX on Science";

@@ -24,6 +24,7 @@
     "scripts": {
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
+        "prerender": "node src/scripts/prerender.js",
         "track": "git checkout deployed; git reset --hard master; git checkout master",
         "start": "react-scripts start",
         "build": "react-scripts build",

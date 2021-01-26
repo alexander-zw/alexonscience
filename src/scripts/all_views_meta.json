@@ -1,0 +1,38 @@
+[
+    {
+        "name": "YouTube",
+        "path": "/youtube",
+        "description": "ALEX on Science YouTube channel",
+        "keywords": "alex, science, youtube"
+    },
+    {
+        "name": "Resume",
+        "path": "/resume",
+        "description": "Alex's resume",
+        "keywords": "resume, berkeley, experience, alexander, wu"
+    },
+    {
+        "name": "Projects",
+        "path": "/projects",
+        "description": "Alex's projects",
+        "keywords": "project"
+    },
+    {
+        "name": "Art",
+        "path": "/art",
+        "description": "Alex's art showcase",
+        "keywords": "art, sketch, drawing"
+    },
+    {
+        "name": "Contact Me",
+        "path": "/contact",
+        "description": "Contact Alex",
+        "keywords": "contact, alexander, wu"
+    },
+    {
+        "name": "Spacetime Globe",
+        "path": "/projects/spacetimeglobe",
+        "description": "Spacetime globe, visualization of the geometry of special relativity",
+        "keywords": "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation"
+    }
+]

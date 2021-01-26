@@ -1,5 +1,9 @@
 /**
  * This subcomponent adds meta tags to a view, fetching data from AllViews.js.
+ *
+ * Although the static prerendered files already have the correct tags, it's
+ * still necessary to dynamically insert these tags in case the user navigated
+ * to the view client-side.
  */
 import React from "react";
 import PropTypes from "prop-types";
@@ -18,10 +22,10 @@ export default function MetaTags(props) {
             <meta name="keywords" content={view.keywords} />
             <meta name="author" content="Alexander Wu" />
             <link rel="canonical" href={url} />
-            <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+            <link rel="icon" href="/favicon.ico" />
 
             <meta property="og:title" content={title} />
-            <meta property="og:image" content="%PUBLIC_URL%/preview.jpg" />
+            <meta property="og:image" content="/preview.jpg" />
             <meta property="og:url" content={url} />
             <meta property="og:description" content={view.description} />
         </Helmet>
