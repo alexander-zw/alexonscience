@@ -27,7 +27,7 @@ function Contact() {
             title: "LinkedIn",
             class: "linkedin",
             icon: faLinkedin,
-            link: "https://www.linkedin.com/in/alexander-wu-a0145a173",
+            link: "https://www.linkedin.com/in/azwu",
         },
     ];
 

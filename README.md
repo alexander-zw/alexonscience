@@ -32,9 +32,9 @@ To deploy local changes to website, run `npm run deploy`. Optional: Assuming you
 on the `master` branch, make sure you have no uncommitted chagnes, and run `npm run track` to
 track update the `deployed` branch.
 
-Make sure to commit to `origin` after deployment.
+Make sure to commit and push to `origin` after deployment.
 
-# Architecture
+## Architecture
 
 This website is written in React, and in particular was created with `create-react-app`. The
 sources are in `src/components/`, styles in `src/styles/`, and tests in `src/tests/`. The root
