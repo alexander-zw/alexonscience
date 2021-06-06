@@ -219,6 +219,11 @@ Array [
     className="text-div"
     id="footer-div"
   >
+    <img
+      alt="logo"
+      className="logo"
+      src="logo.png"
+    />
     <div
       className="left-half"
     >

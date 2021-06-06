@@ -6,10 +6,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/index.css";
 import "../styles/Footer.css";
+import logo from "../images/logo.png";
 
 function Footer() {
     return (
         <footer className="text-div" id="footer-div">
+            <img className="logo" src={logo} alt="logo" />
             <div className="left-half">
                 Alexander Wu
                 <br />

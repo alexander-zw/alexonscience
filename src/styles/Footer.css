@@ -13,8 +13,16 @@
 #footer-div {
     font-size: 1em;
     height: 3em;
-    padding: 1em 2.5em 1em 2.5em;
+    padding: 1em 2em 1em 1.8em;
     background-color: #d4dad8;
     box-shadow: 0px 500px 0px 500px #d4dad8;
     display: flex;
+}
+
+.logo {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 1.25em;
+    margin-right: 1em;
+    align-self: center;
 }
