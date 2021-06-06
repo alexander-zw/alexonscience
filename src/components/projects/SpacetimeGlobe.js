@@ -215,38 +215,50 @@ ControlButtons.propTypes = {
     onClear: PropTypes.func,
 };
 
-function ScenarioSelector(props) {
-    const [option, setOption] = useState("");
+class ScenarioSelector extends Component {
+    constructor(props) {
+        super(props);
 
-    function onSelect(e) {
-        setOption(e.target.value);
-        if (e.target.value != "") {
-            props.onSelect(e.target.value);
-        }
+        this.state = {
+            option: "",
+        };
     }
 
-    const optionComponents = customScenarios.map((scenario, i) => (
-        <MenuItem value={scenario} key={i}>
-            {scenario.name}
-        </MenuItem>
-    ));
+    onSelect = (e) => {
+        this.setState({ option: e.target.value });
+        if (e.target.value != "") {
+            this.props.onSelect(e.target.value);
+        }
+    };
 
-    return (
-        <div className="scenario-selector">
-            <Tooltip
-                title="Add a predefined set of events; don't forget to clear existing events!"
-                placement="right"
-            >
-                <FormControl size="small" fullWidth variant="filled">
-                    <InputLabel>Add custom scenario</InputLabel>
-                    <Select value={option} onChange={onSelect} label="Age" labelWidth={20}>
-                        <MenuItem value="">None</MenuItem>
-                        {optionComponents}
-                    </Select>
-                </FormControl>
-            </Tooltip>
-        </div>
-    );
+    clearValue = () => {
+        this.setState({ option: "" });
+    };
+
+    render() {
+        const optionComponents = customScenarios.map((scenario, i) => (
+            <MenuItem value={scenario} key={i}>
+                {scenario.name}
+            </MenuItem>
+        ));
+
+        return (
+            <div className="scenario-selector">
+                <Tooltip
+                    title="Add a predefined set of events; don't forget to clear existing events!"
+                    placement="right"
+                >
+                    <FormControl size="small" fullWidth variant="filled">
+                        <InputLabel>Add custom scenario</InputLabel>
+                        <Select value={this.state.option} onChange={this.onSelect} labelWidth={20}>
+                            <MenuItem value="">None</MenuItem>
+                            {optionComponents}
+                        </Select>
+                    </FormControl>
+                </Tooltip>
+            </div>
+        );
+    }
 }
 
 ScenarioSelector.propTypes = {
@@ -562,6 +574,7 @@ function SpacetimeGlobe() {
 
     const referenceFrameInput = createRef();
     const contextMenu = createRef();
+    const scenarioSelector = createRef();
 
     function updateReferenceFrame(v) {
         if (!isClassical && (v >= 1 || v <= -1)) {
@@ -593,6 +606,7 @@ function SpacetimeGlobe() {
 
     function onClear() {
         eventData.length = 0;
+        scenarioSelector.current.clearValue();
         forceUpdate();
     }
 
@@ -631,7 +645,7 @@ function SpacetimeGlobe() {
                 <ReferenceFrameInput onChange={updateReferenceFrame} ref={referenceFrameInput} />
                 <EventSelector onSelect={onEventSelect} />
                 <ControlButtons onClear={onClear} onRefresh={forceUpdate} />
-                <ScenarioSelector onSelect={onScenarioSelect} />
+                <ScenarioSelector onSelect={onScenarioSelect} ref={scenarioSelector} />
             </div>
 
             <div className="text-div">
