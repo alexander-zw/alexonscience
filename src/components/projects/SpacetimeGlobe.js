@@ -36,6 +36,7 @@ import "../../styles/projects/SpacetimeGlobe.css";
 import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
 import MetaTags from "../subcomponents/MetaTags";
 import ExpansionText from "../subcomponents/ExpansionText";
+import { floatEqual } from "../../utils";
 
 function Description() {
     const expansionText = [
@@ -163,7 +164,7 @@ ReferenceFrameInput.propTypes = {
 function EventSelector(props) {
     const tooltipText =
         "Click an event to add it to the diagram; scroll for more options; you can drag existing " +
-        "events when the reference frame is 0, or right click to delete it";
+        "events when the reference frame is 0, or right click to move or delete it";
     return (
         <div className="event-selector-div">
             <Tooltip title={tooltipText} placement="right">
@@ -335,7 +336,18 @@ class ContextMenu extends Component {
 
     render() {
         const { target, xPos, yPos } = this.state;
-        const { onDelete } = this.props;
+        const { onMove, onDelete } = this.props;
+
+        const items = [
+            { name: "Move", onClick: () => onMove(target) },
+            { name: "Delete", onClick: () => onDelete(target) },
+        ];
+
+        const itemsComponent = items.map((item, index) => (
+            <div className="menu-option text-div" key={index} onClick={item.onClick}>
+                {item.name}
+            </div>
+        ));
 
         if (target !== null) {
             return (
@@ -346,9 +358,7 @@ class ContextMenu extends Component {
                         top: `${yPos}px`,
                     }}
                 >
-                    <div className="menu-option text-div" onClick={() => onDelete(target)}>
-                        Delete
-                    </div>
+                    {itemsComponent}
                 </div>
             );
         } else {
@@ -358,6 +368,7 @@ class ContextMenu extends Component {
 }
 
 ContextMenu.propTypes = {
+    onMove: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
 };
 
@@ -384,10 +395,27 @@ class SpacetimeEvent extends Component {
         }
     };
 
+    /** Warning: Does not update reference frame correctly. */
+    setPosition = (x, t) => {
+        this.setState({ t0: t, x0: x });
+    };
+
+    isImage = (imageComponent) => {
+        const { image } = this.props;
+        const { x, t } = this.state;
+        return (
+            imageComponent.attrs.name === image.name &&
+            floatEqual(imageComponent.attrs.x, x) &&
+            floatEqual(imageComponent.attrs.y, t)
+        );
+    };
+
     onDragEnd = (e) => {
         this.setState({
             t0: e.target.y(),
             x0: e.target.x(),
+            t: e.target.y(),
+            x: e.target.x(),
         });
     };
 
@@ -608,6 +636,17 @@ function SpacetimeGlobe() {
         forceUpdate();
     }
 
+    function onEventMove(eventImage) {
+        for (const spaceTimeEvent of events) {
+            if (spaceTimeEvent.current.isImage(eventImage)) {
+                spaceTimeEvent.current.setPosition(0, 0);
+                break;
+            }
+        }
+        updateReferenceFrame(0); // After move, switch back to 0 reference frame.
+        forceUpdate();
+    }
+
     function onEventDelete(event) {
         event.destroy(); // The entry is still in eventData, but it won't be rendered.
         forceUpdate();
@@ -658,7 +697,7 @@ function SpacetimeGlobe() {
             </div>
 
             <div className="text-div">
-                <ContextMenu ref={contextMenu} onDelete={onEventDelete} />
+                <ContextMenu ref={contextMenu} onMove={onEventMove} onDelete={onEventDelete} />
                 <Description />
                 <SpacetimeToggle onSwitch={changeSpacetime} />
                 <Stage
