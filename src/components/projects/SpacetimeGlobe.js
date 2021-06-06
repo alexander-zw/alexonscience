@@ -16,7 +16,7 @@
  * Interpret arguments in URL
  * Allow uploading a scenario in JSON
  */
-import React, { Component, useState, createRef } from "react";
+import React, { Component, useState, createRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Stage, Layer, Line, Arrow, Text, Rect, Image } from "react-konva";
 import Slider from "@material-ui/core/Slider";
@@ -576,6 +576,14 @@ function SpacetimeGlobe() {
     const referenceFrameInput = createRef();
     const contextMenu = createRef();
     const scenarioSelector = createRef();
+
+    // Refresh every half second.
+    useEffect(() => {
+        const interval = setInterval(() => forceUpdate(), 500);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     function updateReferenceFrame(v) {
         if (!isClassical && (v >= 1 || v <= -1)) {
