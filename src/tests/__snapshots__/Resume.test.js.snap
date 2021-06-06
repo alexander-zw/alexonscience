@@ -78,9 +78,7 @@ exports[`renders correctly 1`] = `
     <p>
       I
       '
-      m a current Master
-      '
-      s student studying Computer Science. I express my love for science through my YouTube channel, among other things. I
+      m a software developer working in the San Francisco Bay Area. I express my love for science through my YouTube channel, among other things. I
       '
       m passionate about education and enjoy doing volunteering work. In my spare time, I read novels, work on personal projects, practice Yoga, and bike around the Bay.
     </p>
@@ -111,6 +109,14 @@ exports[`renders correctly 1`] = `
            
           <br />
           Master of Science, Electrical Engineering and Computer Science (EECS), GPA 4.0
+          <br />
+          Thesis:
+           
+          <a
+            href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-102.html"
+          >
+            Optimizations and Improvements to Cryptographic Libraries for zkSNARKs
+          </a>
         </p>
         <p>
           <strong>

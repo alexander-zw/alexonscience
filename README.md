@@ -30,7 +30,7 @@ any routes, you can manually delete them from `public/`.
 
 To deploy local changes to website, run `npm run deploy`. Optional: Assuming you are currently
 on the `master` branch, make sure you have no uncommitted chagnes, and run `npm run track` to
-track update the `deployed` branch.
+track your deployment with the `deployed` branch.
 
 Make sure to commit and push to `origin` after deployment.
 

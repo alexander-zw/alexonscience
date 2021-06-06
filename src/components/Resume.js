@@ -13,6 +13,8 @@ import alexander_wu from "../images/alexander_wu.jpg";
 import MetaTags from "./subcomponents/MetaTags";
 
 function Resume() {
+    const thesisLink = "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-102.html";
+
     // "contents" is not including heading.
     const sections = [
         {
@@ -25,6 +27,11 @@ function Resume() {
                         <br />
                         Master of Science, Electrical Engineering and Computer Science (EECS), GPA
                         4.0
+                        <br />
+                        Thesis:{" "}
+                        <a href={thesisLink}>
+                            Optimizations and Improvements to Cryptographic Libraries for zkSNARKs
+                        </a>
                     </p>
                     <p>
                         <strong>University of California, Berkeley</strong>: 08/2017 - 05/2020{" "}
@@ -257,7 +264,7 @@ function Resume() {
                 <span className="name-title">Alexander Wu</span>
 
                 <p>
-                    I{"'"}m a current Master{"'"}s student studying Computer Science. I express my
+                    I{"'"}m a software developer working in the San Francisco Bay Area. I express my
                     love for science through my YouTube channel, among other things. I{"'"}m
                     passionate about education and enjoy doing volunteering work. In my spare time,
                     I read novels, work on personal projects, practice Yoga, and bike around the
