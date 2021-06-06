@@ -99,6 +99,13 @@ class ReferenceFrameInput extends Component {
         }
     };
 
+    onKeyDown = (e) => {
+        // Enter key pressed.
+        if (e.keyCode == 13) {
+            this.onText(e);
+        }
+    };
+
     render() {
         const { vValid, displayV } = this.state;
         const textFieldTooltipText =
@@ -138,6 +145,7 @@ class ReferenceFrameInput extends Component {
                                 margin: "dense",
                             }}
                             onChange={this.onText}
+                            onKeyDown={this.onKeyDown}
                         />
                     </Tooltip>
                     {vValid || <span className="ref-shift-text-error">Enter a valid number</span>}
