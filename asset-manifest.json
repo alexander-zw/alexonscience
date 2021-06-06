@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.c8705f78.chunk.css",
-    "main.js": "/static/js/main.b4791d91.chunk.js",
-    "main.js.map": "/static/js/main.b4791d91.chunk.js.map",
+    "main.css": "/static/css/main.87893dc0.chunk.css",
+    "main.js": "/static/js/main.363ed994.chunk.js",
+    "main.js.map": "/static/js/main.363ed994.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.25eeddbf.js",
     "runtime-main.js.map": "/static/js/runtime-main.25eeddbf.js.map",
-    "static/js/2.d4c5c922.chunk.js": "/static/js/2.d4c5c922.chunk.js",
-    "static/js/2.d4c5c922.chunk.js.map": "/static/js/2.d4c5c922.chunk.js.map",
+    "static/js/2.1a59c1a1.chunk.js": "/static/js/2.1a59c1a1.chunk.js",
+    "static/js/2.1a59c1a1.chunk.js.map": "/static/js/2.1a59c1a1.chunk.js.map",
     "static/js/3.c7e10d16.chunk.js": "/static/js/3.c7e10d16.chunk.js",
     "static/js/3.c7e10d16.chunk.js.map": "/static/js/3.c7e10d16.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.c8705f78.chunk.css.map": "/static/css/main.c8705f78.chunk.css.map",
-    "static/js/2.d4c5c922.chunk.js.LICENSE.txt": "/static/js/2.d4c5c922.chunk.js.LICENSE.txt",
+    "static/css/main.87893dc0.chunk.css.map": "/static/css/main.87893dc0.chunk.css.map",
+    "static/js/2.1a59c1a1.chunk.js.LICENSE.txt": "/static/js/2.1a59c1a1.chunk.js.LICENSE.txt",
     "static/media/alexander_wu.d75de80d.jpg": "/static/media/alexander_wu.d75de80d.jpg",
     "static/media/ashes.0c4a018f.png": "/static/media/ashes.0c4a018f.png",
     "static/media/blue_person.8f0528d5.png": "/static/media/blue_person.8f0528d5.png",
@@ -31,6 +31,7 @@
     "static/media/hello_there.0f7e79ba.png": "/static/media/hello_there.0f7e79ba.png",
     "static/media/lightbulb_off.46c9ba80.png": "/static/media/lightbulb_off.46c9ba80.png",
     "static/media/lightbulb_on.e415b6ca.png": "/static/media/lightbulb_on.e415b6ca.png",
+    "static/media/logo.147789cc.png": "/static/media/logo.147789cc.png",
     "static/media/math_name.9a6f9add.jpg": "/static/media/math_name.9a6f9add.jpg",
     "static/media/orange_cat.ea52ba42.png": "/static/media/orange_cat.ea52ba42.png",
     "static/media/orange_person.163ba494.png": "/static/media/orange_person.163ba494.png",
@@ -43,8 +44,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.25eeddbf.js",
-    "static/js/2.d4c5c922.chunk.js",
-    "static/css/main.c8705f78.chunk.css",
-    "static/js/main.b4791d91.chunk.js"
+    "static/js/2.1a59c1a1.chunk.js",
+    "static/css/main.87893dc0.chunk.css",
+    "static/js/main.363ed994.chunk.js"
   ]
 }
