@@ -78,11 +78,11 @@ class ReferenceFrameInput extends Component {
             { value: 1, label: "c" },
         ];
 
-        this.state = { vValid: true, displayV: 0 };
+        this.state = { vValid: true, currV: 0 };
     }
 
-    setDisplayV = (v) => {
-        this.setState({ displayV: v });
+    setV = (v) => {
+        this.setState({ currV: v });
     };
 
     // Validate text input before passing on to props.
@@ -94,6 +94,7 @@ class ReferenceFrameInput extends Component {
         if (isNaN(v)) {
             this.setState({ vValid: false });
         } else {
+            this.setState({ currV: v });
             this.props.onChange(v);
             this.setState({ vValid: true });
         }
@@ -107,20 +108,20 @@ class ReferenceFrameInput extends Component {
     };
 
     render() {
-        const { vValid, displayV } = this.state;
+        const { vValid, currV } = this.state;
         const textFieldTooltipText =
             "Enter a custom value for the reference frame velocity; note that in the " +
             "relativistic spacetime, values outside of -1 to 1 are capped";
 
         return (
             <div className="ref-shift-controls">
-                Reference frame shift: <strong>{displayV}c</strong>
+                Reference frame shift: <strong>{currV}c</strong>
                 <Tooltip
                     title="Slide to change the velocity of your reference frame"
                     placement="right"
                 >
                     <Slider
-                        defaultValue={0}
+                        value={currV}
                         step={0.1}
                         marks={this.marks}
                         min={-1}
@@ -585,7 +586,7 @@ function SpacetimeGlobe() {
             event.current.updateReferenceFrame(v, gamma, isClassical);
         });
 
-        referenceFrameInput.current.setDisplayV(v);
+        referenceFrameInput.current.setV(v);
         setDraggable(v == 0); // Can only drag at default reference frame.
     }
 
