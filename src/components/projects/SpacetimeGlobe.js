@@ -264,7 +264,7 @@ function CustomEventDialog(props) {
 
     const urlTooltipText =
         "If you have a local image, you can host it on an image sharing site like imgbb.com, " +
-        "then copy the direct link here";
+        "then paste the direct link here";
     return (
         <Dialog classes={{ paper: "dialog" }} onClose={onClose} open={open} onEnter={onEnterDialog}>
             <DialogTitle>Add Custom Event</DialogTitle>
@@ -272,7 +272,7 @@ function CustomEventDialog(props) {
                 <div className="dialog-line">
                     <Tooltip title={urlTooltipText} placement="right">
                         <TextField
-                            label="Direct URL"
+                            label="image URL"
                             value={url}
                             variant="outlined"
                             size="small"
@@ -699,6 +699,18 @@ class SpacetimeEvent extends Component {
         });
     };
 
+    onMouseEnter = (e) => {
+        if (this.props.draggable) {
+            const container = e.target.getStage().container();
+            container.style.cursor = "move";
+        }
+    };
+
+    onMouseLeave = (e) => {
+        const container = e.target.getStage().container();
+        container.style.cursor = "default";
+    };
+
     render() {
         const { image, draggable } = this.props;
         const { x, t } = this.state;
@@ -715,6 +727,8 @@ class SpacetimeEvent extends Component {
                 name={image.name}
                 draggable={draggable}
                 onDragEnd={this.onDragEnd}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
             />
         );
     }
