@@ -67,6 +67,10 @@
     margin: 0.1em 0.15em 0.25em;
 }
 
+.custom-event-tooltip {
+    margin-bottom: 2.6em;
+}
+
 .control-buttons {
     width: 70%;
     margin: 0 auto;
@@ -112,18 +116,18 @@
     background-color: #e1e3eb;
 }
 
-.move-dialog {
+.dialog {
     max-width: 100%;
 }
 
-.move-dialog-content {
+.dialog-content {
     padding: 0 1em 0.5em;
     white-space: nowrap;
     overflow: contain;
     overscroll-behavior: contain;
 }
 
-.move-dialog-line {
+.dialog-line {
     margin-bottom: 0.5em;
     display: flex;
     align-items: center;
@@ -133,7 +137,7 @@
     justify-content: center;
 }
 
-.move-dialog-note {
+.dialog-note {
     font-size: 0.8em;
 }
 

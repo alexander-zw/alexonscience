@@ -10,7 +10,6 @@
  * React test renderer.
  *
  * TODO:
- * Allow custom image
  * Allow user to adjust grid size
  * Add way to add a line of events
  * Interpret arguments in URL
@@ -166,16 +165,16 @@ ReferenceFrameInput.propTypes = {
 };
 
 function EventSelector(props) {
+    const [customDialogOpen, setCustomDialogOpen] = React.useState(false);
+
+    function onCustomEventConfirmed(customImage) {
+        props.onSelect(customImage);
+        setCustomDialogOpen(false);
+    }
+
     const tooltipText =
         "Click an event to add it to the diagram; scroll for more options; you can drag existing " +
         "events when the reference frame is 0, or right click to move or delete it";
-    const customImage = {
-        name: "custom",
-        w: 0.5,
-        h: 0.5,
-        src: "https://i.ibb.co/K6MJpmL/fancy-pants-cat.jpg",
-    };
-
     return (
         <div className="event-selector-div">
             <Tooltip title={tooltipText} placement="right">
@@ -192,20 +191,164 @@ function EventSelector(props) {
                             key={i}
                         />
                     ))}
-                    <FontAwesomeIcon
-                        id="custom-image-icon"
-                        icon={faPlusCircle}
-                        size="3x"
-                        onClick={() => props.onSelect(customImage)}
-                    />
+                    <Tooltip
+                        title="Add an event with custom image"
+                        placement="right"
+                        classes={{ popper: "custom-event-tooltip" }}
+                    >
+                        <span>
+                            <FontAwesomeIcon
+                                id="custom-image-icon"
+                                icon={faPlusCircle}
+                                size="3x"
+                                onClick={() => setCustomDialogOpen(true)}
+                            />
+                        </span>
+                    </Tooltip>
                 </div>
             </div>
+            <CustomEventDialog
+                open={customDialogOpen}
+                onClose={() => setCustomDialogOpen(false)}
+                onConfirmed={onCustomEventConfirmed}
+            />
         </div>
     );
 }
 
 EventSelector.propTypes = {
     onSelect: PropTypes.func,
+};
+
+function CustomEventDialog(props) {
+    const { onClose, open } = props;
+
+    const [width, setWidth] = useState("");
+    const [height, setHeight] = useState("");
+    const [url, setURL] = useState("");
+    const [widthValid, setWidthValid] = useState(false);
+    const [heightValid, setHeightValid] = useState(false);
+
+    // Validate text input before passing on to props.
+    const onWidthText = (e) => {
+        setWidth(e.target.value);
+        const value = parseFloat(e.target.value);
+        setWidthValid(value > 0);
+    };
+    const onHeightText = (e) => {
+        setHeight(e.target.value);
+        const value = parseFloat(e.target.value);
+        setHeightValid(value > 0);
+    };
+    const onURLText = (e) => {
+        setURL(e.target.value);
+    };
+
+    const onEnterDialog = () => {
+        setURL("");
+        setWidth("");
+        setHeight("");
+        setWidthValid(false);
+        setHeightValid(false);
+    };
+
+    const onMoveClicked = () => {
+        const customImage = {
+            name: "custom_" + url,
+            w: parseFloat(width),
+            h: parseFloat(height),
+            src: url,
+        };
+        props.onConfirmed(customImage);
+    };
+
+    const urlTooltipText =
+        "If you have a local image, you can host it on an image sharing site like imgbb.com, " +
+        "then copy the direct link here";
+    return (
+        <Dialog classes={{ paper: "dialog" }} onClose={onClose} open={open} onEnter={onEnterDialog}>
+            <DialogTitle>Add Custom Event</DialogTitle>
+            <div className="text-div dialog-content">
+                <div className="dialog-line">
+                    <Tooltip title={urlTooltipText} placement="right">
+                        <TextField
+                            label="Direct URL"
+                            value={url}
+                            variant="outlined"
+                            size="small"
+                            InputLabelProps={{
+                                margin: "dense",
+                            }}
+                            onChange={onURLText}
+                        />
+                    </Tooltip>
+                </div>
+                <div className="dialog-line">
+                    <TextField
+                        label="width"
+                        value={width}
+                        variant="outlined"
+                        size="small"
+                        error={!widthValid && width !== ""}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">lightseconds</InputAdornment>
+                            ),
+                        }}
+                        InputLabelProps={{
+                            margin: "dense",
+                        }}
+                        onChange={onWidthText}
+                    />
+                </div>
+                <div className="dialog-line">
+                    <TextField
+                        className="dialog-line"
+                        value={height}
+                        label="height"
+                        variant="outlined"
+                        size="small"
+                        error={!heightValid && height !== ""}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">lightseconds</InputAdornment>
+                            ),
+                        }}
+                        InputLabelProps={{
+                            margin: "dense",
+                        }}
+                        onChange={onHeightText}
+                    />
+                </div>
+                <div className="dialog-line center-content">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={onMoveClicked}
+                        disabled={!widthValid || !heightValid || url === ""}
+                    >
+                        Add
+                    </Button>
+                    <div className="space"></div>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        size="small"
+                        onClick={props.onClose}
+                    >
+                        Cancel
+                    </Button>
+                </div>
+            </div>
+        </Dialog>
+    );
+}
+
+CustomEventDialog.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    onConfirmed: PropTypes.func.isRequired,
 };
 
 function ControlButtons(props) {
@@ -429,18 +572,13 @@ function MoveEventDialog(props) {
     t = t.toFixed(3);
 
     return (
-        <Dialog
-            classes={{ paper: "move-dialog" }}
-            onClose={onClose}
-            open={open}
-            onEnter={onEnterDialog}
-        >
+        <Dialog classes={{ paper: "dialog" }} onClose={onClose} open={open} onEnter={onEnterDialog}>
             <DialogTitle>Move Event</DialogTitle>
-            <div className="text-div move-dialog-content">
-                <div className="move-dialog-line">
+            <div className="text-div dialog-content">
+                <div className="dialog-line">
                     Current position: x = {x}, t = {t}
                 </div>
-                <div className="move-dialog-line">
+                <div className="dialog-line">
                     <TextField
                         label="new x"
                         value={newX}
@@ -449,7 +587,7 @@ function MoveEventDialog(props) {
                         error={!xValid && newX !== ""}
                         InputProps={{
                             endAdornment: (
-                                <InputAdornment position="end">light seconds</InputAdornment>
+                                <InputAdornment position="end">lightseconds</InputAdornment>
                             ),
                         }}
                         InputLabelProps={{
@@ -458,9 +596,9 @@ function MoveEventDialog(props) {
                         onChange={onXText}
                     />
                 </div>
-                <div className="move-dialog-line">
+                <div className="dialog-line">
                     <TextField
-                        className="move-dialog-line"
+                        className="dialog-line"
                         value={newT}
                         label="new t"
                         variant="outlined"
@@ -475,10 +613,8 @@ function MoveEventDialog(props) {
                         onChange={onTText}
                     />
                 </div>
-                <div className="move-dialog-line move-dialog-note">
-                    All values for the 0 reference frame.
-                </div>
-                <div className="move-dialog-line center-content">
+                <div className="dialog-line dialog-note">All values for the 0 reference frame.</div>
+                <div className="dialog-line center-content">
                     <Button
                         variant="contained"
                         color="primary"
@@ -506,7 +642,7 @@ function MoveEventDialog(props) {
 MoveEventDialog.propTypes = {
     onClose: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
-    event: PropTypes.object.isRequired,
+    event: PropTypes.object,
     onMoveConfirmed: PropTypes.func.isRequired,
 };
 
