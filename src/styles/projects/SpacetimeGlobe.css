@@ -103,3 +103,32 @@
 .contextmenu .menu-option:hover {
     background-color: #e1e3eb;
 }
+
+.move-dialog {
+    max-width: 100%;
+}
+
+.move-dialog-content {
+    padding: 0 1em 0.5em;
+    white-space: nowrap;
+    overflow: contain;
+    overscroll-behavior: contain;
+}
+
+.move-dialog-line {
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.center-content {
+    justify-content: center;
+}
+
+.move-dialog-note {
+    font-size: 0.8em;
+}
+
+.space {
+    padding-right: 0.5em;
+}

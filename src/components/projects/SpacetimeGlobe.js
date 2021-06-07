@@ -30,6 +30,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -372,6 +374,127 @@ ContextMenu.propTypes = {
     onDelete: PropTypes.func.isRequired,
 };
 
+function MoveEventDialog(props) {
+    const { onClose, open, event } = props;
+
+    if (!event) {
+        return null;
+    }
+
+    const [newX, setNewX] = useState("");
+    const [newT, setNewT] = useState("");
+    const [xValid, setXValid] = useState(false);
+    const [tValid, setTValid] = useState(false);
+
+    // Validate text input before passing on to props.
+    const onXText = (e) => {
+        setNewX(e.target.value);
+        const value = parseFloat(e.target.value);
+        setXValid(!isNaN(value));
+    };
+    const onTText = (e) => {
+        setNewT(e.target.value);
+        const value = parseFloat(e.target.value);
+        setTValid(!isNaN(value));
+    };
+
+    const onEnterDialog = () => {
+        setNewX("");
+        setNewT("");
+        setXValid(false);
+        setTValid(false);
+    };
+
+    const onMoveClicked = () => {
+        props.onMoveConfirmed(parseFloat(newX), parseFloat(newT));
+    };
+
+    let { x, t } = event.getPositionInZeroFrame();
+    x = x.toFixed(3);
+    t = t.toFixed(3);
+
+    return (
+        <Dialog
+            classes={{ paper: "move-dialog" }}
+            onClose={onClose}
+            open={open}
+            onEnter={onEnterDialog}
+        >
+            <DialogTitle>Move Event</DialogTitle>
+            <div className="text-div move-dialog-content">
+                <div className="move-dialog-line">
+                    Current position: x = {x}, t = {t}
+                </div>
+                <div className="move-dialog-line">
+                    <TextField
+                        label="new x"
+                        value={newX}
+                        variant="outlined"
+                        size="small"
+                        error={!xValid && newX !== ""}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">light seconds</InputAdornment>
+                            ),
+                        }}
+                        InputLabelProps={{
+                            margin: "dense",
+                        }}
+                        onChange={onXText}
+                    />
+                </div>
+                <div className="move-dialog-line">
+                    <TextField
+                        className="move-dialog-line"
+                        value={newT}
+                        label="new t"
+                        variant="outlined"
+                        size="small"
+                        error={!tValid && newT !== ""}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
+                        }}
+                        InputLabelProps={{
+                            margin: "dense",
+                        }}
+                        onChange={onTText}
+                    />
+                </div>
+                <div className="move-dialog-line move-dialog-note">
+                    All values for the 0 reference frame.
+                </div>
+                <div className="move-dialog-line center-content">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={onMoveClicked}
+                        disabled={!xValid || !tValid}
+                    >
+                        Move
+                    </Button>
+                    <div className="space"></div>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        size="small"
+                        onClick={props.onClose}
+                    >
+                        Cancel
+                    </Button>
+                </div>
+            </div>
+        </Dialog>
+    );
+}
+
+MoveEventDialog.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    event: PropTypes.object.isRequired,
+    onMoveConfirmed: PropTypes.func.isRequired,
+};
+
 class SpacetimeEvent extends Component {
     constructor(props) {
         super(props);
@@ -385,6 +508,7 @@ class SpacetimeEvent extends Component {
         const { t0, x0 } = this.state;
         if (isClassical) {
             this.setState({
+                t: t0,
                 x: x0 - v * t0,
             });
         } else {
@@ -395,8 +519,13 @@ class SpacetimeEvent extends Component {
         }
     };
 
+    getPositionInZeroFrame = () => {
+        const { x0, t0 } = this.state;
+        return { x: x0, t: t0 };
+    };
+
     /** Warning: Does not update reference frame correctly. */
-    setPosition = (x, t) => {
+    setPositionInZeroFrame = (x, t) => {
         this.setState({ t0: t, x0: x });
     };
 
@@ -600,6 +729,8 @@ function SpacetimeGlobe() {
     const [draggable, setDraggable] = useState(true);
     const [updateVar, setUpdateVar] = useState(0);
     const [isClassical, setIsClassical] = useState(0);
+    const [moveDialogOpen, setMoveDialogOpen] = React.useState(false);
+    const [eventToMove, setEventToMove] = React.useState(null);
 
     const referenceFrameInput = createRef();
     const contextMenu = createRef();
@@ -636,16 +767,26 @@ function SpacetimeGlobe() {
         forceUpdate();
     }
 
-    function onEventMove(eventImage) {
+    function onContextMenuMoveConfirmed(eventImage) {
         for (const spaceTimeEvent of events) {
             if (spaceTimeEvent.current.isImage(eventImage)) {
-                spaceTimeEvent.current.setPosition(0, 0);
+                setEventToMove(spaceTimeEvent.current);
+                setMoveDialogOpen(true);
                 break;
             }
         }
+    }
+
+    function onDialogMoveConfirmed(newX, newT) {
+        eventToMove.setPositionInZeroFrame(newX, newT);
         updateReferenceFrame(0); // After move, switch back to 0 reference frame.
+        setMoveDialogOpen(false);
         forceUpdate();
     }
+
+    const onMoveDialogClose = () => {
+        setMoveDialogOpen(false);
+    };
 
     function onEventDelete(event) {
         event.destroy(); // The entry is still in eventData, but it won't be rendered.
@@ -697,7 +838,11 @@ function SpacetimeGlobe() {
             </div>
 
             <div className="text-div">
-                <ContextMenu ref={contextMenu} onMove={onEventMove} onDelete={onEventDelete} />
+                <ContextMenu
+                    ref={contextMenu}
+                    onMove={onContextMenuMoveConfirmed}
+                    onDelete={onEventDelete}
+                />
                 <Description />
                 <SpacetimeToggle onSwitch={changeSpacetime} />
                 <Stage
@@ -717,6 +862,13 @@ function SpacetimeGlobe() {
                     </Layer>
                 </Stage>
             </div>
+
+            <MoveEventDialog
+                open={moveDialogOpen}
+                onClose={onMoveDialogClose}
+                event={eventToMove}
+                onMoveConfirmed={onDialogMoveConfirmed}
+            />
         </div>
     );
 }
