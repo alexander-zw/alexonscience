@@ -41,14 +41,14 @@
 }
 
 .event-selector-outer {
-    padding-top: 0.5em;
+    margin-top: 0.5em;
     height: 4.5em;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
 .event-selector {
-    width: 84em;
+    width: 88em; /* Hard-coded for 22 events, 4em each. */
     display: block;
 }
 
@@ -57,6 +57,14 @@
     height: 4em;
     object-fit: contain;
     cursor: pointer;
+}
+
+#custom-image-icon {
+    color: #aaa;
+    cursor: pointer;
+    width: 1em;
+    height: 1em;
+    margin: 0.1em 0.15em 0.25em;
 }
 
 .control-buttons {

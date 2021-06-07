@@ -10,7 +10,7 @@
  * React test renderer.
  *
  * TODO:
- * Allow specifying precise event position
+ * Allow custom image
  * Allow user to adjust grid size
  * Add way to add a line of events
  * Interpret arguments in URL
@@ -32,6 +32,8 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import "../../styles/index.css";
 import "../../styles/projects/SpacetimeGlobe.css";
@@ -167,6 +169,13 @@ function EventSelector(props) {
     const tooltipText =
         "Click an event to add it to the diagram; scroll for more options; you can drag existing " +
         "events when the reference frame is 0, or right click to move or delete it";
+    const customImage = {
+        name: "custom",
+        w: 0.5,
+        h: 0.5,
+        src: "https://i.ibb.co/K6MJpmL/fancy-pants-cat.jpg",
+    };
+
     return (
         <div className="event-selector-div">
             <Tooltip title={tooltipText} placement="right">
@@ -183,6 +192,12 @@ function EventSelector(props) {
                             key={i}
                         />
                     ))}
+                    <FontAwesomeIcon
+                        id="custom-image-icon"
+                        icon={faPlusCircle}
+                        size="3x"
+                        onClick={() => props.onSelect(customImage)}
+                    />
                 </div>
             </div>
         </div>
