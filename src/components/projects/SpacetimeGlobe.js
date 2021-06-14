@@ -41,6 +41,34 @@ import MetaTags from "../subcomponents/MetaTags";
 import ExpansionText from "../subcomponents/ExpansionText";
 import { floatEqual } from "../../utils";
 
+function dimensionInputField(fields, index) {
+    if (!Array.isArray(fields)) {
+        fields = [fields];
+    }
+    return (
+        <div className="dialog-line" key={index}>
+            {fields.map((field, fieldI) => (
+                <TextField
+                    key={fieldI}
+                    className="dimension-text-field"
+                    label={field.label}
+                    value={field.value}
+                    variant="outlined"
+                    size="small"
+                    error={field.error}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">{field.unit}</InputAdornment>,
+                    }}
+                    InputLabelProps={{
+                        margin: "dense",
+                    }}
+                    onChange={field.onChange}
+                />
+            ))}
+        </div>
+    );
+}
+
 function Description() {
     const expansionText = [
         "The spacetime globe allows you to visualize Lorentz transformations, an " +
@@ -172,13 +200,10 @@ function EventSelector(props) {
         setCustomDialogOpen(false);
     }
 
-    const tooltipText =
-        "Click an event to add it to the diagram; scroll for more options; you can drag existing " +
-        "events when the reference frame is 0, or right click to move or delete it";
     return (
         <div className="event-selector-div">
-            <Tooltip title={tooltipText} placement="right">
-                <span>Add an event</span>
+            <Tooltip title={props.tooltip} placement="right">
+                <span>{props.description}</span>
             </Tooltip>
             <div className="event-selector-outer">
                 <div className="event-selector">
@@ -217,7 +242,9 @@ function EventSelector(props) {
 }
 
 EventSelector.propTypes = {
-    onSelect: PropTypes.func,
+    onSelect: PropTypes.func.isRequired,
+    description: PropTypes.string,
+    tooltip: PropTypes.string,
 };
 
 function CustomEventDialog(props) {
@@ -233,12 +260,12 @@ function CustomEventDialog(props) {
     const onWidthText = (e) => {
         setWidth(e.target.value);
         const value = parseFloat(e.target.value);
-        setWidthValid(value > 0);
+        setWidthValid(value > EPSILON);
     };
     const onHeightText = (e) => {
         setHeight(e.target.value);
         const value = parseFloat(e.target.value);
-        setHeightValid(value > 0);
+        setHeightValid(value > EPSILON);
     };
     const onURLText = (e) => {
         setURL(e.target.value);
@@ -262,6 +289,25 @@ function CustomEventDialog(props) {
         props.onConfirmed(customImage);
     };
 
+    const textFields = [
+        {
+            label: "width",
+            value: width,
+            error: !widthValid && width !== "",
+            unit: "lightseconds",
+            onChange: onWidthText,
+        },
+        {
+            label: "height",
+            value: height,
+            error: !heightValid && height !== "",
+            unit: "lightseconds",
+            onChange: onHeightText,
+        },
+    ];
+
+    const textFieldsComponent = textFields.map(dimensionInputField);
+
     const urlTooltipText =
         "If you have a local image, you can host it on an image sharing site like imgbb.com, " +
         "then paste the direct link here";
@@ -283,43 +329,7 @@ function CustomEventDialog(props) {
                         />
                     </Tooltip>
                 </div>
-                <div className="dialog-line">
-                    <TextField
-                        label="width"
-                        value={width}
-                        variant="outlined"
-                        size="small"
-                        error={!widthValid && width !== ""}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">lightseconds</InputAdornment>
-                            ),
-                        }}
-                        InputLabelProps={{
-                            margin: "dense",
-                        }}
-                        onChange={onWidthText}
-                    />
-                </div>
-                <div className="dialog-line">
-                    <TextField
-                        className="dialog-line"
-                        value={height}
-                        label="height"
-                        variant="outlined"
-                        size="small"
-                        error={!heightValid && height !== ""}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">lightseconds</InputAdornment>
-                            ),
-                        }}
-                        InputLabelProps={{
-                            margin: "dense",
-                        }}
-                        onChange={onHeightText}
-                    />
-                </div>
+                {textFieldsComponent}
                 <div className="dialog-line center-content">
                     <Button
                         variant="contained"
@@ -352,8 +362,26 @@ CustomEventDialog.propTypes = {
 };
 
 function ControlButtons(props) {
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const onDialogSelect = (object) => {
+        setDialogOpen(false);
+        props.onObjectSelect(object);
+    };
+
     return (
         <div className="control-buttons">
+            <Tooltip title="Refresh the diagram if an event isn't showing up" placement="right">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    onClick={() => setDialogOpen(true)}
+                >
+                    Add an Object
+                </Button>
+            </Tooltip>
+            <div className="spacing" />
             <Tooltip title="Refresh the diagram if an event isn't showing up" placement="right">
                 <Button variant="contained" color="primary" size="small" onClick={props.onRefresh}>
                     Refresh
@@ -368,13 +396,179 @@ function ControlButtons(props) {
                     Clear all events
                 </Button>
             </Tooltip>
+            <AddObjectDialog
+                open={dialogOpen}
+                onClose={() => setDialogOpen(false)}
+                onSelect={onDialogSelect}
+            />
         </div>
     );
 }
 
 ControlButtons.propTypes = {
+    onObjectSelect: PropTypes.func.isRequired,
     onRefresh: PropTypes.func,
     onClear: PropTypes.func,
+};
+
+function AddObjectDialog(props) {
+    const { onClose, open } = props;
+
+    const [x1, setX1] = useState("");
+    const [t1, setT1] = useState("");
+    const [x2, setX2] = useState("");
+    const [t2, setT2] = useState("");
+    const [step, setStep] = useState("");
+    const [x1Valid, setX1Valid] = useState(false);
+    const [t1Valid, setT1Valid] = useState(false);
+    const [x2Valid, setX2Valid] = useState(false);
+    const [t2Valid, setT2Valid] = useState(false);
+    const [stepValid, setStepValid] = useState(false);
+    const [displayError, setDisplayError] = useState(false);
+
+    // Validate text input before passing on to props.
+    const onX1Text = (e) => {
+        setX1(e.target.value);
+        const value = parseFloat(e.target.value);
+        setX1Valid(!isNaN(value));
+    };
+    const onT1Text = (e) => {
+        setT1(e.target.value);
+        const value = parseFloat(e.target.value);
+        setT1Valid(!isNaN(value));
+    };
+    const onX2Text = (e) => {
+        setX2(e.target.value);
+        const value = parseFloat(e.target.value);
+        setX2Valid(!isNaN(value));
+    };
+    const onT2Text = (e) => {
+        setT2(e.target.value);
+        const value = parseFloat(e.target.value);
+        setT2Valid(!isNaN(value));
+    };
+    const onStepText = (e) => {
+        setStep(e.target.value);
+        const value = parseFloat(e.target.value);
+        setStepValid(value > EPSILON); // Cannot be too small.
+    };
+
+    const onEnterDialog = () => {
+        setX1("");
+        setT1("");
+        setX2("");
+        setT2("");
+        setStep("");
+        setX1Valid(false);
+        setT1Valid(false);
+        setX2Valid(false);
+        setT2Valid(false);
+        setStepValid(false);
+        setDisplayError(false);
+    };
+
+    const onSelect = (image) => {
+        if (!objectValid) {
+            setDisplayError(true);
+            return;
+        }
+        const object = {
+            x1: parseFloat(x1),
+            t1: parseFloat(t1),
+            x2: parseFloat(x2),
+            t2: parseFloat(t2),
+            step: parseFloat(step),
+            image,
+        };
+        props.onSelect(object);
+    };
+
+    const objectValid = x1Valid && t1Valid && x2Valid && t2Valid && stepValid;
+
+    const textFields = [
+        [
+            {
+                label: "start x",
+                value: x1,
+                error: !x1Valid && x1 !== "",
+                unit: "lightseconds",
+                onChange: onX1Text,
+            },
+            {
+                label: "start t",
+                value: t1,
+                error: !t1Valid && t1 !== "",
+                unit: "seconds",
+                onChange: onT1Text,
+            },
+        ],
+        [
+            {
+                label: "end x",
+                value: x2,
+                error: !x2Valid && x2 !== "",
+                unit: "lightseconds",
+                onChange: onX2Text,
+            },
+            {
+                label: "end t",
+                value: t2,
+                error: !t2Valid && t2 !== "",
+                unit: "seconds",
+                onChange: onT2Text,
+            },
+        ],
+        {
+            label: "t step",
+            value: step,
+            error: !stepValid && step !== "",
+            unit: "seconds",
+            onChange: onStepText,
+        },
+    ];
+
+    const textFieldsComponent = textFields.map(dimensionInputField);
+
+    return (
+        <Dialog classes={{ paper: "dialog" }} onClose={onClose} open={open} onEnter={onEnterDialog}>
+            <DialogTitle>Add Object Moving at Constant Velocity</DialogTitle>
+            <div className="text-div dialog-content">
+                <div className="dialog-line">
+                    An object is represented with a line of events through spacetime.
+                </div>
+                {textFieldsComponent}
+                <div className="dialog-line dialog-note">All values for the 0 reference frame.</div>
+                <div className="dialog-line">
+                    <EventSelector
+                        onSelect={onSelect}
+                        description="Select object type"
+                        tooltip="To confirm object, click on the corresponding image"
+                    />
+                </div>
+                {displayError && (
+                    <div className="dialog-line add-object-text-error">
+                        Enter appropriate values above before selecting image
+                    </div>
+                )}
+                <div className="dialog-line center-content">
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        size="small"
+                        onClick={props.onClose}
+                    >
+                        Cancel
+                    </Button>
+                </div>
+            </div>
+        </Dialog>
+    );
+}
+
+AddObjectDialog.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    onSelect: PropTypes.func.isRequired,
 };
 
 class ScenarioSelector extends Component {
@@ -571,6 +765,25 @@ function MoveEventDialog(props) {
     x = x.toFixed(3);
     t = t.toFixed(3);
 
+    const textFields = [
+        {
+            label: "end x",
+            value: newX,
+            error: !xValid && newX !== "",
+            unit: "lightseconds",
+            onChange: onXText,
+        },
+        {
+            label: "end t",
+            value: newT,
+            error: !tValid && newT !== "",
+            unit: "seconds",
+            onChange: onTText,
+        },
+    ];
+
+    const textFieldsComponent = textFields.map(dimensionInputField);
+
     return (
         <Dialog classes={{ paper: "dialog" }} onClose={onClose} open={open} onEnter={onEnterDialog}>
             <DialogTitle>Move Event</DialogTitle>
@@ -578,41 +791,7 @@ function MoveEventDialog(props) {
                 <div className="dialog-line">
                     Current position: x = {x}, t = {t}
                 </div>
-                <div className="dialog-line">
-                    <TextField
-                        label="new x"
-                        value={newX}
-                        variant="outlined"
-                        size="small"
-                        error={!xValid && newX !== ""}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">lightseconds</InputAdornment>
-                            ),
-                        }}
-                        InputLabelProps={{
-                            margin: "dense",
-                        }}
-                        onChange={onXText}
-                    />
-                </div>
-                <div className="dialog-line">
-                    <TextField
-                        className="dialog-line"
-                        value={newT}
-                        label="new t"
-                        variant="outlined"
-                        size="small"
-                        error={!tValid && newT !== ""}
-                        InputProps={{
-                            endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
-                        }}
-                        InputLabelProps={{
-                            margin: "dense",
-                        }}
-                        onChange={onTText}
-                    />
-                </div>
+                {textFieldsComponent}
                 <div className="dialog-line dialog-note">All values for the 0 reference frame.</div>
                 <div className="dialog-line center-content">
                     <Button
@@ -624,7 +803,7 @@ function MoveEventDialog(props) {
                     >
                         Move
                     </Button>
-                    <div className="space"></div>
+                    <div className="space" />
                     <Button
                         variant="contained"
                         color="secondary"
@@ -932,6 +1111,11 @@ function SpacetimeGlobe() {
         forceUpdate();
     }
 
+    function onObjectSelect(object) {
+        // eslint-disable-next-line no-console
+        console.log(object);
+    }
+
     function onContextMenuMoveConfirmed(eventImage) {
         for (const spaceTimeEvent of events) {
             if (spaceTimeEvent.current.isImage(eventImage)) {
@@ -991,14 +1175,25 @@ function SpacetimeGlobe() {
         />
     ));
 
+    const eventTooltip =
+        "Click an event to add it to the diagram; scroll for more options; you can drag existing " +
+        "events when the reference frame is 0, or right click to move or delete it";
     return (
         <div className="outer-container top-margin bottom-margin">
             <MetaTags path="/projects/spacetimeglobe" />
 
             <div className="controls text-div">
                 <ReferenceFrameInput onChange={updateReferenceFrame} ref={referenceFrameInput} />
-                <EventSelector onSelect={onEventSelect} />
-                <ControlButtons onClear={onClear} onRefresh={forceUpdate} />
+                <EventSelector
+                    onSelect={onEventSelect}
+                    description="Add an event"
+                    tooltip={eventTooltip}
+                />
+                <ControlButtons
+                    onObjectSelect={onObjectSelect}
+                    onClear={onClear}
+                    onRefresh={forceUpdate}
+                />
                 <ScenarioSelector onSelect={onScenarioSelect} ref={scenarioSelector} />
             </div>
 

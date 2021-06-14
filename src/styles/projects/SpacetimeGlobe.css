@@ -3,6 +3,10 @@
     grid-template-columns: 25% auto;
 }
 
+.dimension-text-field {
+    width: 15em;
+}
+
 .controls {
     padding: 2em 0 2.5em 0;
     background-color: #e1e3eb;
@@ -22,6 +26,7 @@
 .ref-shift-text-div {
     display: grid;
     grid-template-columns: 8em auto;
+    margin-bottom: 1em;
 }
 
 .ref-shift-text {
@@ -37,7 +42,6 @@
 .event-selector-div {
     width: 80%;
     margin: 0 auto;
-    margin-top: 1em;
 }
 
 .event-selector-outer {
@@ -69,6 +73,10 @@
 
 .custom-event-tooltip {
     margin-bottom: 2.6em;
+}
+
+.add-object-text-error {
+    color: #df3434;
 }
 
 .control-buttons {
