@@ -11,7 +11,6 @@
  *
  * TODO:
  * Allow user to adjust grid size
- * Add way to add a line of events
  * Interpret arguments in URL
  * Allow uploading a scenario in JSON
  */
@@ -39,7 +38,7 @@ import "../../styles/projects/SpacetimeGlobe.css";
 import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
 import MetaTags from "../subcomponents/MetaTags";
 import ExpansionText from "../subcomponents/ExpansionText";
-import { floatEqual } from "../../utils";
+import { floatEqual, EPSILON } from "../../utils";
 
 function dimensionInputField(fields, index) {
     if (!Array.isArray(fields)) {
@@ -371,7 +370,10 @@ function ControlButtons(props) {
 
     return (
         <div className="control-buttons">
-            <Tooltip title="Refresh the diagram if an event isn't showing up" placement="right">
+            <Tooltip
+                title="Add an object which consists of multiple events over time"
+                placement="right"
+            >
                 <Button
                     variant="contained"
                     color="primary"
@@ -468,10 +470,13 @@ function AddObjectDialog(props) {
     };
 
     const onSelect = (image) => {
+        const objectValid =
+            x1Valid && t1Valid && x2Valid && t2Valid && stepValid && !floatEqual(t1, t2);
         if (!objectValid) {
             setDisplayError(true);
             return;
         }
+
         const object = {
             x1: parseFloat(x1),
             t1: parseFloat(t1),
@@ -482,8 +487,6 @@ function AddObjectDialog(props) {
         };
         props.onSelect(object);
     };
-
-    const objectValid = x1Valid && t1Valid && x2Valid && t2Valid && stepValid;
 
     const textFields = [
         [
@@ -1112,8 +1115,19 @@ function SpacetimeGlobe() {
     }
 
     function onObjectSelect(object) {
-        // eslint-disable-next-line no-console
-        console.log(object);
+        updateReferenceFrame(0); // Only add new events at 0 reference frame.
+        const startT = Math.min(object.t1, object.t2);
+        const endT = Math.max(object.t1, object.t2);
+        const startX = Math.min(object.x1, object.x2);
+        const endX = Math.max(object.x1, object.x2);
+        const xStep = object.step * ((endX - startX) / (endT - startT));
+
+        let x = startX;
+        for (let t = startT; t <= endT + EPSILON; t += object.step) {
+            eventData.push({ t: t, x: x, image: object.image });
+            x += xStep;
+        }
+        forceUpdate();
     }
 
     function onContextMenuMoveConfirmed(eventImage) {
