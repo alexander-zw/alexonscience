@@ -12,7 +12,8 @@
  * TODO:
  * Allow user to adjust grid size
  * Interpret arguments in URL
- * Allow uploading a scenario in JSON
+ * Allow uploading and downloading a scenario in JSON
+ * Specify starting and ending points for an object in analog
  */
 import React, { Component, useState, createRef, useEffect } from "react";
 import PropTypes from "prop-types";
