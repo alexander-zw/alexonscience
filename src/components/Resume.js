@@ -23,168 +23,10 @@ function Resume() {
             contents: (
                 <div>
                     <p>
-                        <strong>University of California, Berkeley</strong>: 08/2020 - 05/2021{" "}
-                        <br />
-                        Master of Science, Electrical Engineering and Computer Science (EECS), GPA
-                        4.0
-                        <br />
                         Thesis:{" "}
                         <a href={thesisLink}>
                             Optimizations and Improvements to Cryptographic Libraries for zkSNARKs
                         </a>
-                    </p>
-                    <p>
-                        <strong>University of California, Berkeley</strong>: 08/2017 - 05/2020{" "}
-                        <br />
-                        Bachelor of Science, Electrical Engineering and Computer Science (EECS), GPA
-                        4.0
-                    </p>
-                </div>
-            ),
-        },
-        {
-            id: "skills",
-            title: "Skills",
-            contents: (
-                <ul>
-                    <li>
-                        <strong>Programming</strong>: Java, C++, Python, Ruby, JavaScript, Go, C,
-                        Rust, HTML/CSS, SQL, Matlab, Scheme, RISC-V
-                    </li>
-                    <li>
-                        <strong>Frameworks</strong>: React, React Native, Django, Unity
-                    </li>
-                    <li>
-                        <strong>Other CS</strong>: Machine Learning, Algorithms, Computer Security,
-                        Web/Mobile Development
-                    </li>
-                    <li>
-                        <strong>Languages</strong>: English (native), Mandarin (native)
-                    </li>
-                </ul>
-            ),
-        },
-        {
-            id: "awards",
-            title: "Awards",
-            contents: (
-                <ul>
-                    <li>Mark D. Weiser Excellence in Computing Scholarship (2020)</li>
-                    <li>
-                        Outstanding Team (highest international award),{" "}
-                        <em>18th COMAP High School Mathematics Contest in Modeling</em> (2016)
-                    </li>
-                    <li>
-                        National First Prize,
-                        <em>
-                            30th China Adolescents Science and Technology InnovationContest
-                        </em>{" "}
-                        (2015)
-                    </li>
-                    <li>
-                        International 66th Place and 7th in northern China,{" "}
-                        <em>13th AAPT PhysicsBowl</em> (2014)
-                    </li>
-                    <li>Chou Pei-Yuan Science and Innovation Award (2015)</li>
-                    <li>Soong Ching-ling Invention Award (2015)</li>
-                    <li>
-                        National First Prize, etc, <em>FIRST Tech Challenge</em> (2014-15)
-                    </li>
-                </ul>
-            ),
-        },
-        {
-            id: "experience",
-            title: "Experience",
-            contents: (
-                <div>
-                    <p>
-                        <strong>SDE Intern</strong> at Amazon.com Inc, Summer 2020
-                        <ul>
-                            <li>
-                                <strong>Image Gallery View</strong>: Migrated Amazon shopping app
-                                immersive product image gallery from obsolete native iOS and Android
-                                code to SSNAP (Amazon internal React Native framework), fixing 5
-                                bugs and improving user experience, robustness, readability, and
-                                maintainability; released changes to beta, with 10,000+ loads in 10
-                                regions within a week
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>AI Developer Intern</strong> at Stottler Henke Associates Inc,
-                        Summer 2019
-                        <ul>
-                            <li>
-                                <strong>MIDAS Automated Resource Scheduler</strong>: Implemented
-                                features, fixed bugs, and wrote tests for AFSCN satellite scheduling
-                                software in Java (large project with 20+ team members)
-                            </li>
-                            <li>
-                                <strong>Satellite Scheduling Network</strong>:
-                                Implemented/experimented with bottleneck scheduling algorithm, added
-                                features, GUIs, and visualizations, tested effectiveness and
-                                runtime, etc in Java, C++, and Python
-                            </li>
-                            <li>
-                                <strong>Overhead Persistent Infrared</strong>: Investigated a
-                                library for features, usage, and dependencies to interface sensors
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Website Developer</strong> for HKN (IEEE honor society), Computing
-                        Services, Fall 2018 - Spring 2021
-                        <ul>
-                            <li>
-                                Developed the official website and made it user-friendly and
-                                appealing with Django web development
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Research Assistant</strong> in cryptography for UC Berkeley EECS,
-                        Spring 2020, advisor Alessandro Chiesa
-                        <ul>
-                            <li>
-                                Developed features in cryptographic libraries for zkSNARKs in C++
-                                and Rust
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Research Assistant</strong>, conducted experiments for Department of
-                        Architecture at UC Berkeley, Summer and Fall 2018
-                        <ul>
-                            <li>
-                                Created a program with Java so that the data analyzing process was
-                                reduced from 3 weeks to 1 day
-                            </li>
-                            <li>
-                                Built and measured the properties of 3D-printed agro-waste materials
-                                in flood conditions
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>CS Instructor</strong>, part-time job for UC Berkeley Engineering
-                        (CS Bootcamp), Summers and Winters 2017-18
-                        <ul>
-                            <li>
-                                Taught online course and created instructional videos, exercises,
-                                auto-graders, documents, etc
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Undergraduate Student Instructor</strong>, Discrete Math and
-                        Probability Theory (CS 70), UC Berkeley, Fall 2019 and Spring 2020
-                        <ul>
-                            <li>
-                                Taught discussion sections, hosted office hours, proctored/graded
-                                exams, contributed to course material, etc
-                            </li>
-                        </ul>
                     </p>
                 </div>
             ),
@@ -222,7 +64,8 @@ function Resume() {
                     <p>
                         <strong>BearMaps</strong>
                         <br />
-                        Map of Berkeley similar to Google Maps, uses graphs and A* search, Java
+                        Interactive navigation application similar to Google Maps, uses graphs and
+                        A* search, Java
                     </p>
                     <p>
                         <strong>Stereo Vision</strong>
@@ -264,16 +107,12 @@ function Resume() {
                 <span className="name-title">Alexander Wu</span>
 
                 <p>
-                    I{"'"}m a software developer working in the San Francisco Bay Area. I express my
-                    love for science through my YouTube channel, among other things. I{"'"}m
-                    passionate about education and enjoy doing volunteering work. In my spare time,
-                    I read novels, work on personal projects, practice Yoga, and bike around the
-                    Bay.
-                </p>
-
-                <p>
-                    Email: alexwu68 [at] berkeley [dot] edu (see{" "}
-                    <Link to="/contact">Contact Me</Link>)
+                    Hello! I am not currently seeking a new position, but you can{" "}
+                    <Link to="/contact">contact me</Link> for other matters. I{"'"}m a software
+                    developer who expresses his love for science through my YouTube channel, among
+                    other things. I{"'"}m passionate about education and enjoy doing volunteering
+                    work. In my spare time, I read novels, work on projects, practice Yoga, and ride
+                    my bike everywhere.
                 </p>
 
                 {content}
