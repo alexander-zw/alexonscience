@@ -9,9 +9,10 @@ as well as Alexander Wu's personal website. The YouTube channel can also be foun
 
 ## Set Up
 
-To start development, clone/fork this repository locally. Optional: Then create a new branch
-called `deployed` with `git branch deployed`. This branch will keep track of what you have
-deployed.
+To start development, clone/fork this repository locally. Then run `npm install` to install all dependencies.
+
+Optional: Then create a new branch called `deployed` with `git branch deployed`. This branch will 
+keep track of what you havedeployed.
 
 ## Development
 
@@ -48,5 +49,5 @@ This is a single page application with `react-router-dom`.
 I added some self-invented prerendering using a Node script in `src/scripts/prerender.js`.
 This script writes meta tags along with a redirect script into an `index.js` file in the
 `public/` directory. Unfortunately I couldn't get CommonJS to work with ES6, so the
-prerendering script's data is duplicated from the data used in the main app. Every time
+prerendering script's data (`src/scripts/all_views_meta.json`) is duplicated from the data used in the main app (`src/components/subcomponents/AllViews.js`). Every time
 a view is added, or meta tags are changed, both of these sources need to be updated.
