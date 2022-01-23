@@ -7,14 +7,16 @@ import "@testing-library/jest-dom";
 import renderer from "react-test-renderer";
 import Error from "../components/Error";
 
-it("renders correctly", () => {
-    // Error has a Link, so we surround it with a router.
-    const tree = renderer
-        .create(
-            <BrowserRouter>
-                <Error />
-            </BrowserRouter>,
-        )
-        .toJSON();
-    expect(tree).toMatchSnapshot();
+describe("Error", () => {
+    test("renders correctly", () => {
+        // Error has a Link, so we surround it with a router.
+        const tree = renderer
+            .create(
+                <BrowserRouter>
+                    <Error />
+                </BrowserRouter>,
+            )
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

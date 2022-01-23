@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Resume renders correctly 1`] = `
 <div
   className="outer-container top-margin bottom-margin"
 >

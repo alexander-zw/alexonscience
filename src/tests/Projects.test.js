@@ -7,13 +7,15 @@ import "@testing-library/jest-dom";
 import renderer from "react-test-renderer";
 import Projects from "../components/Projects";
 
-it("renders correctly", () => {
-    const tree = renderer
-        .create(
-            <BrowserRouter>
-                <Projects />
-            </BrowserRouter>,
-        )
-        .toJSON();
-    expect(tree).toMatchSnapshot();
+describe("Projects", () => {
+    test("renders correctly", () => {
+        const tree = renderer
+            .create(
+                <BrowserRouter>
+                    <Projects />
+                </BrowserRouter>,
+            )
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

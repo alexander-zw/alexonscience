@@ -8,23 +8,25 @@ import { render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import Home from "../components/Home";
 
-test("renders my name", () => {
-    render(
-        <BrowserRouter>
-            <Home />
-        </BrowserRouter>,
-    );
-    const linkElement = screen.getByText(/Alexander Wu/i);
-    expect(linkElement).toBeInTheDocument();
-});
-
-it("renders correctly", () => {
-    const tree = renderer
-        .create(
+describe("Home", () => {
+    test("renders my name", () => {
+        render(
             <BrowserRouter>
                 <Home />
             </BrowserRouter>,
-        )
-        .toJSON();
-    expect(tree).toMatchSnapshot();
+        );
+        const linkElement = screen.getByText(/Alexander Wu/i);
+        expect(linkElement).toBeInTheDocument();
+    });
+
+    test("renders correctly", () => {
+        const tree = renderer
+            .create(
+                <BrowserRouter>
+                    <Home />
+                </BrowserRouter>,
+            )
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
