@@ -30,6 +30,65 @@ exports[`renders correctly 1`] = `
       </a>
       .
     </p>
+    <span
+      className="videos-title"
+    >
+      Recent Uploads
+    </span>
+    <div
+      className="embedded-video-container"
+    >
+      <iframe
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+        className="embedded-video"
+        frameBorder="0"
+        height={200}
+        src="https://www.youtube.com/embed/cHAVhoZx2os"
+        title="Most recent video"
+        width={355.55555555555554}
+      />
+      <iframe
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+        className="embedded-video"
+        frameBorder="0"
+        height={200}
+        src="https://www.youtube.com/embed/cI5lkif-V1c"
+        title="Most recent video"
+        width={355.55555555555554}
+      />
+      <iframe
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+        className="embedded-video"
+        frameBorder="0"
+        height={200}
+        src="https://www.youtube.com/embed/wuX_QyS0C3A"
+        title="Most recent video"
+        width={355.55555555555554}
+      />
+      <iframe
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+        className="embedded-video"
+        frameBorder="0"
+        height={200}
+        src="https://www.youtube.com/embed/Vsgek3M1PZw"
+        title="Most recent video"
+        width={355.55555555555554}
+      />
+      <iframe
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+        className="embedded-video"
+        frameBorder="0"
+        height={200}
+        src="https://www.youtube.com/embed/Jb6nFKPov-w"
+        title="Most recent video"
+        width={355.55555555555554}
+      />
+    </div>
     <div
       className="MuiPaper-root MuiAccordion-root expansion MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded"
     >

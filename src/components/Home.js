@@ -8,6 +8,7 @@ import "../styles/index.css";
 import "../styles/Home.css";
 import MetaTags from "./subcomponents/MetaTags";
 import ExpansionText from "./subcomponents/ExpansionText";
+import RecentVideos from "./subcomponents/RecentVideos";
 
 function Home() {
     const expansionText =
@@ -33,6 +34,8 @@ function Home() {
                     {"'"}d like to learn about me (I{"'"}m flattered), take a look at my{" "}
                     <Link to="/resume">resume</Link>.
                 </p>
+
+                <RecentVideos />
 
                 <ExpansionText className="expansion" expansionComponent={expansionText}>
                     What are those drawings in your banner?
