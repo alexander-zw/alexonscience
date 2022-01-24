@@ -64,7 +64,7 @@ export const navigationViews: Map<string, View> = new Map([
             component: Projects,
             description: "Alex's projects",
             keywords: "project",
-            exact: false,
+            exact: true,
         },
     ],
     [
