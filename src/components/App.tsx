@@ -1,3 +1,12 @@
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
+
+import science_banner from "../images/science_banner.jpg";
+import Error404 from "./Error404";
+import Footer from "./Footer";
+import Navigation from "./Navigation";
+import { routableViews } from "./subcomponents/AllViews";
+
 /**
  * The main component of the site, including the navigation bar, main content,
  * and footer.
@@ -8,15 +17,6 @@
  * Mobile friendly nav bar
  * Prerendering
  */
-import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-
-import Error from "./Error";
-import Navigation from "./Navigation";
-import Footer from "./Footer";
-import { routableViews } from "./subcomponents/AllViews";
-import science_banner from "../images/science_banner.jpg";
 
 // Scroll to the top of page whenever user switches views.
 function ScrollToTop() {
@@ -44,7 +44,7 @@ function App() {
                 <Navigation />
                 <Switch>
                     {routesComponent}
-                    <Route component={Error} />
+                    <Route component={Error404} />
                 </Switch>
             </div>
             <Footer />

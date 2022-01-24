@@ -1,14 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Error renders correctly 1`] = `
+exports[`Error404 renders correctly 1`] = `
 <div
   className="text-div"
 >
   <p>
-    Oops, this page does not exist!
-     
+    Oops, this page does not exist! 
     <a
-      exact={true}
       href="/"
       onClick={[Function]}
     >

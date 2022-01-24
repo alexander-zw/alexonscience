@@ -1,36 +1,39 @@
+import ashes from "../../images/spacetime_globe/ashes.png";
+import blue_person from "../../images/spacetime_globe/blue_person.png";
+import blue_person_gun from "../../images/spacetime_globe/blue_person_gun.png";
+import blue_person_lightbulb_off from "../../images/spacetime_globe/blue_person_lightbulb_off.png";
+import blue_person_lightbulb_on from "../../images/spacetime_globe/blue_person_lightbulb_on.png";
+import blue_person_rocket_left from "../../images/spacetime_globe/blue_person_rocket_left.png";
+import blue_person_rocket_right from "../../images/spacetime_globe/blue_person_rocket_right.png";
+import box from "../../images/spacetime_globe/box.png";
+import box_burning from "../../images/spacetime_globe/box_burning.png";
+import box_burnt from "../../images/spacetime_globe/box_burnt.png";
+import bullet from "../../images/spacetime_globe/bullet.png";
+import cat_head from "../../images/spacetime_globe/cat_head.png";
+import cat_tail from "../../images/spacetime_globe/cat_tail.png";
+import lightbulb_off from "../../images/spacetime_globe/lightbulb_off.png";
+import lightbulb_on from "../../images/spacetime_globe/lightbulb_on.png";
+import orange_cat from "../../images/spacetime_globe/orange_cat.png";
+import orange_person from "../../images/spacetime_globe/orange_person.png";
+import orange_person_clock from "../../images/spacetime_globe/orange_person_clock.png";
+import orange_person_earth from "../../images/spacetime_globe/orange_person_earth.png";
+import photon_left from "../../images/spacetime_globe/photon_left.png";
+import photon_right from "../../images/spacetime_globe/photon_right.png";
+
 /**
  * This file contains data for SpacetimeGlobe.js. Because the list of available
  * images for events and custom scenarios the user can load are very long, they
  * are stored in this separate file.
- *
- * TODO:
- * Add tooltips to explain controls
- * Add classical spacetime
- * Add way to add a line of events
  */
-import blue_person from "../../images/spacetime_globe/blue_person.png";
-import orange_person from "../../images/spacetime_globe/orange_person.png";
-import orange_cat from "../../images/spacetime_globe/orange_cat.png";
-import blue_person_lightbulb_off from "../../images/spacetime_globe/blue_person_lightbulb_off.png";
-import blue_person_lightbulb_on from "../../images/spacetime_globe/blue_person_lightbulb_on.png";
-import photon_right from "../../images/spacetime_globe/photon_right.png";
-import photon_left from "../../images/spacetime_globe/photon_left.png";
-import orange_person_clock from "../../images/spacetime_globe/orange_person_clock.png";
-import box from "../../images/spacetime_globe/box.png";
-import box_burning from "../../images/spacetime_globe/box_burning.png";
-import box_burnt from "../../images/spacetime_globe/box_burnt.png";
-import ashes from "../../images/spacetime_globe/ashes.png";
-import cat_tail from "../../images/spacetime_globe/cat_tail.png";
-import cat_head from "../../images/spacetime_globe/cat_head.png";
-import lightbulb_off from "../../images/spacetime_globe/lightbulb_off.png";
-import lightbulb_on from "../../images/spacetime_globe/lightbulb_on.png";
-import blue_person_gun from "../../images/spacetime_globe/blue_person_gun.png";
-import bullet from "../../images/spacetime_globe/bullet.png";
-import orange_person_earth from "../../images/spacetime_globe/orange_person_earth.png";
-import blue_person_rocket_right from "../../images/spacetime_globe/blue_person_rocket_right.png";
-import blue_person_rocket_left from "../../images/spacetime_globe/blue_person_rocket_left.png";
 
-export const eventImages = [
+interface EventImage {
+    name: string;
+    src: string;
+    w: number;
+    h: number;
+}
+
+export const eventImages: EventImage[] = [
     {
         name: "blue person", // 0
         src: blue_person,
@@ -159,7 +162,18 @@ export const eventImages = [
     },
 ];
 
-export const customScenarios = [
+interface SpacetimeEvent {
+    t: number;
+    x: number;
+    image: EventImage;
+}
+
+interface SpacetimeScenario {
+    name: string;
+    events: SpacetimeEvent[];
+}
+
+export const customScenarios: SpacetimeScenario[] = [
     {
         name: "Miscellaneous objects",
         events: [

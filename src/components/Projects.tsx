@@ -1,13 +1,15 @@
-/**
- * This component contains links to my projects.
- */
-import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/index.css";
 import "../styles/Projects.css";
+
+import React from "react";
+import { Link } from "react-router-dom";
+
 import spacetime_globe from "../images/spacetime_globe/spacetime_globe.png";
 import MetaTags from "./subcomponents/MetaTags";
 
+/**
+ * This component contains links to my projects.
+ */
 function Projects() {
     return (
         <div>

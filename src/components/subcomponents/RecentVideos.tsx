@@ -1,11 +1,12 @@
+import "../../styles/subcomponents/RecentVideos.css";
+
+import React from "react";
+
 /**
  * The embedded video component displays my most recent videos from YouTube.
  * Unfortunately it is hardcoded, so I need to edit it every time a new video
  * is out.
  */
-import React from "react";
-import "../../styles/subcomponents/RecentVideos.css";
-
 function RecentVideos() {
     const iframeAllowProp =
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";

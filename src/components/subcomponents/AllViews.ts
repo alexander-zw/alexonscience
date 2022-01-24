@@ -1,19 +1,29 @@
+import Art from "../Art";
+import Contact from "../Contact";
+import Error404 from "../Error404";
+import Home from "../Home";
+import Projects from "../Projects";
+import SpacetimeGlobe from "../projects/SpacetimeGlobe";
+import Resume from "../Resume";
+
 /**
  * This file contains all meta tags as well as other navigation information for
  * each page. It is used both for prerendering (through prerender.js) and the
- * actual page rendered client side (through MetaTags.js, App.js, and
- * Navigation.js).
+ * actual page rendered client side (through MetaTags.tsx, App.tsx, and
+ * Navigation.tsx).
  */
-import Home from "../Home";
-import Resume from "../Resume";
-import Art from "../Art";
-import Contact from "../Contact";
-import Projects from "../Projects";
-import SpacetimeGlobe from "../projects/SpacetimeGlobe";
-import Error from "../Error";
+
+interface View {
+    name: string;
+    component: (() => JSX.Element) | (() => null);
+    description: string;
+    keywords: string;
+    image?: string;
+    exact: boolean;
+}
 
 // Views in the navigation bar.
-export const navigationViews = new Map([
+export const navigationViews: Map<string, View> = new Map([
     [
         "/",
         {
@@ -34,7 +44,7 @@ export const navigationViews = new Map([
             },
             description: "ALEX on Science YouTube channel",
             keywords: "alex, science, youtube",
-            exact: undefined,
+            exact: false,
         },
     ],
     [
@@ -44,7 +54,7 @@ export const navigationViews = new Map([
             component: Resume,
             description: "Alex's resume",
             keywords: "resume, berkeley, experience, alexander, wu",
-            exact: undefined,
+            exact: false,
         },
     ],
     [
@@ -54,7 +64,7 @@ export const navigationViews = new Map([
             component: Projects,
             description: "Alex's projects",
             keywords: "project",
-            exact: undefined,
+            exact: false,
         },
     ],
     [
@@ -64,7 +74,7 @@ export const navigationViews = new Map([
             component: Art,
             description: "Alex's art showcase",
             keywords: "art, sketch, drawing",
-            exact: undefined,
+            exact: false,
         },
     ],
     [
@@ -74,13 +84,13 @@ export const navigationViews = new Map([
             component: Contact,
             description: "Contact Alex",
             keywords: "contact, alexander, wu",
-            exact: undefined,
+            exact: false,
         },
     ],
 ]);
 
 // Views that are not in the navigation bar but valid URLs.
-const otherRoutableViews = [
+const otherRoutableViews: [[string, View]] = [
     [
         "/projects/spacetimeglobe",
         {
@@ -91,37 +101,40 @@ const otherRoutableViews = [
                 "spacetime, globe, minutephysics, physics, special relativity, " +
                 "lorentz transformation",
             image: "/projects/spacetimeglobe/preview.png",
-            exact: undefined,
+            exact: false,
         },
     ],
 ];
 
 // Add additional views first so they are seen earlier than their prefixes
 // by the router.
-export const routableViews = new Map(otherRoutableViews.concat([...navigationViews]));
+export const routableViews = new Map([
+    ...Array.from(navigationViews.entries()),
+    ...otherRoutableViews,
+]);
 
 // View that does not have a URL but needs meta tags.
-const otherViews = [
+const otherViews: [[string, View]] = [
     [
         "/error",
         {
             name: "Contact Me",
-            component: Error,
+            component: Error404,
             description: "Error page",
             keywords: "error",
-            exact: undefined,
+            exact: false,
         },
     ],
 ];
 
-export const allViews = new Map(otherViews.concat([...routableViews]));
+export const allViews = new Map([...Array.from(routableViews.entries()), ...otherViews]);
 
-export function getTitle(view) {
+export function getTitle(view: View) {
     const defaultTitle = "ALEX on Science";
     return view.name == "Home" ? defaultTitle : `${view.name} | ${defaultTitle}`;
 }
 
-export function getURL(path) {
+export function getURL(path: string) {
     const defaultURL = "https://alexonscience.com";
     return path == "/" ? defaultURL : `${defaultURL}${path}`;
 }

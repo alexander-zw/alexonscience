@@ -4,7 +4,7 @@
  * the public/ directory. It is automatically run in the deployment script.
  *
  * The data and functions used by this script are the same as those in
- * src/components/subcomponents/AllViews.js, but I couldn't figure out how to
+ * src/components/subcomponents/AllViews.ts, but I couldn't figure out how to
  * import that here to be compatible with CommonJS, so I just duplicated them.
  *
  * Note that this script does not remove existing files in public/. This means

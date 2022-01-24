@@ -39,7 +39,7 @@ Make sure to commit and push to `origin` after deployment.
 
 This website is written in React, and in particular was created with `create-react-app`. The
 sources are in `src/components/`, styles in `src/styles/`, and tests in `src/tests/`. The root
-page is `src/components/App.js`, which renders the top banner, navigation bar, content, and
+page is `src/components/App.tsx`, which renders the top banner, navigation bar, content, and
 footer.
 
 The tests are mainly snapshot tests with Jest. For code style I use Prettier for formatting

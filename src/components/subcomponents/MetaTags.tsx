@@ -1,17 +1,26 @@
+import React from "react";
+import Helmet from "react-helmet";
+
+import { allViews, getTitle, getURL } from "./AllViews";
+
 /**
- * This subcomponent adds meta tags to a view, fetching data from AllViews.js.
+ * This subcomponent adds meta tags to a view, fetching data from AllViews.ts.
  *
  * Although the static prerendered files already have the correct tags, it's
  * still necessary to dynamically insert these tags in case the user navigated
  * to the view client-side.
  */
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { allViews, getTitle, getURL } from "./AllViews";
 
-export default function MetaTags(props) {
+interface MetaTagsProps {
+    path: string;
+}
+
+export default function MetaTags(props: MetaTagsProps) {
     const view = allViews.get(props.path);
+    if (!view) {
+        return <></>;
+    }
+
     const title = getTitle(view);
     const url = getURL(props.path);
     const ogImage = view.image ? view.image : "/preview.jpg";
@@ -32,7 +41,3 @@ export default function MetaTags(props) {
         </Helmet>
     );
 }
-
-MetaTags.propTypes = {
-    path: PropTypes.string.isRequired,
-};

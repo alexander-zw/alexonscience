@@ -1,20 +1,3 @@
-/**
- * This component is a project based on the minutephysics series on special
- * relativity.
- *
- * The spacetime globe helps visualize Lorentz transformations. The user can
- * add events onto the spacetime diagram and change the reference frame to see
- * what happens.
- *
- * There is no test for this component because Konva doesn't mesh well with
- * React test renderer.
- *
- * TODO:
- * Allow user to adjust grid size
- * Interpret arguments in URL
- * Allow uploading and downloading a scenario in JSON
- * Specify starting and ending points for an object in analog
- */
 import React, { Component, useState, createRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Stage, Layer, Line, Arrow, Text, Rect, Image } from "react-konva";
@@ -39,7 +22,26 @@ import "../../styles/projects/SpacetimeGlobe.css";
 import { eventImages, customScenarios } from "./SpacetimeGlobeEvents";
 import MetaTags from "../subcomponents/MetaTags";
 import ExpansionText from "../subcomponents/ExpansionText";
-import { floatEqual, EPSILON } from "../../utils";
+import { floatEqual, EPSILON } from "../subcomponents/utils";
+
+/**
+ * This component is a project based on the minutephysics series on special
+ * relativity.
+ *
+ * The spacetime globe helps visualize Lorentz transformations. The user can
+ * add events onto the spacetime diagram and change the reference frame to see
+ * what happens.
+ *
+ * There is no test for this component because Konva doesn't mesh well with
+ * React test renderer.
+ *
+ * TODO:
+ * Allow user to adjust grid size
+ * Interpret arguments in URL
+ * Allow uploading and downloading a scenario in JSON
+ * Specify starting and ending points for an object in analog
+ * Convert to TypeScript? Maybe???
+ */
 
 function dimensionInputField(fields, index) {
     if (!Array.isArray(fields)) {

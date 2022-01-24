@@ -23,7 +23,6 @@ Array [
           className="nav-option active-nav-option"
           href="/"
           onClick={[Function]}
-          onUpdate={[Function]}
           style={Object {}}
         >
           Home
@@ -37,7 +36,6 @@ Array [
           className="nav-option"
           href="/youtube"
           onClick={[Function]}
-          onUpdate={[Function]}
         >
           YouTube
         </a>
@@ -50,7 +48,6 @@ Array [
           className="nav-option"
           href="/resume"
           onClick={[Function]}
-          onUpdate={[Function]}
         >
           Resume
         </a>
@@ -63,7 +60,6 @@ Array [
           className="nav-option"
           href="/projects"
           onClick={[Function]}
-          onUpdate={[Function]}
         >
           Projects
         </a>
@@ -76,7 +72,6 @@ Array [
           className="nav-option"
           href="/art"
           onClick={[Function]}
-          onUpdate={[Function]}
         >
           Art
         </a>
@@ -89,7 +84,6 @@ Array [
           className="nav-option"
           href="/contact"
           onClick={[Function]}
-          onUpdate={[Function]}
         >
           Contact Me
         </a>

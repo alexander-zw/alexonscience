@@ -1,13 +1,16 @@
-/**
- * Test for the Home.js component.
- */
+import "@testing-library/jest-dom";
+
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
+
+import { render, screen } from "@testing-library/react";
+
 import Home from "../components/Home";
 
+/**
+ * Test for the Home.tsx component.
+ */
 describe("Home", () => {
     test("renders my name", () => {
         render(

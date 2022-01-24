@@ -1,14 +1,17 @@
+import "../styles/index.css";
+import "../styles/Contact.css";
+
+import React from "react";
+
+import { faGithub, faLinkedin, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import MetaTags from "./subcomponents/MetaTags";
+
 /**
  * This component contains my contact information, including some fancy social
  * media icons.
  */
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import "../styles/index.css";
-import "../styles/Contact.css";
-import MetaTags from "./subcomponents/MetaTags";
-
 function Contact() {
     const accounts = [
         {

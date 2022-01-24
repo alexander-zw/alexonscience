@@ -1,3 +1,12 @@
+import "../styles/index.css";
+import "../styles/Resume.css";
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+import alexander_wu from "../images/alexander_wu.jpg";
+import MetaTags from "./subcomponents/MetaTags";
+
 /**
  * This component contains my resume.
  *
@@ -5,13 +14,6 @@
  * who I am, my skills and interests, and some of my projects that can't be
  * accessed directly on my website.
  */
-import React from "react";
-import { Link } from "react-router-dom";
-import "../styles/index.css";
-import "../styles/Resume.css";
-import alexander_wu from "../images/alexander_wu.jpg";
-import MetaTags from "./subcomponents/MetaTags";
-
 function Resume() {
     const thesisLink = "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2021/EECS-2021-102.html";
 

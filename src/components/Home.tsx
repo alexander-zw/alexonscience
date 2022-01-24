@@ -1,15 +1,17 @@
+import "../styles/index.css";
+import "../styles/Home.css";
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+import ExpansionText from "./subcomponents/ExpansionText";
+import MetaTags from "./subcomponents/MetaTags";
+import RecentVideos from "./subcomponents/RecentVideos";
+
 /**
  * The home component is the default component displayed at the index URL.
  * It contains a basic welcome.
  */
-import React from "react";
-import { Link } from "react-router-dom";
-import "../styles/index.css";
-import "../styles/Home.css";
-import MetaTags from "./subcomponents/MetaTags";
-import ExpansionText from "./subcomponents/ExpansionText";
-import RecentVideos from "./subcomponents/RecentVideos";
-
 function Home() {
     const expansionText =
         "As you might be able to tell, I love drawing, even if I'm not that good at " +

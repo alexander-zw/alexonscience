@@ -1,19 +1,21 @@
-/**
- * Test for the Resume.js component.
- */
+import "@testing-library/jest-dom";
+
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import "@testing-library/jest-dom";
 import renderer from "react-test-renderer";
-import Resume from "../components/Resume";
 
-describe("Resume", () => {
+import Error404 from "../components/Error404";
+
+/**
+ * Test for the Error404.tsx component, which is essentially the 404 page.
+ */
+describe("Error404", () => {
     test("renders correctly", () => {
-        // Resume has a Link, so we surround it with a router.
+        // Error has a Link, so we surround it with a router.
         const tree = renderer
             .create(
                 <BrowserRouter>
-                    <Resume />
+                    <Error404 />
                 </BrowserRouter>,
             )
             .toJSON();
