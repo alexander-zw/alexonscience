@@ -9,7 +9,7 @@ import App from "../components/App";
  * This test checks the whole page, so it is able to test the navigation bar
  * (Navigation.tsx) and footer (Footer.tsx).
  */
-describe("Home", () => {
+describe("App", () => {
     test("renders correctly", () => {
         const tree = renderer.create(<App />).toJSON();
         expect(tree).toMatchSnapshot();

@@ -26,7 +26,7 @@ function Home() {
 
             <div className="text-div bottom-margin">
                 <p>
-                    Hello there! My name is Alexander Wu. I am a graduate student who enjoys
+                    Hello there! My name is Alexander Wu. When I{"'"}m not working, I enjoy
                     maintaining a YouTube channel and working on personal coding projects. Feel free
                     to explore around!
                 </p>
