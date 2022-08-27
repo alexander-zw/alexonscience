@@ -16,11 +16,11 @@ function RecentVideos() {
     const videoWidth = videoHeight * videoRatio;
 
     const recentVideoLinks = [
+        "https://www.youtube.com/embed/J_rw2Txr9i8",
         "https://www.youtube.com/embed/cHAVhoZx2os",
         "https://www.youtube.com/embed/cI5lkif-V1c",
         "https://www.youtube.com/embed/wuX_QyS0C3A",
         "https://www.youtube.com/embed/Vsgek3M1PZw",
-        "https://www.youtube.com/embed/Jb6nFKPov-w",
     ];
 
     const recentVideoIframes = recentVideoLinks.map((link) => (
