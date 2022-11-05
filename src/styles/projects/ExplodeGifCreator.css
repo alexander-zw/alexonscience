@@ -1,0 +1,11 @@
+.upload-image-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.upload-image-section > .upload-button {
+    margin-left: 0.5em;
+    cursor: pointer;
+}
