@@ -16,7 +16,7 @@ interface MetaTagsProps {
 }
 
 export default function MetaTags(props: MetaTagsProps) {
-    const view = allViews.get(props.path);
+    const view = allViews[props.path];
     if (!view) {
         return <></>;
     }

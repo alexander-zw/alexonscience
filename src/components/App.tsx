@@ -30,7 +30,7 @@ function ScrollToTop() {
 }
 
 function App() {
-    const routesComponent = Array.from(routableViews, ([path, route]) => (
+    const routesComponent = Object.entries(routableViews).map(([path, route]) => (
         <Route path={path} component={route.component} exact={route.exact} key={path} />
     ));
 

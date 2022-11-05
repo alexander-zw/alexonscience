@@ -3,6 +3,7 @@ import Contact from "../Contact";
 import Error404 from "../Error404";
 import Home from "../Home";
 import Projects from "../Projects";
+import ExplodeGifCreator from "../projects/ExplodeGifCreator";
 import SpacetimeGlobe from "../projects/SpacetimeGlobe";
 import Resume from "../Resume";
 
@@ -23,111 +24,98 @@ interface View {
 }
 
 // Views in the navigation bar.
-export const navigationViews: Map<string, View> = new Map([
-    [
-        "/",
-        {
-            name: "Home",
-            component: Home,
-            description: "The official ALEX on Science website",
-            keywords: "alex, alexander, wu, science, youtube",
-            exact: true,
+export const navigationViews: Record<string, View> = {
+    "/": {
+        name: "Home",
+        component: Home,
+        description: "The official ALEX on Science website",
+        keywords: "alex, alexander, wu, science, youtube",
+        exact: true,
+    },
+    "/youtube": {
+        name: "YouTube",
+        component: () => {
+            window.location.href = "https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA";
+            return null;
         },
-    ],
-    [
-        "/youtube",
-        {
-            name: "YouTube",
-            component: () => {
-                window.location.href = "https://www.youtube.com/channel/UCaV0jdBmPzgBk6AYweICoMA";
-                return null;
-            },
-            description: "ALEX on Science YouTube channel",
-            keywords: "alex, science, youtube",
-            exact: false,
-        },
-    ],
-    [
-        "/resume",
-        {
-            name: "Resume",
-            component: Resume,
-            description: "Alex's resume",
-            keywords: "resume, berkeley, experience, alexander, wu",
-            exact: false,
-        },
-    ],
-    [
-        "/projects",
-        {
-            name: "Projects",
-            component: Projects,
-            description: "Alex's projects",
-            keywords: "project",
-            exact: true,
-        },
-    ],
-    [
-        "/art",
-        {
-            name: "Art",
-            component: Art,
-            description: "Alex's art showcase",
-            keywords: "art, sketch, drawing",
-            exact: false,
-        },
-    ],
-    [
-        "/contact",
-        {
-            name: "Contact Me",
-            component: Contact,
-            description: "Contact Alex",
-            keywords: "contact, alexander, wu",
-            exact: false,
-        },
-    ],
-]);
+        description: "ALEX on Science YouTube channel",
+        keywords: "alex, science, youtube",
+        exact: false,
+    },
+    "/resume": {
+        name: "Resume",
+        component: Resume,
+        description: "Alex's resume",
+        keywords: "resume, berkeley, experience, alexander, wu",
+        exact: false,
+    },
+    "/projects": {
+        name: "Projects",
+        component: Projects,
+        description: "Alex's projects",
+        keywords: "project",
+        exact: true,
+    },
+    "/art": {
+        name: "Art",
+        component: Art,
+        description: "Alex's art showcase",
+        keywords: "art, sketch, drawing",
+        exact: false,
+    },
+    "/contact": {
+        name: "Contact Me",
+        component: Contact,
+        description: "Contact Alex",
+        keywords: "contact, alexander, wu",
+        exact: false,
+    },
+};
 
 // Views that are not in the navigation bar but valid URLs.
-const otherRoutableViews: [[string, View]] = [
-    [
-        "/projects/spacetimeglobe",
-        {
-            name: "Spacetime Globe",
-            component: SpacetimeGlobe,
-            description: "Spacetime globe, visualization of the geometry of special relativity",
-            keywords:
-                "spacetime, globe, minutephysics, physics, special relativity, " +
-                "lorentz transformation",
-            image: "/projects/spacetimeglobe/preview.png",
-            exact: false,
-        },
-    ],
-];
+const otherRoutableViews: Record<string, View> = {
+    "/projects/spacetimeglobe": {
+        name: "Spacetime Globe",
+        component: SpacetimeGlobe,
+        description: "Spacetime globe, visualization of the geometry of special relativity",
+        keywords:
+            "spacetime, globe, minutephysics, physics, special relativity, " +
+            "lorentz transformation",
+        image: "/projects/spacetimeglobe/preview.png",
+        exact: false,
+    },
+    "/projects/explodegifcreator": {
+        name: "Explode Gif Creator",
+        component: ExplodeGifCreator,
+        description: "A tool to create exploding gifs",
+        keywords: "explode, gif, emoji, tool",
+        image: "/projects/spacetimeglobe/preview.png",
+        exact: false,
+    },
+};
 
 // Add additional views first so they are seen earlier than their prefixes
 // by the router.
-export const routableViews = new Map([
-    ...Array.from(navigationViews.entries()),
+export const routableViews = {
+    ...navigationViews,
     ...otherRoutableViews,
-]);
+};
 
 // View that does not have a URL but needs meta tags.
-const otherViews: [[string, View]] = [
-    [
-        "/error",
-        {
-            name: "Contact Me",
-            component: Error404,
-            description: "Error page",
-            keywords: "error",
-            exact: false,
-        },
-    ],
-];
+const otherViews: Record<string, View> = {
+    "/error": {
+        name: "Contact Me",
+        component: Error404,
+        description: "Error page",
+        keywords: "error",
+        exact: false,
+    },
+};
 
-export const allViews = new Map([...Array.from(routableViews.entries()), ...otherViews]);
+export const allViews = {
+    ...routableViews,
+    ...otherViews,
+};
 
 export function getTitle(view: View) {
     const defaultTitle = "ALEX on Science";

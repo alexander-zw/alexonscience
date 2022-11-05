@@ -40,10 +40,18 @@ function Projects() {
             title: "Spacetime Globe",
             image: { src: spacetime_globe, alt: "spacetime globe" },
             description:
-                "This interactive visualization allows you to play around with Lorentz" +
-                "transformations to really get a feel for how special relativity works. Add" +
-                "events onto the spacetime diagram and see how shifting the reference" +
+                "This interactive visualization allows you to play around with Lorentz " +
+                "transformations to really get a feel for how special relativity works. Add " +
+                "events onto the spacetime diagram and see how shifting the reference " +
                 "reference frame affects them!",
+        },
+        {
+            path: "explodegifcreator",
+            title: "Explode Gif Creator",
+            image: { src: spacetime_globe, alt: "explode" },
+            description:
+                "This tool allows you to turn an image into an exploding gif, which can then " +
+                "be turned into an emoji!",
         },
     ];
 

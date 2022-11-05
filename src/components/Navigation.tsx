@@ -33,7 +33,7 @@ function NavigationOption(props: NavigationOptionProps) {
 }
 
 function Navigation() {
-    const navigationOptions = Array.from(navigationViews, ([path, option]) => (
+    const navigationOptions = Object.entries(navigationViews).map(([path, option]) => (
         <NavigationOption to={path} exact={option.exact} key={path}>
             {option.name}
         </NavigationOption>
