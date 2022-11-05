@@ -7,28 +7,54 @@ import { Link } from "react-router-dom";
 import spacetime_globe from "../images/spacetime_globe/spacetime_globe.png";
 import MetaTags from "./subcomponents/MetaTags";
 
+interface ProjectBlockProps {
+    path: string;
+    title: string;
+    image: { src: string; alt: string };
+    description: string;
+}
+
+const ProjectBlock = ({ path, title, description, image }: ProjectBlockProps) => {
+    return (
+        <div className="text-div top-margin bottom-margin">
+            <Link className="link" to={`/projects/${path}`}>
+                <div className="project-box">
+                    <img className="thumbnail" src={image.src} alt={image.alt} />
+                    <div className="project-text">
+                        <div className="project-title">{title}</div>
+                        {description}
+                    </div>
+                </div>
+            </Link>
+        </div>
+    );
+};
+
 /**
  * This component contains links to my projects.
  */
 function Projects() {
+    const projects: ProjectBlockProps[] = [
+        {
+            path: "spacetimeglobe",
+            title: "Spacetime Globe",
+            image: { src: spacetime_globe, alt: "spacetime globe" },
+            description:
+                "This interactive visualization allows you to play around with Lorentz" +
+                "transformations to really get a feel for how special relativity works. Add" +
+                "events onto the spacetime diagram and see how shifting the reference" +
+                "reference frame affects them!",
+        },
+    ];
+
+    const projectBlocks = projects.map((props: ProjectBlockProps) => (
+        <ProjectBlock key={props.path} {...props} />
+    ));
+
     return (
         <div>
             <MetaTags path="/projects" />
-
-            <div className="text-div top-margin bottom-margin">
-                <Link className="link" to="/projects/spacetimeglobe">
-                    <div className="project-box">
-                        <img className="thumbnail" src={spacetime_globe} alt="spacetime globe" />
-                        <div className="project-text">
-                            <div className="project-title">Spacetime Globe</div>
-                            This interactive visualization allows you to play around with Lorentz
-                            transformations to really get a feel for how special relativity works.
-                            Add events onto the spacetime diagram and see how shifting the reference
-                            reference frame affects them!
-                        </div>
-                    </div>
-                </Link>
-            </div>
+            {projectBlocks}
         </div>
     );
 }
