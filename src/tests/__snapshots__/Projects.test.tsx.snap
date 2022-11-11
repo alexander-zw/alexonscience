@@ -31,5 +31,34 @@ exports[`Projects renders correctly 1`] = `
       </div>
     </a>
   </div>
+  <div
+    className="text-div top-margin bottom-margin"
+  >
+    <a
+      className="link"
+      href="/projects/explodegifcreator"
+      onClick={[Function]}
+    >
+      <div
+        className="project-box"
+      >
+        <img
+          alt="explode gif creator"
+          className="thumbnail"
+          src="exploding_alphago.jpg"
+        />
+        <div
+          className="project-text"
+        >
+          <div
+            className="project-title"
+          >
+            Explode Gif Creator
+          </div>
+          This tool allows you to turn an image into an exploding gif, which can then be turned into an emoji!
+        </div>
+      </div>
+    </a>
+  </div>
 </div>
 `;
