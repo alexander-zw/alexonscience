@@ -35,5 +35,12 @@
         "description": "Spacetime globe, visualization of the geometry of special relativity",
         "keywords": "spacetime, globe, minutephysics, physics, special relativity, lorentz transformation",
         "image": "/projects/spacetimeglobe/preview.png"
+    },
+    {
+        "name": "Explode Gif Creator",
+        "path": "/projects/explodegifcreator",
+        "description": "A tool to create exploding gifs",
+        "keywords": "explode, gif, emoji, tool",
+        "image": "/projects/spacetimeglobe/preview.png"
     }
 ]

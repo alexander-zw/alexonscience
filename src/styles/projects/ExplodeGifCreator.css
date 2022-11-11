@@ -2,10 +2,22 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 0.5em;
+    font-size: 0.5em;
+    margin-bottom: 2em;
 }
 
 .upload-image-section > .upload-button {
     margin-left: 0.5em;
     cursor: pointer;
+}
+
+.convert-button-container {
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.convert-button-container > .background-color-text-field {
+    margin-left: 0.5em;
 }

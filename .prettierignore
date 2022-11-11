@@ -1,3 +1,4 @@
 build/
 tests/__snapshots__/
 public/
+src/components/projects/gif.js

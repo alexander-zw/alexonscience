@@ -13,6 +13,7 @@ import { allViews, getTitle, getURL } from "./AllViews";
 
 interface MetaTagsProps {
     path: string;
+    additionalTag?: JSX.Element;
 }
 
 export default function MetaTags(props: MetaTagsProps) {
@@ -38,6 +39,7 @@ export default function MetaTags(props: MetaTagsProps) {
             <meta property="og:image" content={ogImage} />
             <meta property="og:url" content={url} />
             <meta property="og:description" content={view.description} />
+            {props.additionalTag}
         </Helmet>
     );
 }
