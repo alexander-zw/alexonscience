@@ -3,10 +3,10 @@ import "../styles/Art.css";
 
 import React from "react";
 
-import fancy_pants_sketch from "../images/fancy_pants_sketch.jpg";
-import general_kenobi from "../images/general_kenobi.png";
-import hello_there from "../images/hello_there.png";
-import math_name from "../images/math_name.jpg";
+import fancy_pants_sketch from "../images/art/fancy_pants_sketch.jpg";
+import general_kenobi from "../images/art/general_kenobi.png";
+import hello_there from "../images/art/hello_there.png";
+import math_name from "../images/art/math_name.jpg";
 import MetaTags from "./subcomponents/MetaTags";
 
 /**

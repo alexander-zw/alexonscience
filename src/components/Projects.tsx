@@ -5,6 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import spacetime_globe from "../images/spacetime_globe/spacetime_globe.png";
+import explode_gif_creator from "../images/explode_gif_creator/exploding_alphago.jpg";
 import MetaTags from "./subcomponents/MetaTags";
 
 interface ProjectBlockProps {
@@ -48,7 +49,7 @@ function Projects() {
         {
             path: "explodegifcreator",
             title: "Explode Gif Creator",
-            image: { src: spacetime_globe, alt: "explode" },
+            image: { src: explode_gif_creator, alt: "explode gif creator" },
             description:
                 "This tool allows you to turn an image into an exploding gif, which can then " +
                 "be turned into an emoji!",

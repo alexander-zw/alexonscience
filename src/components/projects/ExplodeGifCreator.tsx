@@ -6,7 +6,7 @@ import MetaTags from "../subcomponents/MetaTags";
 import { Button, TextField, Tooltip } from "@material-ui/core";
 // @ts-expect-error Library has no types.
 import GIF from "./gif";
-import explodeFrames from "../../images/explode_frames";
+import explodeFrames from "../../images/explode_gif_creator/explode_frames";
 
 const gifFlashDelays = [
     1100, 400, 600, 300, 400, 250, 250, 180, 160, 150, 130, 100, 90, 90, 80, 70, 60, 50, 50, 50, 50,

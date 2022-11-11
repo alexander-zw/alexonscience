@@ -89,7 +89,7 @@ const otherRoutableViews: Record<string, View> = {
         component: ExplodeGifCreator,
         description: "A tool to create exploding gifs",
         keywords: "explode, gif, emoji, tool",
-        image: "/projects/spacetimeglobe/preview.png",
+        image: "/projects/explodegifcreator/preview.png",
         exact: false,
     },
 };
