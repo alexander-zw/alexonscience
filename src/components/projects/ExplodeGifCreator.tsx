@@ -10,7 +10,7 @@ import explodeFrames from "../../images/explode_gif_creator/explode_frames";
 
 const gifFlashDelays = [
     1100, 400, 600, 300, 400, 250, 250, 180, 160, 150, 130, 100, 90, 90, 80, 70, 60, 50, 50, 50, 50,
-    40, 40, 30, 30, 30, 30, 30, 30, 30, 30, 30, 20, 20,
+    40, 40, 30, 30, 30, 30, 30, 30, 30,
 ];
 
 /**
@@ -67,6 +67,12 @@ const ExplodeGifCreator = () => {
         />
     ));
 
+    const scriptGithubLink =
+        "https://github.com/alexander-zw/mini-projects/blob/master/useful_tools/gif_explodifier.py";
+    const scriptDescriptionTooltip =
+        "Really, no simple JavaScript library to perform basic GIF edits? And they wonder why " +
+        "everone prefers Python.";
+
     const backgroundColorTooltip =
         'e.g. "#fff" or "rgb(0, 0, 0)"; if you want a transparent background you can try setting' +
         'the background to "#ccc" then using https://onlinegiftools.com/create-transparent-gif';
@@ -81,6 +87,15 @@ const ExplodeGifCreator = () => {
             <p>
                 Upload an 25x25 px image (preferably transparent background png) to turn it into an
                 exploding gif!
+            </p>
+
+            <p>
+                <Tooltip title={scriptDescriptionTooltip}>
+                    <span>
+                        P.s. If this converter isn&apos;t working for you, try my{" "}
+                        <a href={scriptGithubLink}>Python script</a> instead.
+                    </span>
+                </Tooltip>
             </p>
 
             <div className="upload-image-section">
