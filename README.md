@@ -12,7 +12,7 @@ as well as Alexander Wu's personal website. The YouTube channel can also be foun
 To start development, clone/fork this repository locally. Then run `npm install` to install all dependencies.
 
 Optional: Then create a new branch called `deployed` with `git branch deployed`. This branch will
-keep track of what you havedeployed.
+keep track of what you have deployed.
 
 ## Development
 

@@ -4,7 +4,9 @@ import "../styles/Navigation.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { navigationViews } from "./subcomponents/AllViews";
+import type { NavBarURL, ViewMeta } from "./subcomponents/AllViewMetadata";
+import { navigationViewMeta } from "./subcomponents/AllViewMetadata";
+import { navBarRoutes } from "./subcomponents/AllViewComponents";
 
 /**
  * The navigation bar component contains links to go to different components
@@ -33,11 +35,13 @@ function NavigationOption(props: NavigationOptionProps) {
 }
 
 function Navigation() {
-    const navigationOptions = Object.entries(navigationViews).map(([path, option]) => (
-        <NavigationOption to={path} exact={option.exact} key={path}>
-            {option.name}
-        </NavigationOption>
-    ));
+    const navigationOptions = (Object.entries(navigationViewMeta) as [NavBarURL, ViewMeta][]).map(
+        ([path, option]) => (
+            <NavigationOption to={path} exact={navBarRoutes[path].exact} key={path}>
+                {option.name}
+            </NavigationOption>
+        ),
+    );
 
     return <div className="nav-bar text-div">{navigationOptions}</div>;
 }

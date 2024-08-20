@@ -5,7 +5,7 @@ import science_banner from "../images/science_banner.jpg";
 import Error404 from "./Error404";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
-import { routableViews } from "./subcomponents/AllViews";
+import { routes } from "./subcomponents/AllViewComponents";
 
 /**
  * The main component of the site, including the navigation bar, main content,
@@ -30,7 +30,7 @@ function ScrollToTop() {
 }
 
 function App() {
-    const routesComponent = Object.entries(routableViews).map(([path, route]) => (
+    const routesComponent = Object.entries(routes).map(([path, route]) => (
         <Route path={path} component={route.component} exact={route.exact} key={path} />
     ));
 

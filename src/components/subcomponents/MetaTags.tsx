@@ -1,7 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 
-import { allViews, getTitle, getURL } from "./AllViews";
+import type { AnyURL } from "./AllViewMetadata";
+import { allViewMeta, getTitle, getURL } from "./AllViewMetadata";
 
 /**
  * This subcomponent adds meta tags to a view, fetching data from AllViews.ts.
@@ -12,12 +13,12 @@ import { allViews, getTitle, getURL } from "./AllViews";
  */
 
 interface MetaTagsProps {
-    path: string;
+    path: AnyURL;
     additionalTag?: JSX.Element;
 }
 
 export default function MetaTags(props: MetaTagsProps) {
-    const view = allViews[props.path];
+    const view = allViewMeta[props.path];
     if (!view) {
         return <></>;
     }
