@@ -16,12 +16,12 @@ function RecentVideos() {
     const videoWidth = videoHeight * videoRatio;
 
     const recentVideoLinks = [
+        "https://www.youtube.com/embed/XqXlMkpkoIQ?si=0OwSdtyzS1zKo5m0", // ChatGPT.
         "https://www.youtube.com/embed/DsH0NZQsRbU?si=tB8HSvrHTQI7e4vV", // Banana Farms.
         "https://www.youtube.com/embed/3fZxrUtvNVc", // Pascal's Triangle.
         "https://www.youtube.com/embed/J_rw2Txr9i8", // Liar paradox.
         "https://www.youtube.com/embed/cHAVhoZx2os", // VPN.
         "https://www.youtube.com/embed/cI5lkif-V1c", // ZKP.
-        "https://www.youtube.com/embed/wuX_QyS0C3A", // Firewall.
     ];
 
     const recentVideoIframes = recentVideoLinks.map((link) => (
