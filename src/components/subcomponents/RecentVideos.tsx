@@ -16,6 +16,7 @@ function RecentVideos() {
     const videoWidth = videoHeight * videoRatio;
 
     const recentVideoLinks = [
+        "https://www.youtube.com/embed/gnA5Pj0xGY4?si=PVQUWF8C0C2MtT5C", // JK Rowling.
         "https://www.youtube.com/embed/XqXlMkpkoIQ?si=0OwSdtyzS1zKo5m0", // ChatGPT.
         "https://www.youtube.com/embed/DsH0NZQsRbU?si=tB8HSvrHTQI7e4vV", // Banana Farms.
         "https://www.youtube.com/embed/3fZxrUtvNVc", // Pascal's Triangle.
